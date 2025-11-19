@@ -41,17 +41,17 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    if (_type === "siteSettings") {
+      revalidateTag("site-settings", "max");
+      return NextResponse.json({ revalidated: true, ...body });
+    }
+
     if (!slug) {
       return NextResponse.json({ message: "No slug in body" }, { status: 400 });
     }
 
-    if (_type === "siteSettings") {
-      revalidateTag("site-settings", "max");
-    } else {
-      revalidateTag(`${_type}:${slug}`, "max");
-      revalidateTag(`${_type}-index`, "max");
-    }
-
+    revalidateTag(`${_type}:${slug}`, "max");
+    revalidateTag(`${_type}-index`, "max");
     return NextResponse.json({ revalidated: true, ...body });
   } catch (err) {
     console.error(err);
