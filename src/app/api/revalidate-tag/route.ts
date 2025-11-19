@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
-import { updateTag } from "next/cache";
 import { parseBody } from "next-sanity/webhook";
+import { revalidateTag } from "next/cache";
 
 type WebhookPayload = {
   _type?: string;
@@ -45,8 +45,8 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ message: "No slug in body" }, { status: 400 });
     }
 
-    updateTag(`${_type}:${slug}`);
-    updateTag(`${_type}-index`);
+    revalidateTag(`${_type}:${slug}`, "max");
+    revalidateTag(`${_type}-index`, "max");
 
     return NextResponse.json({ revalidated: true, ...body });
   } catch (err) {
