@@ -45,8 +45,12 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ message: "No slug in body" }, { status: 400 });
     }
 
-    revalidateTag(`${_type}:${slug}`, "max");
-    revalidateTag(`${_type}-index`, "max");
+    if (_type === "siteSettings") {
+      revalidateTag("site-settings", "max");
+    } else {
+      revalidateTag(`${_type}:${slug}`, "max");
+      revalidateTag(`${_type}-index`, "max");
+    }
 
     return NextResponse.json({ revalidated: true, ...body });
   } catch (err) {

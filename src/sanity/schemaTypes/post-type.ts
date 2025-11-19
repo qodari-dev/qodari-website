@@ -21,20 +21,13 @@ export const postType = defineType({
     defineField({
       name: "seo",
       title: "SEO",
-      type: "object",
-      fields: [
-        {
-          name: "metaTitle",
-          title: "Meta Title",
-          type: "string",
-        },
-        {
-          name: "metaDescription",
-          title: "Meta Description",
-          type: "text",
-          rows: 3,
-        },
-      ],
+      type: "seo",
+    }),
+    defineField({
+      name: "excerpt",
+      title: "Resumen corto",
+      type: "text",
+      rows: 3,
     }),
     defineField({
       name: "author",
@@ -67,6 +60,11 @@ export const postType = defineType({
     defineField({
       name: "body",
       type: "blockContent",
+    }),
+    defineField({
+      name: "relatedPosts",
+      type: "array",
+      of: [{ type: "reference", to: { type: "post" } }],
     }),
   ],
   preview: {

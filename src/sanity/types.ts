@@ -13,23 +13,23 @@
  */
 
 // Source: schema.json
-export type CardsSection = {
-  _type: "cardsSection";
-  title: string;
-  content?: string;
-  cardItems: Array<{
-    icon?: LucideIcon;
-    title: string;
-    content: string;
-    _key: string;
-  }>;
+export type Link = {
+  _type: "link";
+  label?: string;
+  page?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "page";
+  };
+  url?: string;
 };
 
-export type PartnersSection = {
-  _type: "partnersSection";
-  title: string;
-  content?: string;
-  images: Array<{
+export type Seo = {
+  _type: "seo";
+  metaTitle?: string;
+  metaDescription?: string;
+  metaImage?: {
     asset?: {
       _ref: string;
       _type: "reference";
@@ -39,41 +39,50 @@ export type PartnersSection = {
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
-    alt: string;
     _type: "image";
-    _key: string;
-  }>;
-};
-
-export type SimpleContentSection = {
-  _type: "simpleContentSection";
-  title: string;
-  content: string;
-  button?: {
-    text?: string;
-    url?: string;
   };
+  noIndex?: boolean;
 };
 
-export type Page = {
+export type SiteSettings = {
   _id: string;
-  _type: "page";
+  _type: "siteSettings";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title: string;
-  slug: Slug;
-  seo?: {
-    metaTitle?: string;
-    metaDescription?: string;
+  siteName?: string;
+  logo?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
   };
-  pageBuilder?: Array<{
+  seo?: Seo;
+  headerNav?: Array<{
     _key: string;
-  } & SimpleContentSection | {
+  } & Link>;
+  footerColumns?: Array<{
+    title?: string;
+    links?: Array<{
+      _key: string;
+    } & Link>;
+    _type: "footerColumn";
     _key: string;
-  } & PartnersSection | {
+  }>;
+  footerBottomText?: string;
+  socialLinks?: Array<{
+    label?: string;
+    icon?: LucideIcon;
+    url: string;
+    _type: "socialLink";
     _key: string;
-  } & CardsSection>;
+  }>;
 };
 
 export type LucideIcon = string;
@@ -94,6 +103,76 @@ export type SanityImageHotspot = {
   width: number;
 };
 
+export type CardsSection = {
+  _type: "cardsSection";
+  backgroundColor?: "white" | "light" | "dark" | "primary" | "secondary" | "success" | "warning" | "accent";
+  title: string;
+  content?: string;
+  cardItems: Array<{
+    icon?: LucideIcon;
+    title: string;
+    content: string;
+    _key: string;
+  }>;
+};
+
+export type PartnersSection = {
+  _type: "partnersSection";
+  backgroundColor?: "white" | "light" | "dark" | "primary" | "secondary" | "success" | "warning" | "accent";
+  title: string;
+  content?: string;
+  images: Array<{
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt: string;
+    _type: "image";
+    _key: string;
+  }>;
+};
+
+export type SimpleContentSection = {
+  _type: "simpleContentSection";
+  backgroundColor?: "white" | "light" | "dark" | "primary" | "secondary" | "success" | "warning" | "accent";
+  title: string;
+  content: string;
+  button?: {
+    text?: string;
+    url?: string;
+    buttonColor?: "primary" | "secondary" | "success" | "dark" | "outline" | "ghost";
+  };
+};
+
+export type Page = {
+  _id: string;
+  _type: "page";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  slug: Slug;
+  parent?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "page";
+  };
+  seo?: Seo;
+  pageBuilder?: Array<{
+    _key: string;
+  } & SimpleContentSection | {
+    _key: string;
+  } & PartnersSection | {
+    _key: string;
+  } & CardsSection>;
+};
+
 export type Slug = {
   _type: "slug";
   current: string;
@@ -108,10 +187,8 @@ export type Post = {
   _rev: string;
   title?: string;
   slug?: Slug;
-  seo?: {
-    metaTitle?: string;
-    metaDescription?: string;
-  };
+  seo?: Seo;
+  excerpt?: string;
   author?: {
     _ref: string;
     _type: "reference";
@@ -140,6 +217,13 @@ export type Post = {
   }>;
   publishedAt?: string;
   body?: BlockContent;
+  relatedPosts?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "post";
+  }>;
 };
 
 export type BlockContent = Array<{
@@ -223,6 +307,15 @@ export type Category = {
   title?: string;
   slug?: Slug;
   description?: string;
+};
+
+export type MediaTag = {
+  _id: string;
+  _type: "media.tag";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: Slug;
 };
 
 export type SanityImagePaletteSwatch = {
@@ -321,20 +414,18 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = CardsSection | PartnersSection | SimpleContentSection | Page | LucideIcon | SanityImageCrop | SanityImageHotspot | Slug | Post | BlockContent | Author | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes = Link | Seo | SiteSettings | LucideIcon | SanityImageCrop | SanityImageHotspot | CardsSection | PartnersSection | SimpleContentSection | Page | Slug | Post | BlockContent | Author | Category | MediaTag | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: POSTS_QUERY
-// Query: *[_type == "post" && defined(slug.current)][0...12]{  _id,   title,  "slug": slug.current,  seo,  body,   mainImage,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  author->{    name,    image  },  publishedAt}
+// Query: *[_type == "post" && defined(slug.current)][0...12]{  _id,   title,  "slug": slug.current,  seo,  body,   excerpt,  mainImage,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  author->{    name,    image  },  relatedPosts[]{    _key,     ...@->{_id, title, slug}   },  publishedAt}
 export type POSTS_QUERYResult = Array<{
   _id: string;
   title: string | null;
   slug: string | null;
-  seo: {
-    metaTitle?: string;
-    metaDescription?: string;
-  } | null;
+  seo: Seo | null;
   body: BlockContent | null;
+  excerpt: string | null;
   mainImage: {
     asset?: {
       _ref: string;
@@ -368,18 +459,23 @@ export type POSTS_QUERYResult = Array<{
       _type: "image";
     } | null;
   } | null;
+  relatedPosts: Array<{
+    _key: string;
+    _id: string;
+    title: string | null;
+    slug: Slug | null;
+  }> | null;
   publishedAt: string | null;
 }>;
 // Variable: POST_QUERY
-// Query: *[_type == "post" && slug.current == $slug][0]{  title,  "slug": slug.current,  seo,  body,   mainImage,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  author->{    name,    image  },  publishedAt}
+// Query: *[_type == "post" && slug.current == $slug][0]{  _id,  title,  "slug": slug.current,  seo,  body,   excerpt,  mainImage,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  author->{    name,    image  },  relatedPosts[]{    _key,     ...@->{_id, title, slug}  },  publishedAt}
 export type POST_QUERYResult = {
+  _id: string;
   title: string | null;
   slug: string | null;
-  seo: {
-    metaTitle?: string;
-    metaDescription?: string;
-  } | null;
+  seo: Seo | null;
   body: BlockContent | null;
+  excerpt: string | null;
   mainImage: {
     asset?: {
       _ref: string;
@@ -413,17 +509,21 @@ export type POST_QUERYResult = {
       _type: "image";
     } | null;
   } | null;
+  relatedPosts: Array<{
+    _key: string;
+    _id: string;
+    title: string | null;
+    slug: Slug | null;
+  }> | null;
   publishedAt: string | null;
 } | null;
 // Variable: PAGES_QUERY
-// Query: *[_type == "page" && defined(slug.current)]{    title,    "slug": slug.current,    seo,    pageBuilder  }
+// Query: *[_type == "page" && defined(slug.current)]{    title,    "slug": slug.current,    "parentSlug": parent->slug.current,    seo,    pageBuilder  }
 export type PAGES_QUERYResult = Array<{
   title: string;
   slug: string;
-  seo: {
-    metaTitle?: string;
-    metaDescription?: string;
-  } | null;
+  parentSlug: string | null;
+  seo: Seo | null;
   pageBuilder: Array<{
     _key: string;
   } & CardsSection | {
@@ -433,14 +533,12 @@ export type PAGES_QUERYResult = Array<{
   } & SimpleContentSection> | null;
 }>;
 // Variable: PAGE_QUERY
-// Query: *[_type == "page" && slug.current == $slug][0]{    title,    "slug": slug.current,    seo,    pageBuilder  }
+// Query: *[_type == "page" && slug.current == $slug][0]{    title,    "slug": slug.current,    "parentSlug": parent->slug.current,    seo,    pageBuilder  }
 export type PAGE_QUERYResult = {
   title: string;
   slug: string;
-  seo: {
-    metaTitle?: string;
-    metaDescription?: string;
-  } | null;
+  parentSlug: string | null;
+  seo: Seo | null;
   pageBuilder: Array<{
     _key: string;
   } & CardsSection | {
@@ -449,14 +547,58 @@ export type PAGE_QUERYResult = {
     _key: string;
   } & SimpleContentSection> | null;
 } | null;
+// Variable: SITE_SETTINGS_QUERY
+// Query: *[_type == "siteSettings"][0]{    siteName,    logo,    seo,    headerNav[]{      label,      url,      "pageSlug": page->slug.current,      "pageParentSlug": page->parent->slug.current,      "pageTitle": page->title,    },    footerColumns[]{      title,      links[]{        label,        url,        "pageSlug": page->slug.current,        "pageParentSlug": page->parent->slug.current,        "pageTitle": page->title,      }    },    footerBottomText,    socialLinks[]  }
+export type SITE_SETTINGS_QUERYResult = {
+  siteName: string | null;
+  logo: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  } | null;
+  seo: Seo | null;
+  headerNav: Array<{
+    label: string | null;
+    url: string | null;
+    pageSlug: string | null;
+    pageParentSlug: string | null;
+    pageTitle: string | null;
+  }> | null;
+  footerColumns: Array<{
+    title: string | null;
+    links: Array<{
+      label: string | null;
+      url: string | null;
+      pageSlug: string | null;
+      pageParentSlug: string | null;
+      pageTitle: string | null;
+    }> | null;
+  }> | null;
+  footerBottomText: string | null;
+  socialLinks: Array<{
+    label?: string;
+    icon?: LucideIcon;
+    url: string;
+    _type: "socialLink";
+    _key: string;
+  }> | null;
+} | null;
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"post\" && defined(slug.current)][0...12]{\n  _id, \n  title,\n  \"slug\": slug.current,\n  seo,\n  body, \n  mainImage,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  },\n  publishedAt\n}": POSTS_QUERYResult;
-    "*[_type == \"post\" && slug.current == $slug][0]{\n  title,\n  \"slug\": slug.current,\n  seo,\n  body, \n  mainImage,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  },\n  publishedAt\n}": POST_QUERYResult;
-    "*[_type == \"page\" && defined(slug.current)]{\n    title,\n    \"slug\": slug.current,\n    seo,\n    pageBuilder\n  }": PAGES_QUERYResult;
-    "*[_type == \"page\" && slug.current == $slug][0]{\n    title,\n    \"slug\": slug.current,\n    seo,\n    pageBuilder\n  }": PAGE_QUERYResult;
+    "*[_type == \"post\" && defined(slug.current)][0...12]{\n  _id, \n  title,\n  \"slug\": slug.current,\n  seo,\n  body, \n  excerpt,\n  mainImage,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  },\n  relatedPosts[]{\n    _key, \n    ...@->{_id, title, slug} \n  },\n  publishedAt\n}": POSTS_QUERYResult;
+    "*[_type == \"post\" && slug.current == $slug][0]{\n  _id,\n  title,\n  \"slug\": slug.current,\n  seo,\n  body, \n  excerpt,\n  mainImage,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  },\n  relatedPosts[]{\n    _key, \n    ...@->{_id, title, slug}\n  },\n  publishedAt\n}": POST_QUERYResult;
+    "*[_type == \"page\" && defined(slug.current)]{\n    title,\n    \"slug\": slug.current,\n    \"parentSlug\": parent->slug.current,\n    seo,\n    pageBuilder\n  }": PAGES_QUERYResult;
+    "*[_type == \"page\" && slug.current == $slug][0]{\n    title,\n    \"slug\": slug.current,\n    \"parentSlug\": parent->slug.current,\n    seo,\n    pageBuilder\n  }": PAGE_QUERYResult;
+    "\n  *[_type == \"siteSettings\"][0]{\n    siteName,\n    logo,\n    seo,\n    headerNav[]{\n      label,\n      url,\n      \"pageSlug\": page->slug.current,\n      \"pageParentSlug\": page->parent->slug.current,\n      \"pageTitle\": page->title,\n    },\n    footerColumns[]{\n      title,\n      links[]{\n        label,\n        url,\n        \"pageSlug\": page->slug.current,\n        \"pageParentSlug\": page->parent->slug.current,\n        \"pageTitle\": page->title,\n      }\n    },\n    footerBottomText,\n    socialLinks[]\n  }\n": SITE_SETTINGS_QUERYResult;
   }
 }

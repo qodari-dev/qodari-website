@@ -22,22 +22,25 @@ export const pageType = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "parent",
+      title: "Parent page",
+      type: "reference",
+      to: [{ type: "page" }],
+      description:
+        "Leave empty for top-level pages. Select a parent to create nested URLs.",
+      options: {
+        filter: ({ document }) => {
+          return {
+            filter: "_id != $id",
+            params: { id: document._id },
+          };
+        },
+      },
+    }),
+    defineField({
       name: "seo",
       title: "SEO",
-      type: "object",
-      fields: [
-        {
-          name: "metaTitle",
-          title: "Meta Title",
-          type: "string",
-        },
-        {
-          name: "metaDescription",
-          title: "Meta Description",
-          type: "text",
-          rows: 3,
-        },
-      ],
+      type: "seo",
     }),
     defineField({
       name: "pageBuilder",

@@ -1,9 +1,17 @@
+import { getColorClasses } from "@/sanity/lib/colorOptions";
 import { CardsSection } from "@/sanity/types";
+import { cn } from "@/utils/cn";
 import { DynamicIcon, IconName } from "lucide-react/dynamic";
 
-export function Cards({ title, content, cardItems }: CardsSection) {
+export function Cards({
+  backgroundColor,
+  title,
+  content,
+  cardItems,
+}: CardsSection) {
+  const { bg, text } = getColorClasses(backgroundColor);
   return (
-    <section className="py-16 px-4">
+    <section className={cn("py-16 px-4 ", bg, text)}>
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl font-bold text-center mb-4">{title}</h2>
         {content && (

@@ -1,10 +1,18 @@
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import { PartnersSection } from "@/sanity/types";
+import { getColorClasses } from "@/sanity/lib/colorOptions";
+import { cn } from "@/utils/cn";
 
-export function Partners({ title, content, images }: PartnersSection) {
+export function Partners({
+  title,
+  content,
+  images,
+  backgroundColor,
+}: PartnersSection) {
+  const { bg, text } = getColorClasses(backgroundColor);
   return (
-    <section className="py-16 px-4 bg-gray-50">
+    <section className={cn("py-16 px-4 ", bg, text)}>
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl font-bold text-center mb-4">{title}</h2>
         {content && (

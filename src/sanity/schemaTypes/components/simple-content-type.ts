@@ -1,3 +1,5 @@
+import { SwatchColorInput } from "@/sanity/components/swatch-color-input";
+import { buttonColorOptions, colorOptions } from "@/sanity/lib/colorOptions";
 import { defineField, defineType } from "sanity";
 
 export const simpleContentType = defineType({
@@ -5,6 +7,17 @@ export const simpleContentType = defineType({
   title: "Simple Content",
   type: "object",
   fields: [
+    defineField({
+      name: "backgroundColor",
+      title: "Background color",
+      type: "string",
+      options: {
+        list: [...colorOptions],
+      },
+      components: {
+        input: SwatchColorInput,
+      },
+    }),
     defineField({
       name: "title",
       title: "Title",
@@ -35,6 +48,17 @@ export const simpleContentType = defineType({
           description:
             "Can be a relative path (/about) or external URL (https://...)",
         },
+        defineField({
+          name: "buttonColor",
+          title: "Button color",
+          type: "string",
+          options: {
+            list: [...buttonColorOptions],
+          },
+          components: {
+            input: SwatchColorInput,
+          },
+        }),
       ],
     }),
   ],

@@ -1,3 +1,5 @@
+import { SwatchColorInput } from "@/sanity/components/swatch-color-input";
+import { colorOptions } from "@/sanity/lib/colorOptions";
 import { defineField, defineType } from "sanity";
 
 export const cardsType = defineType({
@@ -5,6 +7,17 @@ export const cardsType = defineType({
   title: "Cards",
   type: "object",
   fields: [
+    defineField({
+      name: "backgroundColor",
+      title: "Background color",
+      type: "string",
+      options: {
+        list: [...colorOptions],
+      },
+      components: {
+        input: SwatchColorInput,
+      },
+    }),
     defineField({
       name: "title",
       title: "Section Title",

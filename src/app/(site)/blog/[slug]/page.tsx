@@ -1,5 +1,6 @@
 import { Post } from "@/components/blog/post";
 import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
 import { POST_QUERY, POSTS_QUERY } from "@/sanity/lib/queries";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -28,10 +29,42 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await getPost(slug);
   if (!post) return {};
 
-  return {
-    title: post.seo?.metaTitle || post.title,
-    description: post.seo?.metaDescription || "",
+  const seo = post.seo;
+
+  if (!seo?.metaTitle && !seo?.metaDescription && !seo?.metaImage) {
+    return {};
+  }
+
+  const title = seo?.metaTitle || post.title || "";
+  const description = seo?.metaDescription || post.excerpt || "";
+  const imageUrl = seo?.metaImage ? urlFor(seo?.metaImage).url() : "";
+
+  const meta: Metadata = {
+    title,
+    description,
+    openGraph: {
+      type: "article",
+      title,
+      description,
+      publishedTime: post.publishedAt || undefined,
+      images: imageUrl ? [{ url: imageUrl }] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: imageUrl ? [imageUrl] : undefined,
+    },
   };
+
+  if (seo?.noIndex) {
+    meta.robots = {
+      index: false,
+      follow: false,
+    };
+  }
+
+  return meta;
 }
 
 export async function generateStaticParams() {
