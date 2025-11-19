@@ -16,7 +16,7 @@ export function Partners({
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl font-bold text-center mb-4">{title}</h2>
         {content && (
-          <p className="text-lg text-gray-700 text-center mb-12 max-w-3xl mx-auto">
+          <p className="text-lg text-center mb-12 max-w-3xl mx-auto">
             {content}
           </p>
         )}

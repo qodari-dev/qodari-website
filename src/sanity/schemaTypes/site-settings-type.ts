@@ -9,6 +9,7 @@ export const siteSettings = defineType({
       name: "siteName",
       title: "Site name",
       type: "string",
+      validation: (Rule) => Rule.required().max(60),
     }),
     defineField({
       name: "logo",
@@ -61,6 +62,7 @@ export const siteSettings = defineType({
       name: "footerBottomText",
       title: "Texto inferior (copyright, etc.)",
       type: "string",
+      validation: (Rule) => Rule.max(200),
     }),
     defineField({
       name: "socialLinks",

@@ -17,6 +17,7 @@ export const partnersType = defineType({
       components: {
         input: SwatchColorInput,
       },
+      initialValue: "white",
     }),
     defineField({
       name: "title",

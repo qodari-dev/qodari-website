@@ -8,17 +8,22 @@ import { urlFor } from "@/sanity/lib/image";
 export const revalidate = false;
 
 async function getPage(slug: string[]) {
-  const lastSegment = slug.at(-1);
+  try {
+    const lastSegment = slug.at(-1);
 
-  return client.fetch(
-    PAGE_QUERY,
-    { slug: lastSegment },
-    {
-      next: {
-        tags: ["page", `page:${lastSegment}`],
+    return client.fetch(
+      PAGE_QUERY,
+      { slug: lastSegment },
+      {
+        next: {
+          tags: ["page", `page:${lastSegment}`],
+        },
       },
-    },
-  );
+    );
+  } catch (error) {
+    console.error("Error fetching page:", error);
+    return null;
+  }
 }
 
 type Props = {

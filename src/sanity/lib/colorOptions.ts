@@ -100,14 +100,14 @@ export const buttonColorOptions = [
 export type BackgroundColorValue = (typeof colorOptions)[number]["value"];
 export type ButtonColorValue = (typeof buttonColorOptions)[number]["value"];
 
-export function getColorClasses(colorValue?: BackgroundColorValue) {
+export function getColorClasses(colorValue: BackgroundColorValue = "white") {
   const color = colorOptions.find((c) => c.value === colorValue);
   return color
     ? { bg: color.bg, text: color.text }
     : { bg: "bg-white", text: "text-gray-900" };
 }
 
-export function getButtonClasses(colorValue?: ButtonColorValue) {
+export function getButtonClasses(colorValue: ButtonColorValue = "primary") {
   const color = buttonColorOptions.find((c) => c.value === colorValue);
   return color?.classes || "bg-blue-600 hover:bg-blue-700 text-white";
 }

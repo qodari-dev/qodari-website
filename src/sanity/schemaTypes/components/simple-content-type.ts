@@ -17,6 +17,7 @@ export const simpleContentType = defineType({
       components: {
         input: SwatchColorInput,
       },
+      initialValue: "white",
     }),
     defineField({
       name: "title",
