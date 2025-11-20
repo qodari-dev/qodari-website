@@ -215,6 +215,7 @@ export const SITEMAP_QUERY = defineQuery(`
   ]{
     "slug": slug.current,
     "parentSlug": parent->slug.current,
+    language,
     _updatedAt
   },
 
@@ -224,6 +225,7 @@ export const SITEMAP_QUERY = defineQuery(`
     && (!defined(seo.noIndex) || seo.noIndex == false)
   ]{
     "slug": slug.current,
+    language,
     _updatedAt
   },
 
@@ -231,6 +233,7 @@ export const SITEMAP_QUERY = defineQuery(`
     _type == "category" 
     && defined(slug.current)
   ]{
+    language,
     "slug": slug.current
   }
 }

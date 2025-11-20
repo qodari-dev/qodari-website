@@ -10,13 +10,10 @@ export const structure: StructureResolver = (S) =>
       S.documentTypeListItem("category").title("Categories"),
       S.documentTypeListItem("author").title("Authors"),
       S.divider(),
-      S.listItem()
-        .title("Site Settings")
-        .icon(CogIcon)
-        .id("siteSettings")
-        .child(
-          S.document().schemaType("siteSettings").documentId("siteSettings"),
-        ),
+      S.listItem().title("Site Settings").icon(CogIcon).child(
+        // S.document().schemaType("siteSettings").documentId("siteSettings"),
+        S.documentTypeList("siteSettings").title("Site Settings"),
+      ),
       S.divider(),
       ...S.documentTypeListItems().filter(
         (item) =>

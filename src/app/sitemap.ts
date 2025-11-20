@@ -33,23 +33,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const pageEntries: MetadataRoute.Sitemap = (pages || []).map((page) => {
     const path = page.parentSlug
-      ? `/${page.parentSlug}/${page.slug}`
-      : `/${page.slug}`;
+      ? `${page.parentSlug}/${page.slug}`
+      : `${page.slug}`;
 
     return {
-      url: `${siteUrl}${path}`,
+      url: `${siteUrl}/${page.language}/${path}`,
       lastModified: page._updatedAt ? new Date(page._updatedAt) : now,
     };
   });
 
   const postEntries: MetadataRoute.Sitemap = (posts || []).map((post) => ({
-    url: `${siteUrl}/blog/${post.slug}`,
+    url: `${siteUrl}/${post.language}/blog/${post.slug}`,
     lastModified: post._updatedAt ? new Date(post._updatedAt) : now,
   }));
 
   const categoryEntries: MetadataRoute.Sitemap = (categories || []).map(
     (cat) => ({
-      url: `${siteUrl}/blog/category/${cat.slug}`,
+      url: `${siteUrl}/${cat.language}/blog/category/${cat.slug}`,
       lastModified: now,
     }),
   );

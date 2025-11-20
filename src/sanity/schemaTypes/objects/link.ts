@@ -22,7 +22,7 @@ export const link = defineType({
     defineField({
       name: "url",
       title: "URL externa",
-      type: "url",
+      type: "string",
       description:
         "Para enlaces externos. Si hay página interna, esta URL se ignora.",
     }),
