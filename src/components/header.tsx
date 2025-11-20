@@ -5,9 +5,12 @@ import { SITE_SETTINGS_QUERYResult } from "@/sanity/types";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import { resolveLink } from "@/sanity/lib/resolve-link";
+import { usePathname } from "next/navigation";
+import { cn } from "@/utils/cn";
 
 export function Header({ settings }: { settings: SITE_SETTINGS_QUERYResult }) {
   const { siteName, logo, headerNav } = settings || {};
+  const pathname = usePathname() || "/";
 
   return (
     <header className="border-b border-gray-100 bg-white/80 backdrop-blur">
@@ -32,11 +35,19 @@ export function Header({ settings }: { settings: SITE_SETTINGS_QUERYResult }) {
           <nav className="hidden items-center gap-6 md:flex">
             {headerNav.map((item) => {
               const link = resolveLink(item);
+              const isActive = pathname === link?.href;
+
+              const linkClasses = cn(
+                "text-sm font-medium transition-colors",
+                isActive
+                  ? "text-green-500"
+                  : "text-gray-700 hover:text-gray-900",
+              );
               return (
                 <Link
                   key={link?.href}
                   href={link?.href ?? ""}
-                  className="text-sm font-medium text-gray-700 hover:text-gray-900"
+                  className={linkClasses}
                 >
                   {link?.label}
                 </Link>

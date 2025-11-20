@@ -50,6 +50,7 @@ export const pageType = defineType({
         { type: "simpleContentSection" },
         { type: "partnersSection" },
         { type: "cardsSection" },
+        { type: "contactUsSection" },
       ],
     }),
   ],

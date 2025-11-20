@@ -52,6 +52,7 @@ export async function POST(req: NextRequest) {
 
     revalidateTag(`${_type}:${slug}`, "max");
     revalidateTag(`${_type}-index`, "max");
+    revalidateTag("sitemap", "max");
     return NextResponse.json({ revalidated: true, ...body });
   } catch (err) {
     console.error(err);

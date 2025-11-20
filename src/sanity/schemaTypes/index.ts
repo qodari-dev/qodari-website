@@ -9,6 +9,7 @@ import { link } from "./objects/link";
 import { simpleContentType } from "./components/simple-content-type";
 import { partnersType } from "./components/partners-type";
 import { cardsType } from "./components/cards-type";
+import { contactUsType } from "./components/contact-us-type";
 
 import { categoryType } from "./category-type";
 import { postType } from "./post-type";
@@ -18,16 +19,20 @@ import { siteSettings } from "./site-settings-type";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
+    //objects
     blockContentType,
+    seo,
+    link,
+    //components
+    simpleContentType,
+    partnersType,
+    cardsType,
+    contactUsType,
+    //documents
+    siteSettings,
     categoryType,
     postType,
     authorType,
     pageType,
-    simpleContentType,
-    partnersType,
-    cardsType,
-    siteSettings,
-    seo,
-    link,
   ],
 };

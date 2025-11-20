@@ -3,11 +3,17 @@ import { Partners } from "./sections/partners";
 import { Cards } from "./sections/cards";
 import {
   CardsSection,
+  ContactUsSection,
   PartnersSection,
   SimpleContentSection,
 } from "@/sanity/types";
+import { ContactUs } from "./sections/contact-us";
 
-export type PageSection = SimpleContentSection | PartnersSection | CardsSection;
+export type PageSection =
+  | SimpleContentSection
+  | PartnersSection
+  | CardsSection
+  | ContactUsSection;
 
 interface PageBuilderProps {
   sections?: PageSection[] | null;
@@ -28,6 +34,8 @@ export function PageBuilder({ sections }: PageBuilderProps) {
             return <Partners key={index} {...section} />;
           case "cardsSection":
             return <Cards key={index} {...section} />;
+          case "contactUsSection":
+            return <ContactUs key={index} {...section} />;
           default:
             return null;
         }
