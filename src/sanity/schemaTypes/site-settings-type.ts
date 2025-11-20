@@ -6,6 +6,12 @@ export const siteSettings = defineType({
   type: "document",
   fields: [
     defineField({
+      name: "language",
+      type: "string",
+      readOnly: true,
+      hidden: true,
+    }),
+    defineField({
       name: "siteName",
       title: "Site name",
       type: "string",

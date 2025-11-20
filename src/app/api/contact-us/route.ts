@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
+import { routing, type Locale } from "@/i18n/routing";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -10,6 +11,7 @@ const contactSchema = z.object({
   subject: z.string().min(3).max(150),
   message: z.string().min(10).max(2000),
   captchaToken: z.string().min(1),
+  locale: z.enum(routing.locales).default(routing.defaultLocale),
 });
 
 export async function POST(req: NextRequest) {
@@ -17,10 +19,7 @@ export async function POST(req: NextRequest) {
     const json = await req.json().catch(() => null);
 
     if (!json) {
-      return NextResponse.json(
-        { message: "Invalid JSON body" },
-        { status: 400 },
-      );
+      return NextResponse.json({ code: "INVALID_JSON" }, { status: 400 });
     }
 
     const parseResult = contactSchema.safeParse(json);
@@ -29,22 +28,20 @@ export async function POST(req: NextRequest) {
       console.warn("[contact] invalid payload", parseResult.error.issues);
       return NextResponse.json(
         {
-          message: "Invalid payload",
+          code: "INVALID_PAYLOAD",
           errors: parseResult.error.issues,
         },
         { status: 400 },
       );
     }
 
-    const { name, email, subject, message, captchaToken } = parseResult.data;
+    const { name, email, subject, message, captchaToken, locale } =
+      parseResult.data;
 
     const secret = process.env.RECAPTCHA_SECRET_KEY;
     if (!secret) {
       console.error("Missing RECAPTCHA_SECRET_KEY");
-      return NextResponse.json(
-        { message: "Error de configuración del servidor" },
-        { status: 500 },
-      );
+      return NextResponse.json({ code: "RECAPTCHA_CONFIG" }, { status: 500 });
     }
 
     const recaptchaRes = await fetch(
@@ -55,7 +52,6 @@ export async function POST(req: NextRequest) {
         body: new URLSearchParams({
           secret,
           response: captchaToken,
-          //remoteip: req.ip ?? "",
         }).toString(),
       },
     );
@@ -67,37 +63,46 @@ export async function POST(req: NextRequest) {
 
     if (!recaptchaJson.success) {
       console.warn("[contact] recaptcha failed", recaptchaJson);
-      return NextResponse.json(
-        {
-          message: "Fallo la verificación de reCAPTCHA.",
-        },
-        { status: 400 },
-      );
+      return NextResponse.json({ code: "RECAPTCHA_FAILED" }, { status: 400 });
     }
+
+    // ── Email según idioma (solo cambia el subject/body, el error se mantiene por código)
+    const lang: Locale = locale ?? routing.defaultLocale;
+
+    const subjectPrefix = lang === "es" ? "[CONTACTO]" : "[CONTACT]";
+
+    const bodyText =
+      lang === "es"
+        ? `
+Nombre: ${name}
+Email: ${email}
+
+Mensaje:
+${message}
+        `.trim()
+        : `
+Name: ${name}
+Email: ${email}
+
+Message:
+${message}
+        `.trim();
 
     const { data, error } = await resend.emails.send({
       from: "qodari <hello@qodari.com>",
       to: "carlos@qodari.com",
-      subject: `[CONTACTO] ${subject}`,
-      text: `
-        Nombre: ${name}
-        Email: ${email}
-
-        Mensaje:
-        ${message}
-      `,
+      subject: `${subjectPrefix} ${subject}`,
+      text: bodyText,
     });
 
     if (error) {
-      return Response.json({ error }, { status: 500 });
+      console.error("[contact] resend error", error);
+      return NextResponse.json({ code: "EMAIL_FAILED" }, { status: 500 });
     }
 
     return NextResponse.json({ ok: true, data });
   } catch (err) {
     console.error(err);
-    return NextResponse.json(
-      { message: "Error procesando el formulario" },
-      { status: 500 },
-    );
+    return NextResponse.json({ code: "SERVER_ERROR" }, { status: 500 });
   }
 }

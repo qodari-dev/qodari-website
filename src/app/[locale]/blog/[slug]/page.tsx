@@ -1,4 +1,5 @@
 import { Post } from "@/components/blog/post";
+import { routing, type Locale } from "@/i18n/routing";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { POST_QUERY, POSTS_QUERY } from "@/sanity/lib/queries";
@@ -7,26 +8,30 @@ import { notFound } from "next/navigation";
 
 export const revalidate = false;
 
-async function getPost(slug: string) {
+async function getPost(locale: string, slug: string) {
   return client.fetch(
     POST_QUERY,
-    { slug },
+    { slug, language: locale },
     {
       next: {
-        tags: ["post", `post:${slug}`],
+        tags: ["post", `post:${locale}:${slug}`],
       },
     },
   );
 }
 
 type Props = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
 
-  const post = await getPost(slug);
+  if (!routing.locales.includes(locale as Locale)) {
+    return {};
+  }
+
+  const post = await getPost(locale, slug);
   if (!post) return {};
 
   const seo = post.seo;
@@ -46,6 +51,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "article",
       title,
       description,
+      url: `/${locale}/blog/${slug}`,
       publishedTime: post.publishedAt || undefined,
       images: imageUrl ? [{ url: imageUrl }] : undefined,
     },
@@ -69,12 +75,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export async function generateStaticParams() {
   const slugs = await client.fetch(POSTS_QUERY);
-  return slugs.map(({ slug }) => ({ slug }));
+  return slugs.map(({ slug, language }) => ({ locale: language, slug }));
 }
 
 export default async function BlogPostPage({ params }: Props) {
-  const { slug } = await params;
-  const post = await getPost(slug);
+  const { locale, slug } = await params;
+  const post = await getPost(locale, slug);
 
   if (!post) {
     notFound();

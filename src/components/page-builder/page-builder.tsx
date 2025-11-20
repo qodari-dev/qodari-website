@@ -8,6 +8,7 @@ import {
   SimpleContentSection,
 } from "@/sanity/types";
 import { ContactUs } from "./sections/contact-us";
+import { Locale } from "@/i18n/routing";
 
 export type PageSection =
   | SimpleContentSection
@@ -16,10 +17,11 @@ export type PageSection =
   | ContactUsSection;
 
 interface PageBuilderProps {
+  locale: Locale;
   sections?: PageSection[] | null;
 }
 
-export function PageBuilder({ sections }: PageBuilderProps) {
+export function PageBuilder({ sections, locale }: PageBuilderProps) {
   if (!sections || sections.length === 0) {
     return null;
   }
@@ -35,7 +37,7 @@ export function PageBuilder({ sections }: PageBuilderProps) {
           case "cardsSection":
             return <Cards key={index} {...section} />;
           case "contactUsSection":
-            return <ContactUs key={index} {...section} />;
+            return <ContactUs key={index} locale={locale} {...section} />;
           default:
             return null;
         }

@@ -4,19 +4,21 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { PAGE_QUERY, PAGES_QUERY } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
+import { Locale } from "@/i18n/routing";
 
 export const revalidate = false;
 
-async function getPage(slug: string[]) {
+async function getPage(locale: Locale, slug: string[]) {
   try {
     const lastSegment = slug.at(-1);
+    if (!lastSegment) return null;
 
     return client.fetch(
       PAGE_QUERY,
-      { slug: lastSegment },
+      { slug: lastSegment, language: locale },
       {
         next: {
-          tags: ["page", `page:${lastSegment}`],
+          tags: ["page", `page:${locale}:${lastSegment}`],
         },
       },
     );
@@ -27,13 +29,13 @@ async function getPage(slug: string[]) {
 }
 
 type Props = {
-  params: Promise<{ slug: string[] }>;
+  params: Promise<{ locale: Locale; slug: string[] }>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, locale } = await params;
 
-  const page = await getPage(slug);
+  const page = await getPage(locale, slug);
   if (!page) {
     return {};
   }
@@ -54,6 +56,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title,
       description,
+      url: `/${locale}/${slug.join("/")}`,
       images: imageUrl ? [{ url: imageUrl }] : undefined,
     },
     twitter: {
@@ -76,14 +79,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export async function generateStaticParams() {
   const slugs = await client.fetch(PAGES_QUERY);
-  return slugs.map(({ slug, parentSlug }) => ({
+  return slugs.map(({ slug, parentSlug, language }) => ({
+    locale: language,
     slug: parentSlug ? [parentSlug, slug] : [slug],
   }));
 }
 
 export default async function DynamicPage({ params }: Props) {
-  const { slug } = await params;
-  const page = await getPage(slug);
+  const { slug, locale } = await params;
+  const page = await getPage(locale, slug);
 
   if (!page) {
     notFound();
@@ -91,7 +95,7 @@ export default async function DynamicPage({ params }: Props) {
 
   return (
     <main>
-      <PageBuilder sections={page.pageBuilder} />
+      <PageBuilder locale={locale} sections={page.pageBuilder} />
     </main>
   );
 }

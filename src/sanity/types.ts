@@ -13,220 +13,6 @@
  */
 
 // Source: schema.json
-export type Post = {
-  _id: string;
-  _type: "post";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  slug?: Slug;
-  seo?: Seo;
-  excerpt?: string;
-  author?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "author";
-  };
-  mainImage?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-  };
-  categories?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "category";
-  }>;
-  publishedAt?: string;
-  body?: BlockContent;
-  relatedPosts?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "post";
-  }>;
-};
-
-export type BlockContent = Array<{
-  children?: Array<{
-    marks?: Array<string>;
-    text?: string;
-    _type: "span";
-    _key: string;
-  }>;
-  style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
-  listItem?: "bullet";
-  markDefs?: Array<{
-    href?: string;
-    _type: "link";
-    _key: string;
-  }>;
-  level?: number;
-  _type: "block";
-  _key: string;
-} | {
-  asset?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-  };
-  media?: unknown;
-  hotspot?: SanityImageHotspot;
-  crop?: SanityImageCrop;
-  alt?: string;
-  _type: "image";
-  _key: string;
-}>;
-
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top: number;
-  bottom: number;
-  left: number;
-  right: number;
-};
-
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x: number;
-  y: number;
-  height: number;
-  width: number;
-};
-
-export type Author = {
-  _id: string;
-  _type: "author";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: string;
-  slug?: Slug;
-  image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
-  bio?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal";
-    listItem?: never;
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
-};
-
-export type Slug = {
-  _type: "slug";
-  current: string;
-  source?: string;
-};
-
-export type Seo = {
-  _type: "seo";
-  metaTitle?: string;
-  metaDescription?: string;
-  metaImage?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
-  noIndex?: boolean;
-};
-
-export type Category = {
-  _id: string;
-  _type: "category";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  slug?: Slug;
-  description?: string;
-};
-
-export type SiteSettings = {
-  _id: string;
-  _type: "siteSettings";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  siteName: string;
-  logo?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
-  seo?: Seo;
-  headerNav?: Array<{
-    _key: string;
-  } & Link>;
-  footerColumns?: Array<{
-    title?: string;
-    links?: Array<{
-      _key: string;
-    } & Link>;
-    _type: "footerColumn";
-    _key: string;
-  }>;
-  footerBottomText?: string;
-  socialLinks?: Array<{
-    label?: string;
-    icon?: LucideIcon;
-    url: string;
-    _type: "socialLink";
-    _key: string;
-  }>;
-};
-
-export type LucideIcon = string;
-
 export type ContactUsSection = {
   _type: "contactUsSection";
   backgroundColor?: "white" | "light" | "dark" | "primary" | "secondary" | "success" | "warning" | "accent";
@@ -292,12 +78,269 @@ export type Link = {
   url?: string;
 };
 
+export type Seo = {
+  _type: "seo";
+  metaTitle?: string;
+  metaDescription?: string;
+  metaImage?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  noIndex?: boolean;
+};
+
+export type BlockContent = Array<{
+  children?: Array<{
+    marks?: Array<string>;
+    text?: string;
+    _type: "span";
+    _key: string;
+  }>;
+  style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+  listItem?: "bullet";
+  markDefs?: Array<{
+    href?: string;
+    _type: "link";
+    _key: string;
+  }>;
+  level?: number;
+  _type: "block";
+  _key: string;
+} | {
+  asset?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+  };
+  media?: unknown;
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  alt?: string;
+  _type: "image";
+  _key: string;
+}>;
+
+export type TranslationMetadata = {
+  _id: string;
+  _type: "translation.metadata";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  translations?: InternationalizedArrayReference;
+  schemaTypes?: Array<string>;
+};
+
+export type InternationalizedArrayReference = Array<{
+  _key: string;
+} & InternationalizedArrayReferenceValue>;
+
+export type InternationalizedArrayReferenceValue = {
+  _type: "internationalizedArrayReferenceValue";
+  value?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "page";
+  } | {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "post";
+  } | {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "category";
+  } | {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "siteSettings";
+  };
+};
+
+export type SiteSettings = {
+  _id: string;
+  _type: "siteSettings";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  language?: string;
+  siteName: string;
+  logo?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  seo?: Seo;
+  headerNav?: Array<{
+    _key: string;
+  } & Link>;
+  footerColumns?: Array<{
+    title?: string;
+    links?: Array<{
+      _key: string;
+    } & Link>;
+    _type: "footerColumn";
+    _key: string;
+  }>;
+  footerBottomText?: string;
+  socialLinks?: Array<{
+    label?: string;
+    icon?: LucideIcon;
+    url: string;
+    _type: "socialLink";
+    _key: string;
+  }>;
+};
+
+export type LucideIcon = string;
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top: number;
+  bottom: number;
+  left: number;
+  right: number;
+};
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot";
+  x: number;
+  y: number;
+  height: number;
+  width: number;
+};
+
+export type Category = {
+  _id: string;
+  _type: "category";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  language?: string;
+  title?: string;
+  slug?: Slug;
+  description?: string;
+};
+
+export type Slug = {
+  _type: "slug";
+  current: string;
+  source?: string;
+};
+
+export type Post = {
+  _id: string;
+  _type: "post";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  language?: string;
+  title?: string;
+  slug?: Slug;
+  seo?: Seo;
+  excerpt?: string;
+  author?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "author";
+  };
+  mainImage?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  categories?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "category";
+  }>;
+  publishedAt?: string;
+  body?: BlockContent;
+  relatedPosts?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "post";
+  }>;
+};
+
+export type Author = {
+  _id: string;
+  _type: "author";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  slug?: Slug;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  bio?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+};
+
 export type Page = {
   _id: string;
   _type: "page";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  language?: string;
   title: string;
   slug: Slug;
   parent?: {
@@ -423,22 +466,32 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = Post | BlockContent | SanityImageCrop | SanityImageHotspot | Author | Slug | Seo | Category | SiteSettings | LucideIcon | ContactUsSection | CardsSection | PartnersSection | SimpleContentSection | Link | Page | MediaTag | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes = ContactUsSection | CardsSection | PartnersSection | SimpleContentSection | Link | Seo | BlockContent | TranslationMetadata | InternationalizedArrayReference | InternationalizedArrayReferenceValue | SiteSettings | LucideIcon | SanityImageCrop | SanityImageHotspot | Category | Slug | Post | Author | Page | MediaTag | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: BLOG_CATEGORY
-// Query: *[_type == "category" && slug.current == $slug][0]{title}
+// Query: *[_type == "category" && language == $language && slug.current == $slug][0]{title,"slug": slug.current,language}
 export type BLOG_CATEGORYResult = {
   title: string | null;
+  slug: string | null;
+  language: string | null;
 } | null;
 // Variable: BLOG_CATEGORIES_QUERY
-// Query: *[_type == "category" && defined(slug.current)]{    title,    "slug": slug.current  } | order(title asc)
+// Query: *[_type == "category" && defined(slug.current)]{    title,    language,    "slug": slug.current  } | order(title asc)
 export type BLOG_CATEGORIES_QUERYResult = Array<{
   title: string | null;
+  language: string | null;
+  slug: string | null;
+}>;
+// Variable: BLOG_CATEGORIES_QUERY_LANGUAGE
+// Query: *[_type == "category" && language == $language && defined(slug.current)]{    title,    language,    "slug": slug.current  } | order(title asc)
+export type BLOG_CATEGORIES_QUERY_LANGUAGEResult = Array<{
+  title: string | null;
+  language: string | null;
   slug: string | null;
 }>;
 // Variable: BLOG_CATEGORY_QUERY
-// Query: *[_type == "category" && slug.current == $slug][0]{    title,    "slug": slug.current,    "posts": *[_type == "post"       && defined(slug.current)       && (!defined(seo.noIndex) || seo.noIndex == false)       && ^._id in categories[]._ref]      | order(coalesce(publishedAt, _createdAt) desc)      [$start...$end]{        _id,        title,        "slug": slug.current,        seo,        body,         excerpt,        mainImage,        "categories": coalesce(          categories[]->{            _id,            slug,            title          },          []        ),        author->{          name,          image        },        relatedPosts[]{          _key,           ...@->{_id, title, slug}        },        publishedAt      },    "total": count(*[_type == "post"       && defined(slug.current)       && (!defined(seo.noIndex) || seo.noIndex == false)       && ^._id in categories[]._ref])  }
+// Query: *[_type == "category" && language == $language && slug.current == $slug][0]{    title,    "slug": slug.current,    "posts": *[_type == "post"       && defined(slug.current)       && (!defined(seo.noIndex) || seo.noIndex == false)       && ^._id in categories[]._ref]      | order(coalesce(publishedAt, _createdAt) desc)      [$start...$end]{        _id,        title,        "slug": slug.current,        seo,        body,         excerpt,        mainImage,        language,        "categories": coalesce(          categories[]->{            _id,            slug,            title          },          []        ),        author->{          name,          image        },        relatedPosts[]{          _key,           ...@->{_id, title, slug}        },        publishedAt      },    "total": count(*[_type == "post"       && language == $language      && defined(slug.current)       && (!defined(seo.noIndex) || seo.noIndex == false)       && ^._id in categories[]._ref])  }
 export type BLOG_CATEGORY_QUERYResult = {
   title: string | null;
   slug: string | null;
@@ -462,6 +515,7 @@ export type BLOG_CATEGORY_QUERYResult = {
       alt?: string;
       _type: "image";
     } | null;
+    language: string | null;
     categories: Array<{
       _id: string;
       slug: Slug | null;
@@ -493,7 +547,7 @@ export type BLOG_CATEGORY_QUERYResult = {
   total: number;
 } | null;
 // Variable: POSTS_INDEX_QUERY
-// Query: {  "posts": *[_type == "post" && defined(slug.current) && (!defined(seo.noIndex) || seo.noIndex == false)]    | order(coalesce(publishedAt, _createdAt) desc)    [$start...$end]{      _id,       title,      "slug": slug.current,      seo,      body,       excerpt,      mainImage,      "categories": coalesce(        categories[]->{          _id,          slug,          title        },        []      ),      author->{        name,        image      },      relatedPosts[]{        _key,         ...@->{_id, title, slug}       },      publishedAt    },  "total": count(*[_type == "post" && defined(slug.current) && (!defined(seo.noIndex) || seo.noIndex == false)])}
+// Query: {  "posts": *[_type == "post" && language == $language && defined(slug.current) && (!defined(seo.noIndex) || seo.noIndex == false)]    | order(coalesce(publishedAt, _createdAt) desc)    [$start...$end]{      _id,       title,      "slug": slug.current,      seo,      body,       excerpt,      mainImage,      language,      "categories": coalesce(        categories[]->{          _id,          slug,          title        },        []      ),      author->{        name,        image      },      relatedPosts[]{        _key,         ...@->{_id, title, slug}       },      publishedAt    },  "total": count(*[_type == "post" && language == $language && defined(slug.current) && (!defined(seo.noIndex) || seo.noIndex == false)])}
 export type POSTS_INDEX_QUERYResult = {
   posts: Array<{
     _id: string;
@@ -515,6 +569,7 @@ export type POSTS_INDEX_QUERYResult = {
       alt?: string;
       _type: "image";
     } | null;
+    language: string | null;
     categories: Array<{
       _id: string;
       slug: Slug | null;
@@ -546,7 +601,7 @@ export type POSTS_INDEX_QUERYResult = {
   total: number;
 };
 // Variable: POSTS_QUERY
-// Query: *[_type == "post" && defined(slug.current)][0...12]{  _id,  title,  "slug": slug.current,  seo,  body,   excerpt,  mainImage,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  author->{    name,    image  },  relatedPosts[]{    _key,     ...@->{_id, title, slug}  },  publishedAt}
+// Query: *[_type == "post" && defined(slug.current)][0...12]{  _id,  title,  "slug": slug.current,  seo,  body,   excerpt,  mainImage,  language,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  author->{    name,    image  },  relatedPosts[]{    _key,     ...@->{_id, title, slug}  },  publishedAt}
 export type POSTS_QUERYResult = Array<{
   _id: string;
   title: string | null;
@@ -567,6 +622,7 @@ export type POSTS_QUERYResult = Array<{
     alt?: string;
     _type: "image";
   } | null;
+  language: string | null;
   categories: Array<{
     _id: string;
     slug: Slug | null;
@@ -596,7 +652,7 @@ export type POSTS_QUERYResult = Array<{
   publishedAt: string | null;
 }>;
 // Variable: POST_QUERY
-// Query: *[_type == "post" && slug.current == $slug][0]{  _id,  title,  "slug": slug.current,  seo,  body,   excerpt,  mainImage,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  author->{    name,    image  },  relatedPosts[]{    _key,     ...@->{_id, title, slug}  },  publishedAt}
+// Query: *[_type == "post" && language == $language && slug.current == $slug][0]{  _id,  title,  "slug": slug.current,  seo,  body,   excerpt,  mainImage,  language,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  author->{    name,    image  },  relatedPosts[]{    _key,     ...@->{_id, title, slug}  },  publishedAt}
 export type POST_QUERYResult = {
   _id: string;
   title: string | null;
@@ -617,6 +673,7 @@ export type POST_QUERYResult = {
     alt?: string;
     _type: "image";
   } | null;
+  language: string | null;
   categories: Array<{
     _id: string;
     slug: Slug | null;
@@ -646,12 +703,13 @@ export type POST_QUERYResult = {
   publishedAt: string | null;
 } | null;
 // Variable: PAGES_QUERY
-// Query: *[_type == "page" && defined(slug.current)]{    title,    "slug": slug.current,    "parentSlug": parent->slug.current,    seo,    pageBuilder  }
+// Query: *[_type == "page" && defined(slug.current)]{    title,    "slug": slug.current,    "parentSlug": parent->slug.current,    seo,    language,    pageBuilder  }
 export type PAGES_QUERYResult = Array<{
   title: string;
   slug: string;
   parentSlug: string | null;
   seo: Seo | null;
+  language: string | null;
   pageBuilder: Array<{
     _key: string;
   } & CardsSection | {
@@ -663,12 +721,13 @@ export type PAGES_QUERYResult = Array<{
   } & SimpleContentSection> | null;
 }>;
 // Variable: PAGE_QUERY
-// Query: *[_type == "page" && slug.current == $slug][0]{    title,    "slug": slug.current,    "parentSlug": parent->slug.current,    seo,    pageBuilder  }
+// Query: *[_type == "page" && language == $language && slug.current == $slug][0]{    title,    "slug": slug.current,    "parentSlug": parent->slug.current,    seo,    language,    pageBuilder  }
 export type PAGE_QUERYResult = {
   title: string;
   slug: string;
   parentSlug: string | null;
   seo: Seo | null;
+  language: string | null;
   pageBuilder: Array<{
     _key: string;
   } & CardsSection | {
@@ -680,7 +739,7 @@ export type PAGE_QUERYResult = {
   } & SimpleContentSection> | null;
 } | null;
 // Variable: SITE_SETTINGS_QUERY
-// Query: *[_type == "siteSettings"][0]{    siteName,    logo,    seo,    headerNav[]{      label,      url,      "pageSlug": page->slug.current,      "pageParentSlug": page->parent->slug.current,      "pageTitle": page->title,    },    footerColumns[]{      title,      links[]{        label,        url,        "pageSlug": page->slug.current,        "pageParentSlug": page->parent->slug.current,        "pageTitle": page->title,      }    },    footerBottomText,    socialLinks[]  }
+// Query: *[_type == "siteSettings" && language == $language][0]{    siteName,    logo,    seo,    headerNav[]{      label,      url,      "pageSlug": page->slug.current,      "pageParentSlug": page->parent->slug.current,      "pageTitle": page->title,    },    footerColumns[]{      title,      links[]{        label,        url,        "pageSlug": page->slug.current,        "pageParentSlug": page->parent->slug.current,        "pageTitle": page->title,      }    },    footerBottomText,    socialLinks[]  }
 export type SITE_SETTINGS_QUERYResult = {
   siteName: string;
   logo: {
@@ -722,19 +781,37 @@ export type SITE_SETTINGS_QUERYResult = {
     _key: string;
   }> | null;
 } | null;
+// Variable: SITEMAP_QUERY
+// Query: {  "pages": *[    _type == "page"     && defined(slug.current)    && (!defined(seo.noIndex) || seo.noIndex == false)  ]{    "slug": slug.current,    "parentSlug": parent->slug.current,    _updatedAt  },  "posts": *[    _type == "post"     && defined(slug.current)     && (!defined(seo.noIndex) || seo.noIndex == false)  ]{    "slug": slug.current,    _updatedAt  },  "categories": *[    _type == "category"     && defined(slug.current)  ]{    "slug": slug.current  }}
+export type SITEMAP_QUERYResult = {
+  pages: Array<{
+    slug: string;
+    parentSlug: string | null;
+    _updatedAt: string;
+  }>;
+  posts: Array<{
+    slug: string | null;
+    _updatedAt: string;
+  }>;
+  categories: Array<{
+    slug: string | null;
+  }>;
+};
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"category\" && slug.current == $slug][0]{title}": BLOG_CATEGORYResult;
-    "\n  *[_type == \"category\" && defined(slug.current)]{\n    title,\n    \"slug\": slug.current\n  } | order(title asc)\n": BLOG_CATEGORIES_QUERYResult;
-    "\n  *[_type == \"category\" && slug.current == $slug][0]{\n    title,\n    \"slug\": slug.current,\n    \"posts\": *[_type == \"post\" \n      && defined(slug.current) \n      && (!defined(seo.noIndex) || seo.noIndex == false) \n      && ^._id in categories[]._ref]\n      | order(coalesce(publishedAt, _createdAt) desc)\n      [$start...$end]{\n        _id,\n        title,\n        \"slug\": slug.current,\n        seo,\n        body, \n        excerpt,\n        mainImage,\n        \"categories\": coalesce(\n          categories[]->{\n            _id,\n            slug,\n            title\n          },\n          []\n        ),\n        author->{\n          name,\n          image\n        },\n        relatedPosts[]{\n          _key, \n          ...@->{_id, title, slug}\n        },\n        publishedAt\n      },\n    \"total\": count(*[_type == \"post\" \n      && defined(slug.current) \n      && (!defined(seo.noIndex) || seo.noIndex == false) \n      && ^._id in categories[]._ref])\n  }\n": BLOG_CATEGORY_QUERYResult;
-    "\n{\n  \"posts\": *[_type == \"post\" && defined(slug.current) && (!defined(seo.noIndex) || seo.noIndex == false)]\n    | order(coalesce(publishedAt, _createdAt) desc)\n    [$start...$end]{\n      _id, \n      title,\n      \"slug\": slug.current,\n      seo,\n      body, \n      excerpt,\n      mainImage,\n      \"categories\": coalesce(\n        categories[]->{\n          _id,\n          slug,\n          title\n        },\n        []\n      ),\n      author->{\n        name,\n        image\n      },\n      relatedPosts[]{\n        _key, \n        ...@->{_id, title, slug} \n      },\n      publishedAt\n    },\n  \"total\": count(*[_type == \"post\" && defined(slug.current) && (!defined(seo.noIndex) || seo.noIndex == false)])\n}\n": POSTS_INDEX_QUERYResult;
-    "*[_type == \"post\" && defined(slug.current)][0...12]{\n  _id,\n  title,\n  \"slug\": slug.current,\n  seo,\n  body, \n  excerpt,\n  mainImage,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  },\n  relatedPosts[]{\n    _key, \n    ...@->{_id, title, slug}\n  },\n  publishedAt\n}": POSTS_QUERYResult;
-    "*[_type == \"post\" && slug.current == $slug][0]{\n  _id,\n  title,\n  \"slug\": slug.current,\n  seo,\n  body, \n  excerpt,\n  mainImage,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  },\n  relatedPosts[]{\n    _key, \n    ...@->{_id, title, slug}\n  },\n  publishedAt\n}": POST_QUERYResult;
-    "*[_type == \"page\" && defined(slug.current)]{\n    title,\n    \"slug\": slug.current,\n    \"parentSlug\": parent->slug.current,\n    seo,\n    pageBuilder\n  }": PAGES_QUERYResult;
-    "*[_type == \"page\" && slug.current == $slug][0]{\n    title,\n    \"slug\": slug.current,\n    \"parentSlug\": parent->slug.current,\n    seo,\n    pageBuilder\n  }": PAGE_QUERYResult;
-    "\n  *[_type == \"siteSettings\"][0]{\n    siteName,\n    logo,\n    seo,\n    headerNav[]{\n      label,\n      url,\n      \"pageSlug\": page->slug.current,\n      \"pageParentSlug\": page->parent->slug.current,\n      \"pageTitle\": page->title,\n    },\n    footerColumns[]{\n      title,\n      links[]{\n        label,\n        url,\n        \"pageSlug\": page->slug.current,\n        \"pageParentSlug\": page->parent->slug.current,\n        \"pageTitle\": page->title,\n      }\n    },\n    footerBottomText,\n    socialLinks[]\n  }\n": SITE_SETTINGS_QUERYResult;
+    "*[_type == \"category\" && language == $language && slug.current == $slug][0]{title,\"slug\": slug.current,language}": BLOG_CATEGORYResult;
+    "\n  *[_type == \"category\" && defined(slug.current)]{\n    title,\n    language,\n    \"slug\": slug.current\n  } | order(title asc)\n": BLOG_CATEGORIES_QUERYResult;
+    "\n  *[_type == \"category\" && language == $language && defined(slug.current)]{\n    title,\n    language,\n    \"slug\": slug.current\n  } | order(title asc)\n": BLOG_CATEGORIES_QUERY_LANGUAGEResult;
+    "\n  *[_type == \"category\" && language == $language && slug.current == $slug][0]{\n    title,\n    \"slug\": slug.current,\n    \"posts\": *[_type == \"post\" \n      && defined(slug.current) \n      && (!defined(seo.noIndex) || seo.noIndex == false) \n      && ^._id in categories[]._ref]\n      | order(coalesce(publishedAt, _createdAt) desc)\n      [$start...$end]{\n        _id,\n        title,\n        \"slug\": slug.current,\n        seo,\n        body, \n        excerpt,\n        mainImage,\n        language,\n        \"categories\": coalesce(\n          categories[]->{\n            _id,\n            slug,\n            title\n          },\n          []\n        ),\n        author->{\n          name,\n          image\n        },\n        relatedPosts[]{\n          _key, \n          ...@->{_id, title, slug}\n        },\n        publishedAt\n      },\n    \"total\": count(*[_type == \"post\" \n      && language == $language\n      && defined(slug.current) \n      && (!defined(seo.noIndex) || seo.noIndex == false) \n      && ^._id in categories[]._ref])\n  }\n": BLOG_CATEGORY_QUERYResult;
+    "\n{\n  \"posts\": *[_type == \"post\" && language == $language && defined(slug.current) && (!defined(seo.noIndex) || seo.noIndex == false)]\n    | order(coalesce(publishedAt, _createdAt) desc)\n    [$start...$end]{\n      _id, \n      title,\n      \"slug\": slug.current,\n      seo,\n      body, \n      excerpt,\n      mainImage,\n      language,\n      \"categories\": coalesce(\n        categories[]->{\n          _id,\n          slug,\n          title\n        },\n        []\n      ),\n      author->{\n        name,\n        image\n      },\n      relatedPosts[]{\n        _key, \n        ...@->{_id, title, slug} \n      },\n      publishedAt\n    },\n  \"total\": count(*[_type == \"post\" && language == $language && defined(slug.current) && (!defined(seo.noIndex) || seo.noIndex == false)])\n}\n": POSTS_INDEX_QUERYResult;
+    "*[_type == \"post\" && defined(slug.current)][0...12]{\n  _id,\n  title,\n  \"slug\": slug.current,\n  seo,\n  body, \n  excerpt,\n  mainImage,\n  language,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  },\n  relatedPosts[]{\n    _key, \n    ...@->{_id, title, slug}\n  },\n  publishedAt\n}": POSTS_QUERYResult;
+    "*[_type == \"post\" && language == $language && slug.current == $slug][0]{\n  _id,\n  title,\n  \"slug\": slug.current,\n  seo,\n  body, \n  excerpt,\n  mainImage,\n  language,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  },\n  relatedPosts[]{\n    _key, \n    ...@->{_id, title, slug}\n  },\n  publishedAt\n}": POST_QUERYResult;
+    "*[_type == \"page\" && defined(slug.current)]{\n    title,\n    \"slug\": slug.current,\n    \"parentSlug\": parent->slug.current,\n    seo,\n    language,\n    pageBuilder\n  }": PAGES_QUERYResult;
+    "*[_type == \"page\" && language == $language && slug.current == $slug][0]{\n    title,\n    \"slug\": slug.current,\n    \"parentSlug\": parent->slug.current,\n    seo,\n    language,\n    pageBuilder\n  }": PAGE_QUERYResult;
+    "\n  *[_type == \"siteSettings\" && language == $language][0]{\n    siteName,\n    logo,\n    seo,\n    headerNav[]{\n      label,\n      url,\n      \"pageSlug\": page->slug.current,\n      \"pageParentSlug\": page->parent->slug.current,\n      \"pageTitle\": page->title,\n    },\n    footerColumns[]{\n      title,\n      links[]{\n        label,\n        url,\n        \"pageSlug\": page->slug.current,\n        \"pageParentSlug\": page->parent->slug.current,\n        \"pageTitle\": page->title,\n      }\n    },\n    footerBottomText,\n    socialLinks[]\n  }\n": SITE_SETTINGS_QUERYResult;
+    "\n{\n  \"pages\": *[\n    _type == \"page\" \n    && defined(slug.current)\n    && (!defined(seo.noIndex) || seo.noIndex == false)\n  ]{\n    \"slug\": slug.current,\n    \"parentSlug\": parent->slug.current,\n    _updatedAt\n  },\n\n  \"posts\": *[\n    _type == \"post\" \n    && defined(slug.current) \n    && (!defined(seo.noIndex) || seo.noIndex == false)\n  ]{\n    \"slug\": slug.current,\n    _updatedAt\n  },\n\n  \"categories\": *[\n    _type == \"category\" \n    && defined(slug.current)\n  ]{\n    \"slug\": slug.current\n  }\n}\n": SITEMAP_QUERYResult;
   }
 }

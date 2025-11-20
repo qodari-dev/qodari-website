@@ -1,0 +1,59 @@
+{
+  "Metadata": {
+    "Blog": {
+      "title": "Blog",
+      "description": "Noticias, artículos y notas sobre desarrollo, productos y proyectos."
+    },
+    "BlogCategory": {
+      "title": "Blog - {category}",
+      "description": "Artículos publicados en la categoría {category}."
+    }
+  },
+  "Blog": {
+    "title": "Blog",
+    "subtitle": "Noticias, artículos y notas.",
+    "empty": "No hay posts publicados todavía.",
+    "prev": "← Anterior",
+    "more": "Mostrar más"
+  },
+  "BlogCategory": {
+    "subtitle": "Posts en la categoría {title}.",
+    "back": "← Volver al blog",
+    "empty": "No hay posts en esta categoría todavía.",
+    "prev": "← Anterior",
+    "more": "Mostrar más"
+  },
+  "ContactForm": {
+    "labels": {
+      "name": "Nombre",
+      "email": "Email",
+      "subject": "Asunto",
+      "message": "Mensaje"
+    },
+    "placeholders": {
+      "name": "Tu nombre",
+      "email": "tu@email.com",
+      "subject": "Sobre qué quieres hablar",
+      "message": "Cuéntame un poco más sobre tu proyecto..."
+    },
+    "buttons": {
+      "submit": "Enviar mensaje",
+      "submitting": "Enviando..."
+    },
+    "messages": {
+      "recaptchaRequired": "Por favor completa el reCAPTCHA.",
+      "genericError": "Ocurrió un error al enviar el mensaje.",
+      "networkError": "Ocurrió un error de red. Intenta de nuevo.",
+      "success": "¡Mensaje enviado! Te responderé pronto."
+    },
+    "errors": {
+      "nameRequired": "El nombre es obligatorio",
+      "nameTooLong": "Nombre demasiado largo",
+      "emailInvalid": "Email inválido",
+      "subjectRequired": "El asunto es obligatorio",
+      "subjectTooLong": "Asunto demasiado largo",
+      "messageTooShort": "El mensaje es muy corto",
+      "messageTooLong": "El mensaje es demasiado largo"
+    }
+  }
+}

@@ -5,6 +5,7 @@ import { revalidateTag } from "next/cache";
 type WebhookPayload = {
   _type?: string;
   slug?: string;
+  language?: string;
 };
 
 export async function POST(req: NextRequest) {
@@ -32,7 +33,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ message: "Invalid body" }, { status: 401 });
     }
 
-    const { slug, _type } = body;
+    const { slug, _type, language } = body;
 
     if (!_type) {
       return NextResponse.json(
@@ -41,8 +42,15 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    if (!language) {
+      return NextResponse.json(
+        { message: "Missing language in body" },
+        { status: 400 },
+      );
+    }
+
     if (_type === "siteSettings") {
-      revalidateTag("site-settings", "max");
+      revalidateTag(`site-settings:${language}`, "max");
       return NextResponse.json({ revalidated: true, ...body });
     }
 
@@ -50,8 +58,8 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ message: "No slug in body" }, { status: 400 });
     }
 
-    revalidateTag(`${_type}:${slug}`, "max");
-    revalidateTag(`${_type}-index`, "max");
+    revalidateTag(`${_type}:${language}:${slug}`, "max");
+    revalidateTag(`${_type}-index:${language}`, "max");
     revalidateTag("sitemap", "max");
     return NextResponse.json({ revalidated: true, ...body });
   } catch (err) {

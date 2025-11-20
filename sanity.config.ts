@@ -8,6 +8,7 @@ import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 import { media } from "sanity-plugin-media";
+import { documentInternationalization } from "@sanity/document-internationalization";
 
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
 import { apiVersion, dataset, projectId } from "@/sanity/env";
@@ -28,5 +29,12 @@ export default defineConfig({
     // https://www.sanity.io/docs/the-vision-plugin
     visionTool({ defaultApiVersion: apiVersion }),
     media(),
+    documentInternationalization({
+      supportedLanguages: [
+        { id: "en", title: "English" },
+        { id: "es", title: "Español" },
+      ],
+      schemaTypes: ["page", "post", "category", "siteSettings"],
+    }),
   ],
 });

@@ -3,18 +3,27 @@ import { defineQuery } from "next-sanity";
 export const POSTS_PER_PAGE = 6;
 
 export const BLOG_CATEGORY = defineQuery(
-  `*[_type == "category" && slug.current == $slug][0]{title}`,
+  `*[_type == "category" && language == $language && slug.current == $slug][0]{title,"slug": slug.current,language}`,
 );
 
 export const BLOG_CATEGORIES_QUERY = defineQuery(`
   *[_type == "category" && defined(slug.current)]{
     title,
+    language,
+    "slug": slug.current
+  } | order(title asc)
+`);
+
+export const BLOG_CATEGORIES_QUERY_LANGUAGE = defineQuery(`
+  *[_type == "category" && language == $language && defined(slug.current)]{
+    title,
+    language,
     "slug": slug.current
   } | order(title asc)
 `);
 
 export const BLOG_CATEGORY_QUERY = defineQuery(`
-  *[_type == "category" && slug.current == $slug][0]{
+  *[_type == "category" && language == $language && slug.current == $slug][0]{
     title,
     "slug": slug.current,
     "posts": *[_type == "post" 
@@ -30,6 +39,7 @@ export const BLOG_CATEGORY_QUERY = defineQuery(`
         body, 
         excerpt,
         mainImage,
+        language,
         "categories": coalesce(
           categories[]->{
             _id,
@@ -49,6 +59,7 @@ export const BLOG_CATEGORY_QUERY = defineQuery(`
         publishedAt
       },
     "total": count(*[_type == "post" 
+      && language == $language
       && defined(slug.current) 
       && (!defined(seo.noIndex) || seo.noIndex == false) 
       && ^._id in categories[]._ref])
@@ -57,7 +68,7 @@ export const BLOG_CATEGORY_QUERY = defineQuery(`
 
 export const POSTS_INDEX_QUERY = defineQuery(`
 {
-  "posts": *[_type == "post" && defined(slug.current) && (!defined(seo.noIndex) || seo.noIndex == false)]
+  "posts": *[_type == "post" && language == $language && defined(slug.current) && (!defined(seo.noIndex) || seo.noIndex == false)]
     | order(coalesce(publishedAt, _createdAt) desc)
     [$start...$end]{
       _id, 
@@ -67,6 +78,7 @@ export const POSTS_INDEX_QUERY = defineQuery(`
       body, 
       excerpt,
       mainImage,
+      language,
       "categories": coalesce(
         categories[]->{
           _id,
@@ -85,7 +97,7 @@ export const POSTS_INDEX_QUERY = defineQuery(`
       },
       publishedAt
     },
-  "total": count(*[_type == "post" && defined(slug.current) && (!defined(seo.noIndex) || seo.noIndex == false)])
+  "total": count(*[_type == "post" && language == $language && defined(slug.current) && (!defined(seo.noIndex) || seo.noIndex == false)])
 }
 `);
 
@@ -98,6 +110,7 @@ export const POSTS_QUERY =
   body, 
   excerpt,
   mainImage,
+  language,
   "categories": coalesce(
     categories[]->{
       _id,
@@ -118,7 +131,7 @@ export const POSTS_QUERY =
 }`);
 
 export const POST_QUERY =
-  defineQuery(`*[_type == "post" && slug.current == $slug][0]{
+  defineQuery(`*[_type == "post" && language == $language && slug.current == $slug][0]{
   _id,
   title,
   "slug": slug.current,
@@ -126,6 +139,7 @@ export const POST_QUERY =
   body, 
   excerpt,
   mainImage,
+  language,
   "categories": coalesce(
     categories[]->{
       _id,
@@ -151,20 +165,22 @@ export const PAGES_QUERY =
     "slug": slug.current,
     "parentSlug": parent->slug.current,
     seo,
+    language,
     pageBuilder
   }`);
 
 export const PAGE_QUERY =
-  defineQuery(`*[_type == "page" && slug.current == $slug][0]{
+  defineQuery(`*[_type == "page" && language == $language && slug.current == $slug][0]{
     title,
     "slug": slug.current,
     "parentSlug": parent->slug.current,
     seo,
+    language,
     pageBuilder
   }`);
 
 export const SITE_SETTINGS_QUERY = defineQuery(`
-  *[_type == "siteSettings"][0]{
+  *[_type == "siteSettings" && language == $language][0]{
     siteName,
     logo,
     seo,
@@ -188,4 +204,34 @@ export const SITE_SETTINGS_QUERY = defineQuery(`
     footerBottomText,
     socialLinks[]
   }
+`);
+
+export const SITEMAP_QUERY = defineQuery(`
+{
+  "pages": *[
+    _type == "page" 
+    && defined(slug.current)
+    && (!defined(seo.noIndex) || seo.noIndex == false)
+  ]{
+    "slug": slug.current,
+    "parentSlug": parent->slug.current,
+    _updatedAt
+  },
+
+  "posts": *[
+    _type == "post" 
+    && defined(slug.current) 
+    && (!defined(seo.noIndex) || seo.noIndex == false)
+  ]{
+    "slug": slug.current,
+    _updatedAt
+  },
+
+  "categories": *[
+    _type == "category" 
+    && defined(slug.current)
+  ]{
+    "slug": slug.current
+  }
+}
 `);
