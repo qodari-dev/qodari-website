@@ -7,6 +7,7 @@ import { urlFor } from "@/sanity/lib/image";
 import { resolveLink } from "@/sanity/lib/resolve-link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/utils/cn";
+import { LanguageSwitcher } from "./language-switcher";
 
 export function Header({ settings }: { settings: SITE_SETTINGS_QUERYResult }) {
   const { siteName, logo, headerNav } = settings || {};
@@ -53,6 +54,7 @@ export function Header({ settings }: { settings: SITE_SETTINGS_QUERYResult }) {
                 </Link>
               );
             })}
+            <LanguageSwitcher />
           </nav>
         )}
       </div>
