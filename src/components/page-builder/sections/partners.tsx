@@ -1,8 +1,10 @@
-import Image from "next/image";
+"use client";
+
+import { getColorClasses } from "@/sanity/lib/colorOptions";
 import { urlFor } from "@/sanity/lib/image";
 import { PartnersSection } from "@/sanity/types";
-import { getColorClasses } from "@/sanity/lib/colorOptions";
 import { cn } from "@/utils/cn";
+import Image from "next/image";
 
 export function Partners({
   title,

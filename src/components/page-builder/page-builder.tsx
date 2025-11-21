@@ -1,14 +1,14 @@
-import { SimpleContent } from "./sections/simple-content";
-import { Partners } from "./sections/partners";
-import { Cards } from "./sections/cards";
+import { Locale } from "@/i18n/routing";
 import {
   CardsSection,
   ContactUsSection,
   PartnersSection,
   SimpleContentSection,
 } from "@/sanity/types";
+import { Cards } from "./sections/cards";
 import { ContactUs } from "./sections/contact-us";
-import { Locale } from "@/i18n/routing";
+import { Partners } from "./sections/partners";
+import { SimpleContent } from "./sections/simple-content";
 
 export type PageSection =
   | SimpleContentSection

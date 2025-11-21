@@ -2,58 +2,58 @@
   "Metadata": {
     "Blog": {
       "title": "Blog",
-      "description": "News "
+      "description": "News"
     },
     "BlogCategory": {
       "title": "Blog - {category}",
-      "description": "Artículos publicados en la categoría {category}."
+      "description": "Articles published in the {category} category."
     }
   },
   "Blog": {
     "title": "Blog",
-    "subtitle": "New",
-    "empty": "No hay posts publicados todavía.",
-    "prev": "← Before",
-    "more": "Show More más"
+    "subtitle": "News",
+    "empty": "There are no posts published yet.",
+    "prev": "← Previous",
+    "more": "Show more"
   },
   "BlogCategory": {
-    "subtitle": "Posts en la categoría {title}.",
-    "back": "← Volver al blog",
-    "empty": "No hay posts en esta categoría todavía.",
-    "prev": "← Anterior",
-    "more": "Mostrar más"
+    "subtitle": "Posts in the {title} category.",
+    "back": "← Back to blog",
+    "empty": "There are no posts in this category yet.",
+    "prev": "← Previous",
+    "more": "Show more"
   },
   "ContactForm": {
     "labels": {
-      "name": "Nombre",
+      "name": "Name",
       "email": "Email",
-      "subject": "Asunto",
-      "message": "Mensaje"
+      "subject": "Subject",
+      "message": "Message"
     },
     "placeholders": {
-      "name": "Tu nombre",
-      "email": "tu@email.com",
-      "subject": "Sobre qué quieres hablar",
-      "message": "Cuéntame un poco más sobre tu proyecto..."
+      "name": "Your name",
+      "email": "your@email.com",
+      "subject": "What would you like to talk about?",
+      "message": "Tell me a bit more about your project..."
     },
     "buttons": {
-      "submit": "Enviar mensaje",
-      "submitting": "Enviando..."
+      "submit": "Send message",
+      "submitting": "Sending..."
     },
     "messages": {
-      "recaptchaRequired": "Por favor completa el reCAPTCHA.",
-      "genericError": "Ocurrió un error al enviar el mensaje.",
-      "networkError": "Ocurrió un error de red. Intenta de nuevo.",
-      "success": "¡Mensaje enviado! Te responderé pronto."
+      "recaptchaRequired": "Please complete the reCAPTCHA.",
+      "genericError": "An error occurred while sending the message.",
+      "networkError": "A network error occurred. Please try again.",
+      "success": "Message sent! I will get back to you soon."
     },
     "errors": {
-      "nameRequired": "El nombre es obligatorio",
-      "nameTooLong": "Nombre demasiado largo",
-      "emailInvalid": "Email inválido",
-      "subjectRequired": "El asunto es obligatorio",
-      "subjectTooLong": "Asunto demasiado largo",
-      "messageTooShort": "El mensaje es muy corto",
-      "messageTooLong": "El mensaje es demasiado largo"
+      "nameRequired": "Name is required",
+      "nameTooLong": "Name is too long",
+      "emailInvalid": "Invalid email",
+      "subjectRequired": "Subject is required",
+      "subjectTooLong": "Subject is too long",
+      "messageTooShort": "The message is too short",
+      "messageTooLong": "The message is too long"
     }
   }
 }

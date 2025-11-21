@@ -1,11 +1,11 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
 import { Author } from "@/components/blog/author";
 import { Categories } from "@/components/blog/categories";
-import { POSTS_QUERYResult } from "@/sanity/types";
 import { PublishedAt } from "@/components/blog/published-at";
 import { urlFor } from "@/sanity/lib/image";
+import { POSTS_QUERYResult } from "@/sanity/types";
 
 export function PostCard(props: POSTS_QUERYResult[0]) {
   const { title, author, mainImage, publishedAt, categories } = props;

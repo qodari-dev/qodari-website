@@ -14,7 +14,6 @@ type LinkFromSanity = {
 export function resolveLink(link: LinkFromSanity): ResolvedLink | null {
   if (!link) return null;
 
-  // Ruta interna
   if (link.pageSlug) {
     const parent = link.pageParentSlug;
     const slug = link.pageSlug;
@@ -25,7 +24,6 @@ export function resolveLink(link: LinkFromSanity): ResolvedLink | null {
     };
   }
 
-  // Ruta externa
   if (link.url) {
     return {
       href: link.url,

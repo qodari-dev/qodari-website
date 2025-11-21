@@ -1,16 +1,16 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { SubmitErrorHandler, useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import ReCAPTCHA from "react-google-recaptcha";
 import { useTranslations } from "next-intl";
+import { useMemo, useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
+import type { Locale } from "@/i18n/routing";
 import { getColorClasses } from "@/sanity/lib/colorOptions";
 import { ContactUsSection } from "@/sanity/types";
 import { cn } from "@/utils/cn";
-import type { Locale } from "@/i18n/routing";
 
 export function ContactUs({
   title,
@@ -130,12 +130,9 @@ function ContactForm({ locale }: { locale: Locale }) {
     }
   };
 
-  const onError: SubmitErrorHandler<ContactFormValues> = (formErrors) =>
-    console.log("Contact form validation errors:", formErrors);
-
   return (
     <form
-      onSubmit={handleSubmit(onSubmit, onError)}
+      onSubmit={handleSubmit(onSubmit)}
       className="space-y-6 rounded-2xl border border-gray-100 bg-white p-6 text-black shadow-sm"
     >
       <div className="grid gap-4 md:grid-cols-2">

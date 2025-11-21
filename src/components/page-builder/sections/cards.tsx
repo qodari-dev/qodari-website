@@ -1,3 +1,5 @@
+"use client";
+
 import { getColorClasses } from "@/sanity/lib/colorOptions";
 import { CardsSection } from "@/sanity/types";
 import { cn } from "@/utils/cn";

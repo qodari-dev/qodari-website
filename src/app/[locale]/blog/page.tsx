@@ -1,5 +1,5 @@
 import { PostCard } from "@/components/blog/post-card";
-import { routing, type Locale } from "@/i18n/routing";
+import { routing } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
 import { client } from "@/sanity/lib/client";
 import {
@@ -9,6 +9,7 @@ import {
 } from "@/sanity/lib/queries";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import { hasLocale } from "next-intl";
 
 export const revalidate = false;
 
@@ -46,7 +47,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
 
-  if (!routing.locales.includes(locale as Locale)) {
+  if (!hasLocale(routing.locales, locale)) {
     return {};
   }
 

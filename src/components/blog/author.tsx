@@ -1,5 +1,5 @@
-import { POST_QUERYResult } from "@/sanity/types";
 import { urlFor } from "@/sanity/lib/image";
+import { POST_QUERYResult } from "@/sanity/types";
 import Image from "next/image";
 
 type AuthorProps = {

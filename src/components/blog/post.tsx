@@ -3,11 +3,11 @@ import Image from "next/image";
 
 import { Author } from "@/components/blog/author";
 import { Categories } from "@/components/blog/categories";
-import { components } from "@/sanity/components/portableTextComponents";
-import { POST_QUERYResult } from "@/sanity/types";
 import { PublishedAt } from "@/components/blog/published-at";
 import { Title } from "@/components/blog/title";
+import { components } from "@/sanity/components/portableTextComponents";
 import { urlFor } from "@/sanity/lib/image";
+import { POST_QUERYResult } from "@/sanity/types";
 import { RelatedPosts } from "./related-posts";
 
 export function Post(props: NonNullable<POST_QUERYResult>) {

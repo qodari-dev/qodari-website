@@ -1,10 +1,10 @@
 "use client";
 
-import Link from "next/link";
+import { client } from "@/sanity/lib/client";
+import { POST_QUERYResult } from "@/sanity/types";
 import { createDataAttribute } from "next-sanity";
 import { useOptimistic } from "next-sanity/hooks";
-import { POST_QUERYResult } from "@/sanity/types";
-import { client } from "@/sanity/lib/client";
+import Link from "next/link";
 
 const { projectId, dataset, stega } = client.config();
 export const createDataAttributeConfig = {

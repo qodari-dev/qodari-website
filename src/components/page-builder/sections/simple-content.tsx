@@ -1,3 +1,5 @@
+"use client";
+
 import { getButtonClasses, getColorClasses } from "@/sanity/lib/colorOptions";
 import { SimpleContentSection } from "@/sanity/types";
 import { cn } from "@/utils/cn";

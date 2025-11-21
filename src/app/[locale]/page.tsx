@@ -33,13 +33,12 @@ type Props = {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { locale: rawLocale } = await params;
+  const { locale } = await params;
 
-  if (!hasLocale(routing.locales, rawLocale)) {
+  if (!hasLocale(routing.locales, locale)) {
     return {};
   }
 
-  const locale = rawLocale as Locale;
   const page = await getHomePage(locale);
 
   if (!page || !page.seo) {

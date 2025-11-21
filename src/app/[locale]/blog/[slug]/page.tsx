@@ -1,9 +1,10 @@
 import { Post } from "@/components/blog/post";
-import { routing, type Locale } from "@/i18n/routing";
+import { routing } from "@/i18n/routing";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { POST_QUERY, POSTS_QUERY } from "@/sanity/lib/queries";
 import type { Metadata } from "next";
+import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 
 export const revalidate = false;
@@ -27,7 +28,7 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
 
-  if (!routing.locales.includes(locale as Locale)) {
+  if (!hasLocale(routing.locales, locale)) {
     return {};
   }
 
