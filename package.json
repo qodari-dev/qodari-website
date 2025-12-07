@@ -13,36 +13,41 @@
     "@hookform/resolvers": "^5.2.2",
     "@sanity/document-internationalization": "^4.1.0",
     "@sanity/icons": "^3.7.4",
-    "@sanity/image-url": "^1.2.0",
-    "@sanity/vision": "^4.16.0",
+    "@sanity/image-url": "^2.0.2",
+    "@sanity/vision": "^4.20.3",
     "@types/react-google-recaptcha": "^2.1.9",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
-    "lucide-react": "^0.554.0",
-    "next": "16.0.3",
-    "next-intl": "^4.5.5",
-    "next-sanity": "^11.6.7",
-    "react": "19.2.0",
-    "react-dom": "19.2.0",
+    "lucide-react": "^0.556.0",
+    "next": "16.0.7",
+    "next-intl": "^4.5.8",
+    "next-sanity": "^11.6.10",
+    "react": "19.2.1",
+    "react-dom": "19.2.1",
     "react-google-recaptcha": "^3.1.0",
-    "react-hook-form": "^7.66.1",
+    "react-hook-form": "^7.68.0",
     "resend": "^6.5.2",
-    "sanity": "^4.16.0",
+    "sanity": "^4.20.3",
     "sanity-plugin-lucide-icon-picker": "^1.0.3",
-    "sanity-plugin-media": "^4.0.0",
+    "sanity-plugin-media": "^4.1.0",
     "styled-components": "^6.1.19",
     "tailwind-merge": "^3.4.0",
-    "zod": "^4.1.12"
+    "zod": "^4.1.13"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@tailwindcss/typography": "^0.5.19",
-    "@types/node": "^20",
+    "@types/node": "^24",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.0.3",
+    "eslint-config-next": "16.0.7",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "overrides": {
+    "sanity-plugin-lucide-icon-picker": {
+      "@sanity/ui": "^3"
+    }
   }
 }
