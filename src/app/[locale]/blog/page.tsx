@@ -101,15 +101,17 @@ export default async function BlogIndexPage({ params, searchParams }: Props) {
 
         {categories?.length > 0 && (
           <div className="flex flex-wrap gap-2 text-sm">
-            {categories.map((cat) => (
-              <Link
-                key={cat.slug}
-                href={`/blog/category/${cat.slug}`}
-                className="rounded-full border border-gray-200 px-3 py-1 hover:border-gray-400"
-              >
-                {cat.title}
-              </Link>
-            ))}
+            {categories.map((cat) =>
+              cat.slug ? (
+                <Link
+                  key={cat.slug}
+                  href={`/blog/category/${cat.slug}`}
+                  className="rounded-full border border-gray-200 px-3 py-1 hover:border-gray-400"
+                >
+                  {cat.title}
+                </Link>
+              ) : null,
+            )}
           </div>
         )}
       </div>
@@ -119,11 +121,13 @@ export default async function BlogIndexPage({ params, searchParams }: Props) {
       )}
 
       <div className="space-y-4">
-        {posts.map((post) => (
-          <div key={post.slug}>
-            <PostCard {...post} />
-          </div>
-        ))}
+        {posts.map((post) =>
+          post.slug ? (
+            <div key={post.slug}>
+              <PostCard {...post} slug={post.slug} />
+            </div>
+          ) : null,
+        )}
       </div>
 
       {total > POSTS_PER_PAGE && (

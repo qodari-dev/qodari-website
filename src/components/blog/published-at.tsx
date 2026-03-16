@@ -1,8 +1,8 @@
-import { POST_QUERYResult } from "@/sanity/types";
+import { POST_QUERY_RESULT } from "@/sanity/types";
 import { format } from "date-fns";
 
 type PublishedAtProps = {
-  publishedAt: NonNullable<POST_QUERYResult>["publishedAt"];
+  publishedAt: NonNullable<POST_QUERY_RESULT>["publishedAt"];
 };
 
 export function PublishedAt({ publishedAt }: PublishedAtProps) {

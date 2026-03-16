@@ -33,10 +33,16 @@ async function getCategoryPosts(locale: string, slug: string, page: number) {
 export async function generateStaticParams() {
   const categories = await client.fetch(BLOG_CATEGORIES_QUERY);
 
-  return categories.map((cat) => ({
-    locale: cat.language,
-    slug: cat.slug,
-  }));
+  return categories.flatMap((cat) =>
+    cat.language
+      ? [
+          {
+            locale: cat.language,
+            slug: cat.slug,
+          },
+        ]
+      : [],
+  );
 }
 
 type Props = {
@@ -127,11 +133,13 @@ export default async function BlogCategoryPage({
       )}
 
       <ul className="space-y-4">
-        {posts.map((post) => (
-          <li key={post.slug}>
-            <PostCard {...post} />
-          </li>
-        ))}
+        {posts.map((post) =>
+          post.slug ? (
+            <li key={post.slug}>
+              <PostCard {...post} slug={post.slug} />
+            </li>
+          ) : null,
+        )}
       </ul>
 
       {total > POSTS_PER_PAGE && (

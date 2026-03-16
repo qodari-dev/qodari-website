@@ -1,9 +1,9 @@
 import { urlFor } from "@/sanity/lib/image";
-import { POST_QUERYResult } from "@/sanity/types";
+import { POST_QUERY_RESULT } from "@/sanity/types";
 import Image from "next/image";
 
 type AuthorProps = {
-  author: NonNullable<POST_QUERYResult>["author"];
+  author: NonNullable<POST_QUERY_RESULT>["author"];
 };
 
 export function Author({ author }: AuthorProps) {

@@ -1,7 +1,7 @@
 "use client";
 
 import { client } from "@/sanity/lib/client";
-import { POST_QUERYResult } from "@/sanity/types";
+import { POST_QUERY_RESULT } from "@/sanity/types";
 import { createDataAttribute } from "next-sanity";
 import { useOptimistic } from "next-sanity/hooks";
 import Link from "next/link";
@@ -18,13 +18,13 @@ export function RelatedPosts({
   documentId,
   documentType,
 }: {
-  relatedPosts: NonNullable<POST_QUERYResult>["relatedPosts"];
+  relatedPosts: NonNullable<POST_QUERY_RESULT>["relatedPosts"];
   documentId: string;
   documentType: string;
 }) {
   const posts = useOptimistic<
-    NonNullable<POST_QUERYResult>["relatedPosts"] | undefined,
-    NonNullable<POST_QUERYResult>
+    NonNullable<POST_QUERY_RESULT>["relatedPosts"] | undefined,
+    NonNullable<POST_QUERY_RESULT>
   >(relatedPosts, (state, action) => {
     if (action.id === documentId && action?.document?.relatedPosts) {
       return action.document.relatedPosts.map(

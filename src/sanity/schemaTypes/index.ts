@@ -2,6 +2,7 @@ import { type SchemaTypeDefinition } from "sanity";
 
 // Objects
 import { blockContentType } from "./objects/block-content-type";
+import { lucideIconType } from "./objects/lucide-icon-type";
 import { seo } from "./objects/seo";
 import { link } from "./objects/link";
 
@@ -21,6 +22,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     //objects
     blockContentType,
+    lucideIconType,
     seo,
     link,
     //components

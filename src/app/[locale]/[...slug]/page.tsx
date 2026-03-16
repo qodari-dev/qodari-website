@@ -79,10 +79,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export async function generateStaticParams() {
   const slugs = await client.fetch(PAGES_QUERY);
-  return slugs.map(({ slug, parentSlug, language }) => ({
-    locale: language,
-    slug: parentSlug ? [parentSlug, slug] : [slug],
-  }));
+  return slugs.flatMap(({ slug, parentSlug, language }) =>
+    language
+      ? [
+          {
+            locale: language,
+            slug: parentSlug ? [parentSlug, slug] : [slug],
+          },
+        ]
+      : [],
+  );
 }
 
 export default async function DynamicPage({ params }: Props) {

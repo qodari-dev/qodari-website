@@ -12,17 +12,47 @@
  * ---------------------------------------------------------------------------------
  */
 
-// Source: schema.json
+export declare const internalGroqTypeReferenceTo: unique symbol;
+
+// Source: src/sanity/extract/schema.json
+export type Button = {
+  text?: string;
+  url?: string;
+  buttonColor?:
+    | "primary"
+    | "secondary"
+    | "success"
+    | "dark"
+    | "outline"
+    | "ghost";
+};
+
 export type ContactUsSection = {
   _type: "contactUsSection";
-  backgroundColor?: "white" | "light" | "dark" | "primary" | "secondary" | "success" | "warning" | "accent";
+  backgroundColor?:
+    | "white"
+    | "light"
+    | "dark"
+    | "primary"
+    | "secondary"
+    | "success"
+    | "warning"
+    | "accent";
   title: string;
   content: string;
 };
 
 export type CardsSection = {
   _type: "cardsSection";
-  backgroundColor?: "white" | "light" | "dark" | "primary" | "secondary" | "success" | "warning" | "accent";
+  backgroundColor?:
+    | "white"
+    | "light"
+    | "dark"
+    | "primary"
+    | "secondary"
+    | "success"
+    | "warning"
+    | "accent";
   title: string;
   content?: string;
   cardItems: Array<{
@@ -33,18 +63,28 @@ export type CardsSection = {
   }>;
 };
 
+export type SanityImageAssetReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+};
+
 export type PartnersSection = {
   _type: "partnersSection";
-  backgroundColor?: "white" | "light" | "dark" | "primary" | "secondary" | "success" | "warning" | "accent";
+  backgroundColor?:
+    | "white"
+    | "light"
+    | "dark"
+    | "primary"
+    | "secondary"
+    | "success"
+    | "warning"
+    | "accent";
   title: string;
   content?: string;
   images: Array<{
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -56,25 +96,31 @@ export type PartnersSection = {
 
 export type SimpleContentSection = {
   _type: "simpleContentSection";
-  backgroundColor?: "white" | "light" | "dark" | "primary" | "secondary" | "success" | "warning" | "accent";
+  backgroundColor?:
+    | "white"
+    | "light"
+    | "dark"
+    | "primary"
+    | "secondary"
+    | "success"
+    | "warning"
+    | "accent";
   title: string;
   content: string;
-  button?: {
-    text?: string;
-    url?: string;
-    buttonColor?: "primary" | "secondary" | "success" | "dark" | "outline" | "ghost";
-  };
+  button?: Button;
+};
+
+export type PageReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "page";
 };
 
 export type Link = {
   _type: "link";
   label?: string;
-  page?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "page";
-  };
+  page?: PageReference;
   url?: string;
 };
 
@@ -83,12 +129,7 @@ export type Seo = {
   metaTitle?: string;
   metaDescription?: string;
   metaImage?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -97,37 +138,37 @@ export type Seo = {
   noIndex?: boolean;
 };
 
-export type BlockContent = Array<{
-  children?: Array<{
-    marks?: Array<string>;
-    text?: string;
-    _type: "span";
-    _key: string;
-  }>;
-  style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
-  listItem?: "bullet";
-  markDefs?: Array<{
-    href?: string;
-    _type: "link";
-    _key: string;
-  }>;
-  level?: number;
-  _type: "block";
-  _key: string;
-} | {
-  asset?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-  };
-  media?: unknown;
-  hotspot?: SanityImageHotspot;
-  crop?: SanityImageCrop;
-  alt?: string;
-  _type: "image";
-  _key: string;
-}>;
+export type LucideIcon = string;
+
+export type BlockContent = Array<
+  | {
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+      listItem?: "bullet";
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }
+  | {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: "image";
+      _key: string;
+    }
+>;
 
 export type TranslationMetadata = {
   _id: string;
@@ -139,33 +180,41 @@ export type TranslationMetadata = {
   schemaTypes?: Array<string>;
 };
 
-export type InternationalizedArrayReference = Array<{
-  _key: string;
-} & InternationalizedArrayReferenceValue>;
+export type InternationalizedArrayReference = Array<
+  {
+    _key: string;
+  } & InternationalizedArrayReferenceValue
+>;
+
+export type PostReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "post";
+};
+
+export type CategoryReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "category";
+};
+
+export type SiteSettingsReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "siteSettings";
+};
 
 export type InternationalizedArrayReferenceValue = {
   _type: "internationalizedArrayReferenceValue";
-  value?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "page";
-  } | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "post";
-  } | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "category";
-  } | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "siteSettings";
-  };
+  value?:
+    | PageReference
+    | PostReference
+    | CategoryReference
+    | SiteSettingsReference;
+  language: string;
 };
 
 export type SiteSettings = {
@@ -177,26 +226,25 @@ export type SiteSettings = {
   language?: string;
   siteName: string;
   logo?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
   };
   seo?: Seo;
-  headerNav?: Array<{
-    _key: string;
-  } & Link>;
+  headerNav?: Array<
+    {
+      _key: string;
+    } & Link
+  >;
   footerColumns?: Array<{
     title?: string;
-    links?: Array<{
-      _key: string;
-    } & Link>;
+    links?: Array<
+      {
+        _key: string;
+      } & Link
+    >;
     _type: "footerColumn";
     _key: string;
   }>;
@@ -209,8 +257,6 @@ export type SiteSettings = {
     _key: string;
   }>;
 };
-
-export type LucideIcon = string;
 
 export type SanityImageCrop = {
   _type: "sanity.imageCrop";
@@ -246,6 +292,13 @@ export type Slug = {
   source?: string;
 };
 
+export type AuthorReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "author";
+};
+
 export type Post = {
   _id: string;
   _type: "post";
@@ -257,41 +310,27 @@ export type Post = {
   slug?: Slug;
   seo?: Seo;
   excerpt?: string;
-  author?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "author";
-  };
+  author?: AuthorReference;
   mainImage?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
     _type: "image";
   };
-  categories?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "category";
-  }>;
+  categories?: Array<
+    {
+      _key: string;
+    } & CategoryReference
+  >;
   publishedAt?: string;
   body?: BlockContent;
-  relatedPosts?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "post";
-  }>;
+  relatedPosts?: Array<
+    {
+      _key: string;
+    } & PostReference
+  >;
 };
 
 export type Author = {
@@ -303,12 +342,7 @@ export type Author = {
   name?: string;
   slug?: Slug;
   image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -343,22 +377,22 @@ export type Page = {
   language?: string;
   title: string;
   slug: Slug;
-  parent?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "page";
-  };
+  parent?: PageReference;
   seo?: Seo;
-  pageBuilder?: Array<{
-    _key: string;
-  } & SimpleContentSection | {
-    _key: string;
-  } & PartnersSection | {
-    _key: string;
-  } & CardsSection | {
-    _key: string;
-  } & ContactUsSection>;
+  pageBuilder?: Array<
+    | ({
+        _key: string;
+      } & SimpleContentSection)
+    | ({
+        _key: string;
+      } & PartnersSection)
+    | ({
+        _key: string;
+      } & CardsSection)
+    | ({
+        _key: string;
+      } & ContactUsSection)
+  >;
 };
 
 export type MediaTag = {
@@ -403,6 +437,7 @@ export type SanityImageMetadata = {
   palette?: SanityImagePalette;
   lqip?: string;
   blurHash?: string;
+  thumbHash?: string;
   hasAlpha?: boolean;
   isOpaque?: boolean;
 };
@@ -418,14 +453,14 @@ export type SanityFileAsset = {
   title?: string;
   description?: string;
   altText?: string;
-  sha1hash?: string;
-  extension?: string;
-  mimeType?: string;
-  size?: number;
-  assetId?: string;
+  sha1hash: string;
+  extension: string;
+  mimeType: string;
+  size: number;
+  assetId: string;
   uploadId?: string;
-  path?: string;
-  url?: string;
+  path: string;
+  url: string;
   source?: SanityAssetSourceData;
 };
 
@@ -447,14 +482,14 @@ export type SanityImageAsset = {
   title?: string;
   description?: string;
   altText?: string;
-  sha1hash?: string;
-  extension?: string;
-  mimeType?: string;
-  size?: number;
-  assetId?: string;
+  sha1hash: string;
+  extension: string;
+  mimeType: string;
+  size: number;
+  assetId: string;
   uploadId?: string;
-  path?: string;
-  url?: string;
+  path: string;
+  url: string;
   metadata?: SanityImageMetadata;
   source?: SanityAssetSourceData;
 };
@@ -466,33 +501,74 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = ContactUsSection | CardsSection | PartnersSection | SimpleContentSection | Link | Seo | BlockContent | TranslationMetadata | InternationalizedArrayReference | InternationalizedArrayReferenceValue | SiteSettings | LucideIcon | SanityImageCrop | SanityImageHotspot | Category | Slug | Post | Author | Page | MediaTag | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
-export declare const internalGroqTypeReferenceTo: unique symbol;
-// Source: ./src/sanity/lib/queries.ts
+export type AllSanitySchemaTypes =
+  | Button
+  | ContactUsSection
+  | CardsSection
+  | SanityImageAssetReference
+  | PartnersSection
+  | SimpleContentSection
+  | PageReference
+  | Link
+  | Seo
+  | LucideIcon
+  | BlockContent
+  | TranslationMetadata
+  | InternationalizedArrayReference
+  | PostReference
+  | CategoryReference
+  | SiteSettingsReference
+  | InternationalizedArrayReferenceValue
+  | SiteSettings
+  | SanityImageCrop
+  | SanityImageHotspot
+  | Category
+  | Slug
+  | AuthorReference
+  | Post
+  | Author
+  | Page
+  | MediaTag
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
+  | SanityImageMetadata
+  | SanityFileAsset
+  | SanityAssetSourceData
+  | SanityImageAsset
+  | Geopoint;
+
+// Source: src/sanity/lib/queries.ts
 // Variable: BLOG_CATEGORY
 // Query: *[_type == "category" && language == $language && slug.current == $slug][0]{title,"slug": slug.current,language}
-export type BLOG_CATEGORYResult = {
+export type BLOG_CATEGORY_RESULT = {
   title: string | null;
   slug: string | null;
   language: string | null;
 } | null;
+
+// Source: src/sanity/lib/queries.ts
 // Variable: BLOG_CATEGORIES_QUERY
 // Query: *[_type == "category" && defined(slug.current)]{    title,    language,    "slug": slug.current  } | order(title asc)
-export type BLOG_CATEGORIES_QUERYResult = Array<{
+export type BLOG_CATEGORIES_QUERY_RESULT = Array<{
   title: string | null;
   language: string | null;
-  slug: string | null;
+  slug: string;
 }>;
+
+// Source: src/sanity/lib/queries.ts
 // Variable: BLOG_CATEGORIES_QUERY_LANGUAGE
 // Query: *[_type == "category" && language == $language && defined(slug.current)]{    title,    language,    "slug": slug.current  } | order(title asc)
-export type BLOG_CATEGORIES_QUERY_LANGUAGEResult = Array<{
+export type BLOG_CATEGORIES_QUERY_LANGUAGE_RESULT = Array<{
   title: string | null;
   language: string | null;
   slug: string | null;
 }>;
+
+// Source: src/sanity/lib/queries.ts
 // Variable: BLOG_CATEGORY_QUERY
 // Query: *[_type == "category" && language == $language && slug.current == $slug][0]{    title,    "slug": slug.current,    "posts": *[_type == "post"       && defined(slug.current)       && (!defined(seo.noIndex) || seo.noIndex == false)       && ^._id in categories[]._ref]      | order(coalesce(publishedAt, _createdAt) desc)      [$start...$end]{        _id,        title,        "slug": slug.current,        seo,        body,         excerpt,        mainImage,        language,        "categories": coalesce(          categories[]->{            _id,            slug,            title          },          []        ),        author->{          name,          image        },        relatedPosts[]{          _key,           ...@->{_id, title, slug}        },        publishedAt      },    "total": count(*[_type == "post"       && language == $language      && defined(slug.current)       && (!defined(seo.noIndex) || seo.noIndex == false)       && ^._id in categories[]._ref])  }
-export type BLOG_CATEGORY_QUERYResult = {
+export type BLOG_CATEGORY_QUERY_RESULT = {
   title: string | null;
   slug: string | null;
   posts: Array<{
@@ -503,12 +579,7 @@ export type BLOG_CATEGORY_QUERYResult = {
     body: BlockContent | null;
     excerpt: string | null;
     mainImage: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
+      asset?: SanityImageAssetReference;
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
@@ -516,20 +587,17 @@ export type BLOG_CATEGORY_QUERYResult = {
       _type: "image";
     } | null;
     language: string | null;
-    categories: Array<{
-      _id: string;
-      slug: Slug | null;
-      title: string | null;
-    }> | Array<never>;
+    categories:
+      | Array<{
+          _id: string;
+          slug: Slug | null;
+          title: string | null;
+        }>
+      | Array<never>;
     author: {
       name: string | null;
       image: {
-        asset?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-        };
+        asset?: SanityImageAssetReference;
         media?: unknown;
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
@@ -546,9 +614,11 @@ export type BLOG_CATEGORY_QUERYResult = {
   }>;
   total: number;
 } | null;
+
+// Source: src/sanity/lib/queries.ts
 // Variable: POSTS_INDEX_QUERY
 // Query: {  "posts": *[_type == "post" && language == $language && defined(slug.current) && (!defined(seo.noIndex) || seo.noIndex == false)]    | order(coalesce(publishedAt, _createdAt) desc)    [$start...$end]{      _id,       title,      "slug": slug.current,      seo,      body,       excerpt,      mainImage,      language,      "categories": coalesce(        categories[]->{          _id,          slug,          title        },        []      ),      author->{        name,        image      },      relatedPosts[]{        _key,         ...@->{_id, title, slug}       },      publishedAt    },  "total": count(*[_type == "post" && language == $language && defined(slug.current) && (!defined(seo.noIndex) || seo.noIndex == false)])}
-export type POSTS_INDEX_QUERYResult = {
+export type POSTS_INDEX_QUERY_RESULT = {
   posts: Array<{
     _id: string;
     title: string | null;
@@ -557,12 +627,7 @@ export type POSTS_INDEX_QUERYResult = {
     body: BlockContent | null;
     excerpt: string | null;
     mainImage: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
+      asset?: SanityImageAssetReference;
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
@@ -570,20 +635,17 @@ export type POSTS_INDEX_QUERYResult = {
       _type: "image";
     } | null;
     language: string | null;
-    categories: Array<{
-      _id: string;
-      slug: Slug | null;
-      title: string | null;
-    }> | Array<never>;
+    categories:
+      | Array<{
+          _id: string;
+          slug: Slug | null;
+          title: string | null;
+        }>
+      | Array<never>;
     author: {
       name: string | null;
       image: {
-        asset?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-        };
+        asset?: SanityImageAssetReference;
         media?: unknown;
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
@@ -600,22 +662,19 @@ export type POSTS_INDEX_QUERYResult = {
   }>;
   total: number;
 };
+
+// Source: src/sanity/lib/queries.ts
 // Variable: POSTS_QUERY
 // Query: *[_type == "post" && defined(slug.current)][0...12]{  _id,  title,  "slug": slug.current,  seo,  body,   excerpt,  mainImage,  language,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  author->{    name,    image  },  relatedPosts[]{    _key,     ...@->{_id, title, slug}  },  publishedAt}
-export type POSTS_QUERYResult = Array<{
+export type POSTS_QUERY_RESULT = Array<{
   _id: string;
   title: string | null;
-  slug: string | null;
+  slug: string;
   seo: Seo | null;
   body: BlockContent | null;
   excerpt: string | null;
   mainImage: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -623,20 +682,17 @@ export type POSTS_QUERYResult = Array<{
     _type: "image";
   } | null;
   language: string | null;
-  categories: Array<{
-    _id: string;
-    slug: Slug | null;
-    title: string | null;
-  }> | Array<never>;
+  categories:
+    | Array<{
+        _id: string;
+        slug: Slug | null;
+        title: string | null;
+      }>
+    | Array<never>;
   author: {
     name: string | null;
     image: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
+      asset?: SanityImageAssetReference;
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
@@ -651,9 +707,11 @@ export type POSTS_QUERYResult = Array<{
   }> | null;
   publishedAt: string | null;
 }>;
+
+// Source: src/sanity/lib/queries.ts
 // Variable: POST_QUERY
 // Query: *[_type == "post" && language == $language && slug.current == $slug][0]{  _id,  title,  "slug": slug.current,  seo,  body,   excerpt,  mainImage,  language,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  author->{    name,    image  },  relatedPosts[]{    _key,     ...@->{_id, title, slug}  },  publishedAt}
-export type POST_QUERYResult = {
+export type POST_QUERY_RESULT = {
   _id: string;
   title: string | null;
   slug: string | null;
@@ -661,12 +719,7 @@ export type POST_QUERYResult = {
   body: BlockContent | null;
   excerpt: string | null;
   mainImage: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -674,20 +727,17 @@ export type POST_QUERYResult = {
     _type: "image";
   } | null;
   language: string | null;
-  categories: Array<{
-    _id: string;
-    slug: Slug | null;
-    title: string | null;
-  }> | Array<never>;
+  categories:
+    | Array<{
+        _id: string;
+        slug: Slug | null;
+        title: string | null;
+      }>
+    | Array<never>;
   author: {
     name: string | null;
     image: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
+      asset?: SanityImageAssetReference;
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
@@ -702,53 +752,64 @@ export type POST_QUERYResult = {
   }> | null;
   publishedAt: string | null;
 } | null;
+
+// Source: src/sanity/lib/queries.ts
 // Variable: PAGES_QUERY
 // Query: *[_type == "page" && defined(slug.current)]{    title,    "slug": slug.current,    "parentSlug": parent->slug.current,    seo,    language,    pageBuilder  }
-export type PAGES_QUERYResult = Array<{
+export type PAGES_QUERY_RESULT = Array<{
   title: string;
   slug: string;
   parentSlug: string | null;
   seo: Seo | null;
   language: string | null;
-  pageBuilder: Array<{
-    _key: string;
-  } & CardsSection | {
-    _key: string;
-  } & ContactUsSection | {
-    _key: string;
-  } & PartnersSection | {
-    _key: string;
-  } & SimpleContentSection> | null;
+  pageBuilder: Array<
+    | ({
+        _key: string;
+      } & CardsSection)
+    | ({
+        _key: string;
+      } & ContactUsSection)
+    | ({
+        _key: string;
+      } & PartnersSection)
+    | ({
+        _key: string;
+      } & SimpleContentSection)
+  > | null;
 }>;
+
+// Source: src/sanity/lib/queries.ts
 // Variable: PAGE_QUERY
 // Query: *[_type == "page" && language == $language && slug.current == $slug][0]{    title,    "slug": slug.current,    "parentSlug": parent->slug.current,    seo,    language,    pageBuilder  }
-export type PAGE_QUERYResult = {
+export type PAGE_QUERY_RESULT = {
   title: string;
   slug: string;
   parentSlug: string | null;
   seo: Seo | null;
   language: string | null;
-  pageBuilder: Array<{
-    _key: string;
-  } & CardsSection | {
-    _key: string;
-  } & ContactUsSection | {
-    _key: string;
-  } & PartnersSection | {
-    _key: string;
-  } & SimpleContentSection> | null;
+  pageBuilder: Array<
+    | ({
+        _key: string;
+      } & CardsSection)
+    | ({
+        _key: string;
+      } & ContactUsSection)
+    | ({
+        _key: string;
+      } & PartnersSection)
+    | ({
+        _key: string;
+      } & SimpleContentSection)
+  > | null;
 } | null;
+
+// Source: src/sanity/lib/queries.ts
 // Variable: SITE_SETTINGS_QUERY
 // Query: *[_type == "siteSettings" && language == $language][0]{    siteName,    logo,    seo,    headerNav[]{      label,      url,      "pageSlug": page->slug.current,      "pageParentSlug": page->parent->slug.current,      "pageTitle": page->title,    },    footerColumns[]{      title,      links[]{        label,        url,        "pageSlug": page->slug.current,        "pageParentSlug": page->parent->slug.current,        "pageTitle": page->title,      }    },    footerBottomText,    socialLinks[]  }
-export type SITE_SETTINGS_QUERYResult = {
+export type SITE_SETTINGS_QUERY_RESULT = {
   siteName: string;
   logo: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -781,9 +842,11 @@ export type SITE_SETTINGS_QUERYResult = {
     _key: string;
   }> | null;
 } | null;
+
+// Source: src/sanity/lib/queries.ts
 // Variable: SITEMAP_QUERY
 // Query: {  "pages": *[    _type == "page"     && defined(slug.current)    && (!defined(seo.noIndex) || seo.noIndex == false)  ]{    "slug": slug.current,    "parentSlug": parent->slug.current,    language,    _updatedAt  },  "posts": *[    _type == "post"     && defined(slug.current)     && (!defined(seo.noIndex) || seo.noIndex == false)  ]{    "slug": slug.current,    language,    _updatedAt  },  "categories": *[    _type == "category"     && defined(slug.current)  ]{    language,    "slug": slug.current  }}
-export type SITEMAP_QUERYResult = {
+export type SITEMAP_QUERY_RESULT = {
   pages: Array<{
     slug: string;
     parentSlug: string | null;
@@ -797,7 +860,7 @@ export type SITEMAP_QUERYResult = {
   }>;
   categories: Array<{
     language: string | null;
-    slug: string | null;
+    slug: string;
   }>;
 };
 
@@ -805,16 +868,16 @@ export type SITEMAP_QUERYResult = {
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"category\" && language == $language && slug.current == $slug][0]{title,\"slug\": slug.current,language}": BLOG_CATEGORYResult;
-    "\n  *[_type == \"category\" && defined(slug.current)]{\n    title,\n    language,\n    \"slug\": slug.current\n  } | order(title asc)\n": BLOG_CATEGORIES_QUERYResult;
-    "\n  *[_type == \"category\" && language == $language && defined(slug.current)]{\n    title,\n    language,\n    \"slug\": slug.current\n  } | order(title asc)\n": BLOG_CATEGORIES_QUERY_LANGUAGEResult;
-    "\n  *[_type == \"category\" && language == $language && slug.current == $slug][0]{\n    title,\n    \"slug\": slug.current,\n    \"posts\": *[_type == \"post\" \n      && defined(slug.current) \n      && (!defined(seo.noIndex) || seo.noIndex == false) \n      && ^._id in categories[]._ref]\n      | order(coalesce(publishedAt, _createdAt) desc)\n      [$start...$end]{\n        _id,\n        title,\n        \"slug\": slug.current,\n        seo,\n        body, \n        excerpt,\n        mainImage,\n        language,\n        \"categories\": coalesce(\n          categories[]->{\n            _id,\n            slug,\n            title\n          },\n          []\n        ),\n        author->{\n          name,\n          image\n        },\n        relatedPosts[]{\n          _key, \n          ...@->{_id, title, slug}\n        },\n        publishedAt\n      },\n    \"total\": count(*[_type == \"post\" \n      && language == $language\n      && defined(slug.current) \n      && (!defined(seo.noIndex) || seo.noIndex == false) \n      && ^._id in categories[]._ref])\n  }\n": BLOG_CATEGORY_QUERYResult;
-    "\n{\n  \"posts\": *[_type == \"post\" && language == $language && defined(slug.current) && (!defined(seo.noIndex) || seo.noIndex == false)]\n    | order(coalesce(publishedAt, _createdAt) desc)\n    [$start...$end]{\n      _id, \n      title,\n      \"slug\": slug.current,\n      seo,\n      body, \n      excerpt,\n      mainImage,\n      language,\n      \"categories\": coalesce(\n        categories[]->{\n          _id,\n          slug,\n          title\n        },\n        []\n      ),\n      author->{\n        name,\n        image\n      },\n      relatedPosts[]{\n        _key, \n        ...@->{_id, title, slug} \n      },\n      publishedAt\n    },\n  \"total\": count(*[_type == \"post\" && language == $language && defined(slug.current) && (!defined(seo.noIndex) || seo.noIndex == false)])\n}\n": POSTS_INDEX_QUERYResult;
-    "*[_type == \"post\" && defined(slug.current)][0...12]{\n  _id,\n  title,\n  \"slug\": slug.current,\n  seo,\n  body, \n  excerpt,\n  mainImage,\n  language,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  },\n  relatedPosts[]{\n    _key, \n    ...@->{_id, title, slug}\n  },\n  publishedAt\n}": POSTS_QUERYResult;
-    "*[_type == \"post\" && language == $language && slug.current == $slug][0]{\n  _id,\n  title,\n  \"slug\": slug.current,\n  seo,\n  body, \n  excerpt,\n  mainImage,\n  language,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  },\n  relatedPosts[]{\n    _key, \n    ...@->{_id, title, slug}\n  },\n  publishedAt\n}": POST_QUERYResult;
-    "*[_type == \"page\" && defined(slug.current)]{\n    title,\n    \"slug\": slug.current,\n    \"parentSlug\": parent->slug.current,\n    seo,\n    language,\n    pageBuilder\n  }": PAGES_QUERYResult;
-    "*[_type == \"page\" && language == $language && slug.current == $slug][0]{\n    title,\n    \"slug\": slug.current,\n    \"parentSlug\": parent->slug.current,\n    seo,\n    language,\n    pageBuilder\n  }": PAGE_QUERYResult;
-    "\n  *[_type == \"siteSettings\" && language == $language][0]{\n    siteName,\n    logo,\n    seo,\n    headerNav[]{\n      label,\n      url,\n      \"pageSlug\": page->slug.current,\n      \"pageParentSlug\": page->parent->slug.current,\n      \"pageTitle\": page->title,\n    },\n    footerColumns[]{\n      title,\n      links[]{\n        label,\n        url,\n        \"pageSlug\": page->slug.current,\n        \"pageParentSlug\": page->parent->slug.current,\n        \"pageTitle\": page->title,\n      }\n    },\n    footerBottomText,\n    socialLinks[]\n  }\n": SITE_SETTINGS_QUERYResult;
-    "\n{\n  \"pages\": *[\n    _type == \"page\" \n    && defined(slug.current)\n    && (!defined(seo.noIndex) || seo.noIndex == false)\n  ]{\n    \"slug\": slug.current,\n    \"parentSlug\": parent->slug.current,\n    language,\n    _updatedAt\n  },\n\n  \"posts\": *[\n    _type == \"post\" \n    && defined(slug.current) \n    && (!defined(seo.noIndex) || seo.noIndex == false)\n  ]{\n    \"slug\": slug.current,\n    language,\n    _updatedAt\n  },\n\n  \"categories\": *[\n    _type == \"category\" \n    && defined(slug.current)\n  ]{\n    language,\n    \"slug\": slug.current\n  }\n}\n": SITEMAP_QUERYResult;
+    '*[_type == "category" && language == $language && slug.current == $slug][0]{title,"slug": slug.current,language}': BLOG_CATEGORY_RESULT;
+    '\n  *[_type == "category" && defined(slug.current)]{\n    title,\n    language,\n    "slug": slug.current\n  } | order(title asc)\n': BLOG_CATEGORIES_QUERY_RESULT;
+    '\n  *[_type == "category" && language == $language && defined(slug.current)]{\n    title,\n    language,\n    "slug": slug.current\n  } | order(title asc)\n': BLOG_CATEGORIES_QUERY_LANGUAGE_RESULT;
+    '\n  *[_type == "category" && language == $language && slug.current == $slug][0]{\n    title,\n    "slug": slug.current,\n    "posts": *[_type == "post" \n      && defined(slug.current) \n      && (!defined(seo.noIndex) || seo.noIndex == false) \n      && ^._id in categories[]._ref]\n      | order(coalesce(publishedAt, _createdAt) desc)\n      [$start...$end]{\n        _id,\n        title,\n        "slug": slug.current,\n        seo,\n        body, \n        excerpt,\n        mainImage,\n        language,\n        "categories": coalesce(\n          categories[]->{\n            _id,\n            slug,\n            title\n          },\n          []\n        ),\n        author->{\n          name,\n          image\n        },\n        relatedPosts[]{\n          _key, \n          ...@->{_id, title, slug}\n        },\n        publishedAt\n      },\n    "total": count(*[_type == "post" \n      && language == $language\n      && defined(slug.current) \n      && (!defined(seo.noIndex) || seo.noIndex == false) \n      && ^._id in categories[]._ref])\n  }\n': BLOG_CATEGORY_QUERY_RESULT;
+    '\n{\n  "posts": *[_type == "post" && language == $language && defined(slug.current) && (!defined(seo.noIndex) || seo.noIndex == false)]\n    | order(coalesce(publishedAt, _createdAt) desc)\n    [$start...$end]{\n      _id, \n      title,\n      "slug": slug.current,\n      seo,\n      body, \n      excerpt,\n      mainImage,\n      language,\n      "categories": coalesce(\n        categories[]->{\n          _id,\n          slug,\n          title\n        },\n        []\n      ),\n      author->{\n        name,\n        image\n      },\n      relatedPosts[]{\n        _key, \n        ...@->{_id, title, slug} \n      },\n      publishedAt\n    },\n  "total": count(*[_type == "post" && language == $language && defined(slug.current) && (!defined(seo.noIndex) || seo.noIndex == false)])\n}\n': POSTS_INDEX_QUERY_RESULT;
+    '*[_type == "post" && defined(slug.current)][0...12]{\n  _id,\n  title,\n  "slug": slug.current,\n  seo,\n  body, \n  excerpt,\n  mainImage,\n  language,\n  "categories": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  },\n  relatedPosts[]{\n    _key, \n    ...@->{_id, title, slug}\n  },\n  publishedAt\n}': POSTS_QUERY_RESULT;
+    '*[_type == "post" && language == $language && slug.current == $slug][0]{\n  _id,\n  title,\n  "slug": slug.current,\n  seo,\n  body, \n  excerpt,\n  mainImage,\n  language,\n  "categories": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  },\n  relatedPosts[]{\n    _key, \n    ...@->{_id, title, slug}\n  },\n  publishedAt\n}': POST_QUERY_RESULT;
+    '*[_type == "page" && defined(slug.current)]{\n    title,\n    "slug": slug.current,\n    "parentSlug": parent->slug.current,\n    seo,\n    language,\n    pageBuilder\n  }': PAGES_QUERY_RESULT;
+    '*[_type == "page" && language == $language && slug.current == $slug][0]{\n    title,\n    "slug": slug.current,\n    "parentSlug": parent->slug.current,\n    seo,\n    language,\n    pageBuilder\n  }': PAGE_QUERY_RESULT;
+    '\n  *[_type == "siteSettings" && language == $language][0]{\n    siteName,\n    logo,\n    seo,\n    headerNav[]{\n      label,\n      url,\n      "pageSlug": page->slug.current,\n      "pageParentSlug": page->parent->slug.current,\n      "pageTitle": page->title,\n    },\n    footerColumns[]{\n      title,\n      links[]{\n        label,\n        url,\n        "pageSlug": page->slug.current,\n        "pageParentSlug": page->parent->slug.current,\n        "pageTitle": page->title,\n      }\n    },\n    footerBottomText,\n    socialLinks[]\n  }\n': SITE_SETTINGS_QUERY_RESULT;
+    '\n{\n  "pages": *[\n    _type == "page" \n    && defined(slug.current)\n    && (!defined(seo.noIndex) || seo.noIndex == false)\n  ]{\n    "slug": slug.current,\n    "parentSlug": parent->slug.current,\n    language,\n    _updatedAt\n  },\n\n  "posts": *[\n    _type == "post" \n    && defined(slug.current) \n    && (!defined(seo.noIndex) || seo.noIndex == false)\n  ]{\n    "slug": slug.current,\n    language,\n    _updatedAt\n  },\n\n  "categories": *[\n    _type == "category" \n    && defined(slug.current)\n  ]{\n    language,\n    "slug": slug.current\n  }\n}\n': SITEMAP_QUERY_RESULT;
   }
 }

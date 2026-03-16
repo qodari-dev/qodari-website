@@ -1,11 +1,15 @@
 "use client";
 
 import { resolveLink } from "@/sanity/lib/resolve-link";
-import { SITE_SETTINGS_QUERYResult } from "@/sanity/types";
+import { SITE_SETTINGS_QUERY_RESULT } from "@/sanity/types";
 import { DynamicIcon, IconName } from "lucide-react/dynamic";
 import Link from "next/link";
 
-export function Footer({ settings }: { settings: SITE_SETTINGS_QUERYResult }) {
+export function Footer({
+  settings,
+}: {
+  settings: SITE_SETTINGS_QUERY_RESULT;
+}) {
   const { footerColumns, footerBottomText, socialLinks } = settings || {};
 
   return (

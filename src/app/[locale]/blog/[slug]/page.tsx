@@ -76,7 +76,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export async function generateStaticParams() {
   const slugs = await client.fetch(POSTS_QUERY);
-  return slugs.map(({ slug, language }) => ({ locale: language, slug }));
+  return slugs.flatMap(({ slug, language }) =>
+    language
+      ? [
+          {
+            locale: language,
+            slug,
+          },
+        ]
+      : [],
+  );
 }
 
 export default async function BlogPostPage({ params }: Props) {

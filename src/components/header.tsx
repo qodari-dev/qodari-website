@@ -2,14 +2,18 @@
 
 import { urlFor } from "@/sanity/lib/image";
 import { resolveLink } from "@/sanity/lib/resolve-link";
-import { SITE_SETTINGS_QUERYResult } from "@/sanity/types";
+import { SITE_SETTINGS_QUERY_RESULT } from "@/sanity/types";
 import { cn } from "@/utils/cn";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LanguageSwitcher } from "./language-switcher";
 
-export function Header({ settings }: { settings: SITE_SETTINGS_QUERYResult }) {
+export function Header({
+  settings,
+}: {
+  settings: SITE_SETTINGS_QUERY_RESULT;
+}) {
   const { siteName, logo, headerNav } = settings || {};
   const pathname = usePathname() || "/";
 

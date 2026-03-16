@@ -14,7 +14,6 @@ import { documentInternationalization } from "@sanity/document-internationalizat
 import { apiVersion, dataset, projectId } from "@/sanity/env";
 import { schema } from "@/sanity/schemaTypes";
 import { structure } from "@/sanity/structure";
-import { lucideIconPicker } from "sanity-plugin-lucide-icon-picker";
 
 export default defineConfig({
   basePath: "/studio",
@@ -23,7 +22,6 @@ export default defineConfig({
   // Add and edit the content schema in the './sanity/schemaTypes' folder
   schema,
   plugins: [
-    lucideIconPicker(),
     structureTool({ structure }),
     // Vision is for querying with GROQ from inside the Studio
     // https://www.sanity.io/docs/the-vision-plugin

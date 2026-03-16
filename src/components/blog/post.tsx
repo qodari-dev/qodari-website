@@ -7,10 +7,10 @@ import { PublishedAt } from "@/components/blog/published-at";
 import { Title } from "@/components/blog/title";
 import { components } from "@/sanity/components/portableTextComponents";
 import { urlFor } from "@/sanity/lib/image";
-import { POST_QUERYResult } from "@/sanity/types";
+import { POST_QUERY_RESULT } from "@/sanity/types";
 import { RelatedPosts } from "./related-posts";
 
-export function Post(props: NonNullable<POST_QUERYResult>) {
+export function Post(props: NonNullable<POST_QUERY_RESULT>) {
   const {
     _id,
     title,

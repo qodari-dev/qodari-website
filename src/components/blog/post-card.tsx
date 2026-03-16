@@ -5,9 +5,9 @@ import { Author } from "@/components/blog/author";
 import { Categories } from "@/components/blog/categories";
 import { PublishedAt } from "@/components/blog/published-at";
 import { urlFor } from "@/sanity/lib/image";
-import { POSTS_QUERYResult } from "@/sanity/types";
+import { POSTS_QUERY_RESULT } from "@/sanity/types";
 
-export function PostCard(props: POSTS_QUERYResult[0]) {
+export function PostCard(props: POSTS_QUERY_RESULT[0]) {
   const { title, author, mainImage, publishedAt, categories } = props;
 
   return (
