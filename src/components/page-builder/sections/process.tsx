@@ -7,11 +7,13 @@ import { cn } from "@/utils/cn";
 export function Process({
   backgroundColor,
   content,
+  deliverableLabel,
   eyebrow,
   steps,
   title,
 }: ProcessSection) {
   const { bg, text } = getColorClasses(backgroundColor);
+  const stepDeliverableLabel = deliverableLabel || "Deliverable";
 
   return (
     <section className={cn("", bg, text)}>
@@ -58,7 +60,7 @@ export function Process({
                 {step.deliverable ? (
                   <div className="mt-6 border-t border-black/6 pt-4">
                     <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-(--text-secondary)">
-                      Deliverable
+                      {stepDeliverableLabel}
                     </p>
                     <p className="mt-2 text-sm font-medium text-slate-800">
                       {step.deliverable}

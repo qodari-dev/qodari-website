@@ -5,14 +5,11 @@ import { urlFor } from "@/sanity/lib/image";
 import { resolveLink } from "@/sanity/lib/resolve-link";
 import { SITE_SETTINGS_QUERY_RESULT } from "@/sanity/types";
 import { cn } from "@/utils/cn";
+import { isExternalHref } from "@/utils/is-external-href";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { LanguageSwitcher } from "./language-switcher";
-
-function isExternalHref(href: string) {
-  return /^https?:\/\//.test(href);
-}
 
 function HeaderAnchor({
   href,

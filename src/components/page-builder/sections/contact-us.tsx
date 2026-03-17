@@ -19,6 +19,7 @@ export function ContactUs({
   detailsContent,
   detailsTitle,
   eyebrow,
+  formEyebrow,
   highlights,
   locale,
   responseTime,
@@ -107,7 +108,7 @@ export function ContactUs({
           </div>
 
           <div className="brand-panel rounded-4xl p-6 lg:p-8">
-            <ContactForm locale={locale} />
+            <ContactForm locale={locale} eyebrow={formEyebrow} />
           </div>
         </div>
       </div>
@@ -123,8 +124,15 @@ type ContactFormValues = {
   message: string;
 };
 
-function ContactForm({ locale }: { locale: Locale }) {
+function ContactForm({
+  locale,
+  eyebrow,
+}: {
+  locale: Locale;
+  eyebrow?: string | null;
+}) {
   const t = useTranslations("ContactForm");
+  const formEyebrow = eyebrow || "Contact form";
 
   const [serverError, setServerError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
@@ -220,7 +228,7 @@ function ContactForm({ locale }: { locale: Locale }) {
         <div className="inline-flex items-center gap-3">
           <span className="h-px w-8 bg-(--brand-secondary)" />
           <p className="text-xs font-semibold uppercase tracking-[0.24em] text-(--brand-primary)">
-            Contact form
+            {formEyebrow}
           </p>
         </div>
         <p className="mt-3 max-w-lg text-sm leading-7 text-(--text-secondary)">

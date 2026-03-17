@@ -3,15 +3,12 @@
 import { Link as LocalizedLink } from "@/i18n/navigation";
 import { resolveLink } from "@/sanity/lib/resolve-link";
 import { SITE_SETTINGS_QUERY_RESULT } from "@/sanity/types";
+import { isExternalHref } from "@/utils/is-external-href";
 import { DynamicIcon, IconName } from "lucide-react/dynamic";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 
 import { urlFor } from "@/sanity/lib/image";
-
-function isExternalHref(href: string) {
-  return /^https?:\/\//.test(href);
-}
 
 function FooterLink({
   href,

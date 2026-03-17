@@ -144,6 +144,13 @@
           },
           "optional": true
         },
+        "formEyebrow": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
         "contactEmail": {
           "type": "objectAttribute",
           "value": {
@@ -886,6 +893,13 @@
             "type": "string"
           },
           "optional": false
+        },
+        "deliverableLabel": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
         },
         "steps": {
           "type": "objectAttribute",

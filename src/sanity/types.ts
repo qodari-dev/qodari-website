@@ -43,6 +43,7 @@ export type ContactUsSection = {
   content: string;
   detailsTitle?: string;
   detailsContent?: string;
+  formEyebrow?: string;
   contactEmail?: string;
   responseTime?: string;
   highlights?: Array<string>;
@@ -177,6 +178,7 @@ export type ProcessSection = {
   eyebrow?: string;
   title: string;
   content: string;
+  deliverableLabel?: string;
   steps: Array<{
     title: string;
     content: string;
@@ -1050,6 +1052,7 @@ export type PAGES_QUERY_RESULT = Array<{
         content: string;
         detailsTitle?: string;
         detailsContent?: string;
+        formEyebrow?: string;
         contactEmail?: string;
         responseTime?: string;
         highlights?: Array<string>;
@@ -1213,6 +1216,7 @@ export type PAGES_QUERY_RESULT = Array<{
         eyebrow?: string;
         title: string;
         content: string;
+        deliverableLabel?: string;
         steps: Array<{
           title: string;
           content: string;
@@ -1340,6 +1344,7 @@ export type PAGE_QUERY_RESULT = {
         content: string;
         detailsTitle?: string;
         detailsContent?: string;
+        formEyebrow?: string;
         contactEmail?: string;
         responseTime?: string;
         highlights?: Array<string>;
@@ -1503,6 +1508,7 @@ export type PAGE_QUERY_RESULT = {
         eyebrow?: string;
         title: string;
         content: string;
+        deliverableLabel?: string;
         steps: Array<{
           title: string;
           content: string;

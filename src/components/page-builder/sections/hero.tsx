@@ -5,6 +5,7 @@ import { getColorClasses } from "@/sanity/lib/colorOptions";
 import { resolveLink } from "@/sanity/lib/resolve-link";
 import { PAGE_QUERY_RESULT } from "@/sanity/types";
 import { cn } from "@/utils/cn";
+import { isExternalHref } from "@/utils/is-external-href";
 import { ArrowUpRight } from "lucide-react";
 import { DynamicIcon, type IconName } from "lucide-react/dynamic";
 
@@ -12,10 +13,6 @@ type HeroSectionData = Extract<
   NonNullable<NonNullable<PAGE_QUERY_RESULT>["pageBuilder"]>[number],
   { _type: "heroSection" }
 >;
-
-function isExternalHref(href: string) {
-  return /^https?:\/\//.test(href);
-}
 
 function HeroLink({
   href,

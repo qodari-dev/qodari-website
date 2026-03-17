@@ -39,6 +39,13 @@ export const processType = defineType({
       validation: (Rule) => Rule.required().max(320),
     }),
     defineField({
+      name: "deliverableLabel",
+      title: "Deliverable label",
+      type: "string",
+      initialValue: "Deliverable",
+      validation: (Rule) => Rule.max(40),
+    }),
+    defineField({
       name: "steps",
       title: "Steps",
       type: "array",

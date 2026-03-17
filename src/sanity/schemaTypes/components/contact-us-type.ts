@@ -52,6 +52,13 @@ export const contactUsType = defineType({
       validation: (Rule) => Rule.max(320),
     }),
     defineField({
+      name: "formEyebrow",
+      title: "Form eyebrow",
+      type: "string",
+      initialValue: "Contact form",
+      validation: (Rule) => Rule.max(60),
+    }),
+    defineField({
       name: "contactEmail",
       title: "Contact email",
       type: "string",

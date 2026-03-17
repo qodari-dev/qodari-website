@@ -3,15 +3,12 @@
 import { Link } from "@/i18n/navigation";
 import { resolveLink } from "@/sanity/lib/resolve-link";
 import { PAGE_QUERY_RESULT } from "@/sanity/types";
+import { isExternalHref } from "@/utils/is-external-href";
 
 type FinalCtaSectionData = Extract<
   NonNullable<NonNullable<PAGE_QUERY_RESULT>["pageBuilder"]>[number],
   { _type: "finalCtaSection" }
 >;
-
-function isExternalHref(href: string) {
-  return /^https?:\/\//.test(href);
-}
 
 function CtaLink({
   href,
