@@ -166,7 +166,41 @@ export const PAGES_QUERY =
     "parentSlug": parent->slug.current,
     seo,
     language,
-    pageBuilder
+    pageBuilder[]{
+      ...,
+      _type == "heroSection" => {
+        primaryCta{
+          label,
+          url,
+          "pageSlug": page->slug.current,
+          "pageParentSlug": page->parent->slug.current,
+          "pageTitle": page->title,
+        },
+        secondaryCta{
+          label,
+          url,
+          "pageSlug": page->slug.current,
+          "pageParentSlug": page->parent->slug.current,
+          "pageTitle": page->title,
+        }
+      },
+      _type == "finalCtaSection" => {
+        primaryCta{
+          label,
+          url,
+          "pageSlug": page->slug.current,
+          "pageParentSlug": page->parent->slug.current,
+          "pageTitle": page->title,
+        },
+        secondaryCta{
+          label,
+          url,
+          "pageSlug": page->slug.current,
+          "pageParentSlug": page->parent->slug.current,
+          "pageTitle": page->title,
+        }
+      }
+    }
   }`);
 
 export const PAGE_QUERY =
@@ -176,15 +210,72 @@ export const PAGE_QUERY =
     "parentSlug": parent->slug.current,
     seo,
     language,
-    pageBuilder
+    pageBuilder[]{
+      ...,
+      _type == "heroSection" => {
+        primaryCta{
+          label,
+          url,
+          "pageSlug": page->slug.current,
+          "pageParentSlug": page->parent->slug.current,
+          "pageTitle": page->title,
+        },
+        secondaryCta{
+          label,
+          url,
+          "pageSlug": page->slug.current,
+          "pageParentSlug": page->parent->slug.current,
+          "pageTitle": page->title,
+        }
+      },
+      _type == "finalCtaSection" => {
+        primaryCta{
+          label,
+          url,
+          "pageSlug": page->slug.current,
+          "pageParentSlug": page->parent->slug.current,
+          "pageTitle": page->title,
+        },
+        secondaryCta{
+          label,
+          url,
+          "pageSlug": page->slug.current,
+          "pageParentSlug": page->parent->slug.current,
+          "pageTitle": page->title,
+        }
+      }
+    }
   }`);
 
 export const SITE_SETTINGS_QUERY = defineQuery(`
   *[_type == "siteSettings" && language == $language][0]{
     siteName,
     logo,
+    logoDark,
     seo,
+    announcementText,
+    announcementLink{
+      label,
+      url,
+      "pageSlug": page->slug.current,
+      "pageParentSlug": page->parent->slug.current,
+      "pageTitle": page->title,
+    },
     headerNav[]{
+      label,
+      url,
+      "pageSlug": page->slug.current,
+      "pageParentSlug": page->parent->slug.current,
+      "pageTitle": page->title,
+    },
+    headerSecondaryCta{
+      label,
+      url,
+      "pageSlug": page->slug.current,
+      "pageParentSlug": page->parent->slug.current,
+      "pageTitle": page->title,
+    },
+    headerPrimaryCta{
       label,
       url,
       "pageSlug": page->slug.current,
@@ -201,6 +292,22 @@ export const SITE_SETTINGS_QUERY = defineQuery(`
         "pageTitle": page->title,
       }
     },
+    footerDescription,
+    footerPrimaryCta{
+      label,
+      url,
+      "pageSlug": page->slug.current,
+      "pageParentSlug": page->parent->slug.current,
+      "pageTitle": page->title,
+    },
+    footerBottomLinks[]{
+      label,
+      url,
+      "pageSlug": page->slug.current,
+      "pageParentSlug": page->parent->slug.current,
+      "pageTitle": page->title,
+    },
+    footerMetaText,
     footerBottomText,
     socialLinks[]
   }

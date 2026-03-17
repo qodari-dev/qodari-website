@@ -13,19 +13,103 @@ import { ContactUsSection } from "@/sanity/types";
 import { cn } from "@/utils/cn";
 
 export function ContactUs({
-  title,
-  content,
   backgroundColor,
+  contactEmail,
+  content,
+  detailsContent,
+  detailsTitle,
+  eyebrow,
+  highlights,
   locale,
+  responseTime,
+  title,
 }: ContactUsSection & { locale: Locale }) {
   const { bg, text } = getColorClasses(backgroundColor);
 
   return (
-    <section className={cn("py-16 px-4", bg, text)}>
-      <h2 className="mb-6 text-4xl font-bold">{title}</h2>
-      <p className="mb-8 text-lg leading-relaxed">{content}</p>
-      <div>
-        <ContactForm locale={locale} />
+    <section className={cn("", bg, text)}>
+      <div className="site-container">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-12">
+          <div className="max-w-xl">
+            {eyebrow ? (
+              <div className="mb-5 inline-flex items-center gap-3">
+                <span className="h-px w-10 bg-(--brand-secondary)" />
+                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-(--brand-primary)">
+                  {eyebrow}
+                </p>
+              </div>
+            ) : null}
+
+            <h2 className="max-w-[14ch] text-4xl font-semibold leading-[1.08] tracking-[-0.04em] text-balance text-slate-950 sm:text-5xl">
+              {title}
+            </h2>
+
+            <p className="mt-6 max-w-lg text-lg leading-8 text-(--text-secondary)">
+              {content}
+            </p>
+
+            <div className="mt-8 space-y-5 rounded-[1.8rem] border border-black/6 bg-white/92 p-6 shadow-[0_14px_32px_rgba(16,24,40,0.05)]">
+              {detailsTitle || detailsContent ? (
+                <div>
+                  {detailsTitle ? (
+                    <h3 className="text-lg font-semibold text-slate-950">
+                      {detailsTitle}
+                    </h3>
+                  ) : null}
+                  {detailsContent ? (
+                    <p className="mt-3 text-[15px] leading-7 text-(--text-secondary)">
+                      {detailsContent}
+                    </p>
+                  ) : null}
+                </div>
+              ) : null}
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                {contactEmail ? (
+                  <div className="rounded-[1.25rem] border border-black/6 bg-(--surface-alt) p-4">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-(--text-secondary)">
+                      Email
+                    </p>
+                    <a
+                      href={`mailto:${contactEmail}`}
+                      className="mt-2 inline-block text-sm font-medium text-slate-900 transition-colors hover:text-(--brand-primary)"
+                    >
+                      {contactEmail}
+                    </a>
+                  </div>
+                ) : null}
+
+                {responseTime ? (
+                  <div className="rounded-[1.25rem] border border-black/6 bg-(--surface-alt) p-4">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-(--text-secondary)">
+                      Response time
+                    </p>
+                    <p className="mt-2 text-sm font-medium text-slate-900">
+                      {responseTime}
+                    </p>
+                  </div>
+                ) : null}
+              </div>
+
+              {highlights && highlights.length > 0 ? (
+                <div className="flex flex-wrap gap-2.5">
+                  {highlights.map((item) => (
+                    <span
+                      key={item}
+                      className="rounded-full border border-black/6 bg-white px-4 py-2 text-sm font-medium text-slate-700"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              ) : null}
+            </div>
+          </div>
+
+          <div className="brand-panel rounded-4xl p-6 lg:p-8">
+            <ContactForm locale={locale} />
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -131,19 +215,28 @@ function ContactForm({ locale }: { locale: Locale }) {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="space-y-6 rounded-2xl border border-gray-100 bg-white p-6 text-black shadow-sm"
-    >
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 text-black">
+      <div className="border-b border-black/6 pb-5">
+        <div className="inline-flex items-center gap-3">
+          <span className="h-px w-8 bg-(--brand-secondary)" />
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-(--brand-primary)">
+            Contact form
+          </p>
+        </div>
+        <p className="mt-3 max-w-lg text-sm leading-7 text-(--text-secondary)">
+          {t("messages.formIntro")}
+        </p>
+      </div>
+
       <div className="grid gap-4 md:grid-cols-2">
         <div>
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm font-medium text-slate-800">
             {t("labels.name")}
           </label>
           <input
             type="text"
             {...register("name")}
-            className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+            className="mt-1 w-full rounded-xl border border-black/10 bg-white px-3.5 py-3 text-sm shadow-sm transition-colors focus:border-(--brand-primary) focus:outline-none focus:ring-2 focus:ring-(--brand-primary)/12"
             placeholder={t("placeholders.name")}
           />
           {errors.name && (
@@ -152,13 +245,13 @@ function ContactForm({ locale }: { locale: Locale }) {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm font-medium text-slate-800">
             {t("labels.email")}
           </label>
           <input
             type="email"
             {...register("email")}
-            className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+            className="mt-1 w-full rounded-xl border border-black/10 bg-white px-3.5 py-3 text-sm shadow-sm transition-colors focus:border-(--brand-primary) focus:outline-none focus:ring-2 focus:ring-(--brand-primary)/12"
             placeholder={t("placeholders.email")}
           />
           {errors.email && (
@@ -168,13 +261,13 @@ function ContactForm({ locale }: { locale: Locale }) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">
+        <label className="block text-sm font-medium text-slate-800">
           {t("labels.subject")}
         </label>
         <input
           type="text"
           {...register("subject")}
-          className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+          className="mt-1 w-full rounded-xl border border-black/10 bg-white px-3.5 py-3 text-sm shadow-sm transition-colors focus:border-(--brand-primary) focus:outline-none focus:ring-2 focus:ring-(--brand-primary)/12"
           placeholder={t("placeholders.subject")}
         />
         {errors.subject && (
@@ -183,13 +276,13 @@ function ContactForm({ locale }: { locale: Locale }) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">
+        <label className="block text-sm font-medium text-slate-800">
           {t("labels.message")}
         </label>
         <textarea
           {...register("message")}
           rows={5}
-          className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+          className="mt-1 w-full rounded-xl border border-black/10 bg-white px-3.5 py-3 text-sm shadow-sm transition-colors focus:border-(--brand-primary) focus:outline-none focus:ring-2 focus:ring-(--brand-primary)/12"
           placeholder={t("placeholders.message")}
         />
         {errors.message && (
@@ -216,7 +309,7 @@ function ContactForm({ locale }: { locale: Locale }) {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="inline-flex items-center rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-70"
+        className="brand-button-primary inline-flex items-center justify-center px-6 py-3 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-70"
       >
         {isSubmitting ? t("buttons.submitting") : t("buttons.submit")}
       </button>

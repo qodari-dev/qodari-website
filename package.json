@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "typegen": "sanity schema extract --enforce-required-fields --path=./src/sanity/extract && sanity typegen generate"
+    "typegen": "dotenv -e .env.local -- sanity schema extract --enforce-required-fields --path=./src/sanity/extract && dotenv -e .env.local -- sanity typegen generate"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -40,6 +40,7 @@
     "@types/node": "^25.5.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19",
+    "dotenv-cli": "^11.0.0",
     "eslint": "^9.39.4",
     "eslint-config-next": "16.1.6",
     "tailwindcss": "^4.2.1",

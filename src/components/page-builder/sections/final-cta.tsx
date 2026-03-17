@@ -1,0 +1,110 @@
+"use client";
+
+import { Link } from "@/i18n/navigation";
+import { resolveLink } from "@/sanity/lib/resolve-link";
+import { PAGE_QUERY_RESULT } from "@/sanity/types";
+
+type FinalCtaSectionData = Extract<
+  NonNullable<NonNullable<PAGE_QUERY_RESULT>["pageBuilder"]>[number],
+  { _type: "finalCtaSection" }
+>;
+
+function isExternalHref(href: string) {
+  return /^https?:\/\//.test(href);
+}
+
+function CtaLink({
+  href,
+  text,
+  className,
+}: {
+  href: string;
+  text: string;
+  className?: string;
+}) {
+  if (isExternalHref(href)) {
+    return (
+      <a href={href} className={className} rel="noreferrer" target="_blank">
+        {text}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={href} className={className}>
+      {text}
+    </Link>
+  );
+}
+
+export function FinalCta({
+  content,
+  eyebrow,
+  highlights,
+  primaryCta,
+  secondaryCta,
+  title,
+}: FinalCtaSectionData) {
+  const primaryLink = primaryCta ? resolveLink(primaryCta) : null;
+  const secondaryLink = secondaryCta ? resolveLink(secondaryCta) : null;
+
+  return (
+    <section className="bg-(--surface-dark) text-(--text-on-dark)">
+      <div className="site-container">
+        <div className="relative overflow-hidden rounded-[2.25rem] border border-white/10 bg-[linear-gradient(180deg,rgba(12,18,30,0.96),rgba(7,11,18,1))] shadow-[0_28px_80px_rgba(7,11,18,0.28)]">
+          <div className="absolute inset-x-0 top-0 h-28 bg-[radial-gradient(circle_at_top,rgba(67,179,233,0.18),transparent_60%)]" />
+
+          <div className="relative mx-auto max-w-208 text-center">
+            {eyebrow ? (
+              <div className="mb-5 inline-flex items-center gap-3">
+                <span className="h-px w-10 bg-(--brand-secondary)" />
+                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-(--brand-secondary)">
+                  {eyebrow}
+                </p>
+              </div>
+            ) : null}
+
+            <h2 className="mx-auto text-4xl font-semibold leading-[1.08] tracking-[-0.04em] text-balance text-white sm:text-5xl">
+              {title}
+            </h2>
+
+            <p className="mx-auto mt-6 text-lg leading-8 text-white/72">
+              {content}
+            </p>
+
+            <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+              {primaryLink ? (
+                <CtaLink
+                  href={primaryLink.href}
+                  text={primaryLink.label}
+                  className="brand-button-primary inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-semibold"
+                />
+              ) : null}
+
+              {secondaryLink ? (
+                <CtaLink
+                  href={secondaryLink.href}
+                  text={secondaryLink.label}
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/14 bg-white/6 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+                />
+              ) : null}
+            </div>
+
+            {highlights && highlights.length > 0 ? (
+              <div className="mt-9 flex flex-wrap justify-center gap-2.5">
+                {highlights.map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/76"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            ) : null}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

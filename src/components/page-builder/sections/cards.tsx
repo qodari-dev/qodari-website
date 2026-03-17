@@ -7,37 +7,64 @@ import { DynamicIcon, IconName } from "lucide-react/dynamic";
 
 export function Cards({
   backgroundColor,
-  title,
   content,
+  eyebrow,
   cardItems,
+  title,
 }: CardsSection) {
   const { bg, text } = getColorClasses(backgroundColor);
+
   return (
-    <section className={cn("py-16 px-4 ", bg, text)}>
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-4">{title}</h2>
-        {content && (
-          <p className="text-lg text-gray-700 text-center mb-12 max-w-3xl mx-auto">
-            {content}
-          </p>
-        )}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {cardItems.map((card, index) => (
-            <div
-              key={index}
-              className="p-6 border border-gray-200 rounded-lg hover:shadow-lg transition-shadow"
-            >
-              {card.icon && (
-                <div className="mb-4">
-                  <DynamicIcon
-                    name={card.icon as IconName}
-                    className="h-6 w-6"
-                  />
-                </div>
-              )}
-              <h3 className="text-xl font-semibold mb-3">{card.title}</h3>
-              <p className="text-gray-600">{card.content}</p>
+    <section className={cn("", bg, text)}>
+      <div className="site-container">
+        <div className="mx-auto max-w-5xl text-center">
+          {eyebrow ? (
+            <div className="mb-5 inline-flex items-center gap-3">
+              <span className="h-px w-10 bg-(--brand-secondary)" />
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-(--brand-primary)">
+                {eyebrow}
+              </p>
             </div>
+          ) : null}
+
+          <h2 className="mx-auto text-4xl font-semibold leading-[1.08] tracking-[-0.04em] text-balance text-slate-950 sm:text-5xl">
+            {title}
+          </h2>
+
+          {content ? (
+            <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-(--text-secondary)">
+              {content}
+            </p>
+          ) : null}
+        </div>
+
+        <div className="mt-12 grid gap-5 lg:grid-cols-2">
+          {cardItems.map((card, index) => (
+            <article
+              key={card._key || index}
+              className="group relative overflow-hidden rounded-[1.8rem] border border-black/6 bg-white/94 p-5 shadow-[0_14px_34px_rgba(16,24,40,0.05)] transition-transform duration-200 hover:-translate-y-1 lg:p-6"
+            >
+              <div className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,rgba(63,115,201,0.35),rgba(67,179,233,0.16),transparent)]" />
+
+              <div className="mb-3 flex items-center justify-between">
+                <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,rgba(63,115,201,0.12),rgba(67,179,233,0.18))] text-(--brand-primary)">
+                  {card.icon ? (
+                    <DynamicIcon
+                      name={card.icon as IconName}
+                      className="h-7 w-7"
+                    />
+                  ) : null}
+                </div>
+              </div>
+
+              <h3 className="text-2xl font-semibold leading-[1.12] tracking-[-0.02em] text-slate-950">
+                {card.title}
+              </h3>
+
+              <p className="mt-3 text-base leading-8 text-(--text-secondary)">
+                {card.content}
+              </p>
+            </article>
           ))}
         </div>
       </div>

@@ -2,9 +2,9 @@ import { SwatchColorInput } from "@/sanity/components/swatch-color-input";
 import { colorOptions } from "@/sanity/lib/colorOptions";
 import { defineField, defineType } from "sanity";
 
-export const cardsType = defineType({
-  name: "cardsSection",
-  title: "Cards",
+export const processHeroType = defineType({
+  name: "processHeroSection",
+  title: "Process hero",
   type: "object",
   fields: [
     defineField({
@@ -20,49 +20,52 @@ export const cardsType = defineType({
       initialValue: "white",
     }),
     defineField({
-      name: "title",
-      title: "Section Title",
-      type: "string",
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
       name: "eyebrow",
       title: "Eyebrow",
       type: "string",
       validation: (Rule) => Rule.max(60),
     }),
     defineField({
-      name: "content",
-      title: "Section Content",
-      type: "text",
-      rows: 3,
+      name: "title",
+      title: "Title",
+      type: "string",
+      validation: (Rule) => Rule.required().max(160),
     }),
     defineField({
-      name: "cardItems",
-      title: "Cards",
+      name: "content",
+      title: "Content",
+      type: "text",
+      rows: 4,
+      validation: (Rule) => Rule.required().max(320),
+    }),
+    defineField({
+      name: "panelEyebrow",
+      title: "Panel label",
+      type: "string",
+      validation: (Rule) => Rule.max(60),
+    }),
+    defineField({
+      name: "steps",
+      title: "Process steps",
       type: "array",
       of: [
-        {
+        defineField({
+          name: "processHeroStep",
+          title: "Process step",
           type: "object",
           fields: [
-            {
-              name: "icon",
-              title: "Icon",
-              type: "lucide-icon",
-            },
-            {
+            defineField({
               name: "title",
-              title: "Card Title",
+              title: "Title",
               type: "string",
-              validation: (Rule) => Rule.required(),
-            },
-            {
+              validation: (Rule) => Rule.required().max(40),
+            }),
+            defineField({
               name: "content",
-              title: "Card Content",
-              type: "text",
-              rows: 3,
-              validation: (Rule) => Rule.required(),
-            },
+              title: "Content",
+              type: "string",
+              validation: (Rule) => Rule.required().max(120),
+            }),
           ],
           preview: {
             select: {
@@ -70,21 +73,20 @@ export const cardsType = defineType({
               subtitle: "content",
             },
           },
-        },
+        }),
       ],
-      validation: (Rule) => Rule.required().min(1),
+      validation: (Rule) => Rule.required().min(3).max(4),
     }),
   ],
   preview: {
     select: {
       title: "title",
-      eyebrow: "eyebrow",
-      cardsCount: "cardItems.length",
+      subtitle: "eyebrow",
     },
-    prepare({ title, eyebrow, cardsCount }) {
+    prepare({ subtitle, title }) {
       return {
-        title: `Cards: ${title}`,
-        subtitle: eyebrow || `${cardsCount || 0} cards`,
+        title: `Process hero: ${title}`,
+        subtitle,
       };
     },
   },

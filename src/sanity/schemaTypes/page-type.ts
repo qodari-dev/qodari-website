@@ -55,6 +55,13 @@ export const pageType = defineType({
       title: "Page Builder",
       type: "array",
       of: [
+        { type: "heroSection" },
+        { type: "pageHeroSection" },
+        { type: "processHeroSection" },
+        { type: "capabilitiesSection" },
+        { type: "processSection" },
+        { type: "finalCtaSection" },
+        { type: "serviceDetailsSection" },
         { type: "simpleContentSection" },
         { type: "partnersSection" },
         { type: "cardsSection" },

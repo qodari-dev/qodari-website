@@ -41,6 +41,7 @@
       "submitting": "Enviando..."
     },
     "messages": {
+      "formIntro": "Cuéntanos qué quieres construir, mejorar o conectar. Te responderemos con un siguiente paso claro y práctico.",
       "recaptchaRequired": "Por favor completa el reCAPTCHA.",
       "genericError": "Ocurrió un error al enviar el mensaje.",
       "networkError": "Ocurrió un error de red. Intenta de nuevo.",

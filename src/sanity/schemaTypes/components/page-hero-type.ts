@@ -2,9 +2,9 @@ import { SwatchColorInput } from "@/sanity/components/swatch-color-input";
 import { colorOptions } from "@/sanity/lib/colorOptions";
 import { defineField, defineType } from "sanity";
 
-export const cardsType = defineType({
-  name: "cardsSection",
-  title: "Cards",
+export const pageHeroType = defineType({
+  name: "pageHeroSection",
+  title: "Page hero",
   type: "object",
   fields: [
     defineField({
@@ -20,71 +20,66 @@ export const cardsType = defineType({
       initialValue: "white",
     }),
     defineField({
-      name: "title",
-      title: "Section Title",
-      type: "string",
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
       name: "eyebrow",
       title: "Eyebrow",
       type: "string",
       validation: (Rule) => Rule.max(60),
     }),
     defineField({
-      name: "content",
-      title: "Section Content",
-      type: "text",
-      rows: 3,
+      name: "title",
+      title: "Title",
+      type: "string",
+      validation: (Rule) => Rule.required().max(140),
     }),
     defineField({
-      name: "cardItems",
-      title: "Cards",
+      name: "content",
+      title: "Content",
+      type: "text",
+      rows: 4,
+      validation: (Rule) => Rule.required().max(320),
+    }),
+    defineField({
+      name: "highlightItems",
+      title: "Highlight items",
       type: "array",
       of: [
-        {
+        defineField({
+          name: "highlightItem",
+          title: "Highlight item",
           type: "object",
           fields: [
-            {
+            defineField({
+              name: "title",
+              title: "Title",
+              type: "string",
+              validation: (Rule) => Rule.required().max(60),
+            }),
+            defineField({
               name: "icon",
               title: "Icon",
               type: "lucide-icon",
-            },
-            {
-              name: "title",
-              title: "Card Title",
-              type: "string",
-              validation: (Rule) => Rule.required(),
-            },
-            {
-              name: "content",
-              title: "Card Content",
-              type: "text",
-              rows: 3,
-              validation: (Rule) => Rule.required(),
-            },
+            }),
           ],
           preview: {
             select: {
               title: "title",
-              subtitle: "content",
+              subtitle: "icon",
             },
           },
-        },
+        }),
       ],
-      validation: (Rule) => Rule.required().min(1),
+      validation: (Rule) => Rule.max(4),
     }),
   ],
   preview: {
     select: {
       title: "title",
-      eyebrow: "eyebrow",
-      cardsCount: "cardItems.length",
+      subtitle: "eyebrow",
     },
-    prepare({ title, eyebrow, cardsCount }) {
+    prepare({ subtitle, title }) {
       return {
-        title: `Cards: ${title}`,
-        subtitle: eyebrow || `${cardsCount || 0} cards`,
+        title: `Page hero: ${title}`,
+        subtitle,
       };
     },
   },

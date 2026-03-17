@@ -41,6 +41,7 @@
       "submitting": "Sending..."
     },
     "messages": {
+      "formIntro": "Tell us what you are trying to build, improve, or connect. We will reply with a practical next step.",
       "recaptchaRequired": "Please complete the reCAPTCHA.",
       "genericError": "An error occurred while sending the message.",
       "networkError": "A network error occurred. Please try again.",
