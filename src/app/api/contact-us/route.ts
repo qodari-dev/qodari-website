@@ -6,10 +6,10 @@ import { routing, type Locale } from "@/i18n/routing";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const contactSchema = z.object({
-  name: z.string().min(2).max(100),
-  email: z.email(),
-  subject: z.string().min(3).max(150),
-  message: z.string().min(10).max(2000),
+  name: z.string().trim().min(2).max(100),
+  email: z.string().trim().email(),
+  subject: z.string().trim().min(3).max(150),
+  message: z.string().trim().min(10).max(2000),
   captchaToken: z.string().min(1),
   locale: z.enum(routing.locales).default(routing.defaultLocale),
 });

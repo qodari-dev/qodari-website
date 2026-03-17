@@ -47,6 +47,14 @@
       "networkError": "Ocurrió un error de red. Intenta de nuevo.",
       "success": "¡Mensaje enviado! Te responderé pronto."
     },
+    "apiErrors": {
+      "INVALID_JSON": "No se pudo procesar el formulario. Inténtalo de nuevo.",
+      "INVALID_PAYLOAD": "Algunos campos no son válidos. Revisa el formulario e inténtalo de nuevo.",
+      "RECAPTCHA_CONFIG": "El formulario no está disponible temporalmente. Inténtalo más tarde.",
+      "RECAPTCHA_FAILED": "La verificación de reCAPTCHA falló. Inténtalo de nuevo.",
+      "EMAIL_FAILED": "No se pudo enviar el mensaje en este momento. Inténtalo más tarde.",
+      "SERVER_ERROR": "Ocurrió un error inesperado en el servidor. Inténtalo más tarde."
+    },
     "errors": {
       "nameRequired": "El nombre es obligatorio",
       "nameTooLong": "Nombre demasiado largo",

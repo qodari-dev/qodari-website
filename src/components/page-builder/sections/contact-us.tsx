@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -133,6 +133,7 @@ function ContactForm({
 }) {
   const t = useTranslations("ContactForm");
   const formEyebrow = eyebrow || "Contact form";
+  const recaptchaRef = useRef<ReCAPTCHA | null>(null);
 
   const [serverError, setServerError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
@@ -144,15 +145,18 @@ function ContactForm({
       z.object({
         name: z
           .string()
+          .trim()
           .min(2, t("errors.nameRequired"))
           .max(100, t("errors.nameTooLong")),
-        email: z.email(t("errors.emailInvalid")),
+        email: z.string().trim().email(t("errors.emailInvalid")),
         subject: z
           .string()
+          .trim()
           .min(3, t("errors.subjectRequired"))
           .max(150, t("errors.subjectTooLong")),
         message: z
           .string()
+          .trim()
           .min(10, t("errors.messageTooShort"))
           .max(2000, t("errors.messageTooLong")),
       }),
@@ -216,6 +220,7 @@ function ContactForm({
       setSuccessMessage(t("messages.success"));
       reset();
       setCaptchaToken(null);
+      recaptchaRef.current?.reset();
     } catch (err) {
       console.error(err);
       setServerError(t("messages.networkError"));
@@ -306,10 +311,14 @@ function ContactForm({
 
       <div>
         <ReCAPTCHA
+          ref={recaptchaRef}
           sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
           onChange={(token) => {
             setCaptchaToken(token);
             setServerError(null);
+          }}
+          onExpired={() => {
+            setCaptchaToken(null);
           }}
         />
       </div>

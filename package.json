@@ -29,6 +29,7 @@
     "react-hook-form": "^7.71.2",
     "resend": "^6.9.3",
     "sanity": "^5.16.0",
+    "sanity-plugin-internationalized-array": "^5.0.2",
     "sanity-plugin-media": "^4.1.1",
     "styled-components": "^6.3.11",
     "tailwind-merge": "^3.5.0",

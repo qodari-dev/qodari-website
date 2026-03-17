@@ -47,6 +47,14 @@
       "networkError": "A network error occurred. Please try again.",
       "success": "Message sent! I will get back to you soon."
     },
+    "apiErrors": {
+      "INVALID_JSON": "The form submission could not be processed. Please try again.",
+      "INVALID_PAYLOAD": "Some fields are invalid. Please review the form and try again.",
+      "RECAPTCHA_CONFIG": "The form is temporarily unavailable. Please try again later.",
+      "RECAPTCHA_FAILED": "reCAPTCHA verification failed. Please try again.",
+      "EMAIL_FAILED": "The message could not be sent right now. Please try again later.",
+      "SERVER_ERROR": "An unexpected server error occurred. Please try again later."
+    },
     "errors": {
       "nameRequired": "Name is required",
       "nameTooLong": "Name is too long",
