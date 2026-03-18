@@ -11,6 +11,7 @@ import type { Locale } from "@/i18n/routing";
 import { getColorClasses } from "@/sanity/lib/colorOptions";
 import { ContactUsSection } from "@/sanity/types";
 import { cn } from "@/utils/cn";
+import { sendGAEvent } from "@next/third-parties/google";
 
 export function ContactUs({
   backgroundColor,
@@ -100,6 +101,11 @@ export function ContactUs({
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 rounded-2xl border border-black/6 bg-white px-4 py-3.5 text-sm font-medium text-slate-700 transition-colors hover:border-green-300 hover:text-green-700"
+                  onClick={() =>
+                    sendGAEvent("event", "whatsapp_click", {
+                      location: "contact_left_panel",
+                    })
+                  }
                 >
                   <svg
                     viewBox="0 0 24 24"
@@ -254,7 +260,9 @@ function ContactForm({
         setServerError(msg ?? t("messages.genericError"));
         return;
       }
-
+      sendGAEvent("event", "contact_form_submit", {
+        form_name: "contact_form",
+      });
       setSuccessMessage(t("messages.success"));
       reset();
       setCaptchaToken(null);

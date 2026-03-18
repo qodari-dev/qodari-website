@@ -1,12 +1,13 @@
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
-import { routing, type Locale } from "@/i18n/routing";
+import { routing } from "@/i18n/routing";
 import { urlFor } from "@/sanity/lib/image";
 import { getSiteSettings } from "@/sanity/lib/site-settings";
 import type { Metadata } from "next";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const revalidate = false;
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://localhost:3000";
@@ -85,6 +86,9 @@ export default async function RootLayout({
         <main>{children}</main>
         <Footer settings={settings} />
       </NextIntlClientProvider>
+      {process.env.NEXT_PUBLIC_GA_ID ? (
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+      ) : null}
     </>
   );
 }
