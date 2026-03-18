@@ -1656,22 +1656,32 @@ export type SITE_SETTINGS_QUERY_RESULT = {
 
 // Source: src/sanity/lib/queries.ts
 // Variable: SITEMAP_QUERY
-// Query: {  "pages": *[    _type == "page"     && defined(slug.current)    && (!defined(seo.noIndex) || seo.noIndex == false)  ]{    "slug": slug.current,    "parentSlug": parent->slug.current,    language,    _updatedAt  },  "posts": *[    _type == "post"     && defined(slug.current)     && (!defined(seo.noIndex) || seo.noIndex == false)  ]{    "slug": slug.current,    language,    _updatedAt  },  "categories": *[    _type == "category"     && defined(slug.current)  ]{    language,    "slug": slug.current  }}
+// Query: {  "pages": *[    _type == "page"    && defined(slug.current)    && (!defined(seo.noIndex) || seo.noIndex == false)  ]{    _id,    "slug": slug.current,    "parentSlug": parent->slug.current,    language,    _updatedAt  },  "posts": *[    _type == "post"    && defined(slug.current)    && (!defined(seo.noIndex) || seo.noIndex == false)  ]{    _id,    "slug": slug.current,    language,    _updatedAt  },  "categories": *[    _type == "category"    && defined(slug.current)  ]{    _id,    language,    "slug": slug.current  },  "translations": *[_type == "translation.metadata"]{    translations[]{      _key,      language,      "ref": value._ref    }  }}
 export type SITEMAP_QUERY_RESULT = {
   pages: Array<{
+    _id: string;
     slug: string;
     parentSlug: string | null;
     language: string | null;
     _updatedAt: string;
   }>;
   posts: Array<{
+    _id: string;
     slug: string | null;
     language: string | null;
     _updatedAt: string;
   }>;
   categories: Array<{
+    _id: string;
     language: string | null;
     slug: string;
+  }>;
+  translations: Array<{
+    translations: Array<{
+      _key: string;
+      language: string;
+      ref: string | null;
+    }> | null;
   }>;
 };
 
@@ -1689,6 +1699,6 @@ declare module "@sanity/client" {
     '*[_type == "page" && defined(slug.current)]{\n    title,\n    "slug": slug.current,\n    "parentSlug": parent->slug.current,\n    seo,\n    language,\n    pageBuilder[]{\n      ...,\n      _type == "heroSection" => {\n        primaryCta{\n          label,\n          url,\n          "pageSlug": page->slug.current,\n          "pageParentSlug": page->parent->slug.current,\n          "pageTitle": page->title,\n        },\n        secondaryCta{\n          label,\n          url,\n          "pageSlug": page->slug.current,\n          "pageParentSlug": page->parent->slug.current,\n          "pageTitle": page->title,\n        }\n      },\n      _type == "finalCtaSection" => {\n        primaryCta{\n          label,\n          url,\n          "pageSlug": page->slug.current,\n          "pageParentSlug": page->parent->slug.current,\n          "pageTitle": page->title,\n        },\n        secondaryCta{\n          label,\n          url,\n          "pageSlug": page->slug.current,\n          "pageParentSlug": page->parent->slug.current,\n          "pageTitle": page->title,\n        }\n      }\n    }\n  }': PAGES_QUERY_RESULT;
     '*[_type == "page" && language == $language && slug.current == $slug][0]{\n    title,\n    "slug": slug.current,\n    "parentSlug": parent->slug.current,\n    seo,\n    language,\n    pageBuilder[]{\n      ...,\n      _type == "heroSection" => {\n        primaryCta{\n          label,\n          url,\n          "pageSlug": page->slug.current,\n          "pageParentSlug": page->parent->slug.current,\n          "pageTitle": page->title,\n        },\n        secondaryCta{\n          label,\n          url,\n          "pageSlug": page->slug.current,\n          "pageParentSlug": page->parent->slug.current,\n          "pageTitle": page->title,\n        }\n      },\n      _type == "finalCtaSection" => {\n        primaryCta{\n          label,\n          url,\n          "pageSlug": page->slug.current,\n          "pageParentSlug": page->parent->slug.current,\n          "pageTitle": page->title,\n        },\n        secondaryCta{\n          label,\n          url,\n          "pageSlug": page->slug.current,\n          "pageParentSlug": page->parent->slug.current,\n          "pageTitle": page->title,\n        }\n      }\n    }\n  }': PAGE_QUERY_RESULT;
     '\n  *[_type == "siteSettings" && language == $language][0]{\n    siteName,\n    logo,\n    logoDark,\n    seo,\n    announcementText,\n    announcementLink{\n      label,\n      url,\n      "pageSlug": page->slug.current,\n      "pageParentSlug": page->parent->slug.current,\n      "pageTitle": page->title,\n    },\n    headerNav[]{\n      label,\n      url,\n      "pageSlug": page->slug.current,\n      "pageParentSlug": page->parent->slug.current,\n      "pageTitle": page->title,\n    },\n    headerSecondaryCta{\n      label,\n      url,\n      "pageSlug": page->slug.current,\n      "pageParentSlug": page->parent->slug.current,\n      "pageTitle": page->title,\n    },\n    headerPrimaryCta{\n      label,\n      url,\n      "pageSlug": page->slug.current,\n      "pageParentSlug": page->parent->slug.current,\n      "pageTitle": page->title,\n    },\n    footerColumns[]{\n      title,\n      links[]{\n        label,\n        url,\n        "pageSlug": page->slug.current,\n        "pageParentSlug": page->parent->slug.current,\n        "pageTitle": page->title,\n      }\n    },\n    footerDescription,\n    footerPrimaryCta{\n      label,\n      url,\n      "pageSlug": page->slug.current,\n      "pageParentSlug": page->parent->slug.current,\n      "pageTitle": page->title,\n    },\n    footerBottomLinks[]{\n      label,\n      url,\n      "pageSlug": page->slug.current,\n      "pageParentSlug": page->parent->slug.current,\n      "pageTitle": page->title,\n    },\n    footerMetaText,\n    footerBottomText,\n    socialLinks[]\n  }\n': SITE_SETTINGS_QUERY_RESULT;
-    '\n{\n  "pages": *[\n    _type == "page" \n    && defined(slug.current)\n    && (!defined(seo.noIndex) || seo.noIndex == false)\n  ]{\n    "slug": slug.current,\n    "parentSlug": parent->slug.current,\n    language,\n    _updatedAt\n  },\n\n  "posts": *[\n    _type == "post" \n    && defined(slug.current) \n    && (!defined(seo.noIndex) || seo.noIndex == false)\n  ]{\n    "slug": slug.current,\n    language,\n    _updatedAt\n  },\n\n  "categories": *[\n    _type == "category" \n    && defined(slug.current)\n  ]{\n    language,\n    "slug": slug.current\n  }\n}\n': SITEMAP_QUERY_RESULT;
+    '\n{\n  "pages": *[\n    _type == "page"\n    && defined(slug.current)\n    && (!defined(seo.noIndex) || seo.noIndex == false)\n  ]{\n    _id,\n    "slug": slug.current,\n    "parentSlug": parent->slug.current,\n    language,\n    _updatedAt\n  },\n\n  "posts": *[\n    _type == "post"\n    && defined(slug.current)\n    && (!defined(seo.noIndex) || seo.noIndex == false)\n  ]{\n    _id,\n    "slug": slug.current,\n    language,\n    _updatedAt\n  },\n\n  "categories": *[\n    _type == "category"\n    && defined(slug.current)\n  ]{\n    _id,\n    language,\n    "slug": slug.current\n  },\n\n  "translations": *[_type == "translation.metadata"]{\n    translations[]{\n      _key,\n      language,\n      "ref": value._ref\n    }\n  }\n}\n': SITEMAP_QUERY_RESULT;
   }
 }

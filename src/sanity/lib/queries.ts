@@ -316,10 +316,11 @@ export const SITE_SETTINGS_QUERY = defineQuery(`
 export const SITEMAP_QUERY = defineQuery(`
 {
   "pages": *[
-    _type == "page" 
+    _type == "page"
     && defined(slug.current)
     && (!defined(seo.noIndex) || seo.noIndex == false)
   ]{
+    _id,
     "slug": slug.current,
     "parentSlug": parent->slug.current,
     language,
@@ -327,21 +328,31 @@ export const SITEMAP_QUERY = defineQuery(`
   },
 
   "posts": *[
-    _type == "post" 
-    && defined(slug.current) 
+    _type == "post"
+    && defined(slug.current)
     && (!defined(seo.noIndex) || seo.noIndex == false)
   ]{
+    _id,
     "slug": slug.current,
     language,
     _updatedAt
   },
 
   "categories": *[
-    _type == "category" 
+    _type == "category"
     && defined(slug.current)
   ]{
+    _id,
     language,
     "slug": slug.current
+  },
+
+  "translations": *[_type == "translation.metadata"]{
+    translations[]{
+      _key,
+      language,
+      "ref": value._ref
+    }
   }
 }
 `);

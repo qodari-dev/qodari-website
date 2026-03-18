@@ -20,16 +20,14 @@ export default function robots(): MetadataRoute.Robots {
     };
   }
 
-  // En producción: permitir todo menos /studio
   return {
     rules: [
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/studio"],
+        disallow: ["/studio", "/api"],
       },
     ],
     sitemap: `${siteUrl}/sitemap.xml`,
-    host: siteUrl,
   };
 }
