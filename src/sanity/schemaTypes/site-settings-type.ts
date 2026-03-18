@@ -172,7 +172,7 @@ export const siteSettings = defineType({
             defineField({
               name: "url",
               title: "URL",
-              type: "url",
+              type: "string",
               validation: (Rule) => Rule.required(),
             }),
           ],

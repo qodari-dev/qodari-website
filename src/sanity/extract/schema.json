@@ -165,6 +165,20 @@
           },
           "optional": true
         },
+        "whatsappText": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "whatsappUrl": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
         "highlights": {
           "type": "objectAttribute",
           "value": {

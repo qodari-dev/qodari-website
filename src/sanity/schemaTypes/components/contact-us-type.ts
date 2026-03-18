@@ -71,6 +71,21 @@ export const contactUsType = defineType({
       validation: (Rule) => Rule.max(80),
     }),
     defineField({
+      name: "whatsappText",
+      title: "WhatsApp text",
+      type: "string",
+      description: 'E.g. "Prefer WhatsApp? Start a chat"',
+      validation: (Rule) => Rule.max(120),
+    }),
+    defineField({
+      name: "whatsappUrl",
+      title: "WhatsApp URL",
+      type: "url",
+      description: "Full URL, e.g. https://wa.me/1234567890",
+      validation: (Rule) =>
+        Rule.uri({ scheme: ["https"] }),
+    }),
+    defineField({
       name: "highlights",
       title: "Highlights",
       type: "array",

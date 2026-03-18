@@ -27,17 +27,23 @@
     "labels": {
       "name": "Nombre",
       "email": "Email",
-      "subject": "Asunto",
+      "subject": "¿En qué necesitas ayuda?",
       "message": "Mensaje"
     },
     "placeholders": {
       "name": "Tu nombre",
       "email": "tu@email.com",
-      "subject": "Sobre qué quieres hablar",
-      "message": "Cuéntame un poco más sobre tu proyecto..."
+      "message": "Cuéntanos qué quieres construir, mejorar o conectar, junto con tus objetivos o tiempos."
+    },
+    "subjectOptions": {
+      "custom-software": "Software a medida",
+      "integrations": "Integraciones y automatización",
+      "websites-cms": "Sitios web y CMS",
+      "ongoing-support": "Soporte continuo",
+      "not-sure": "Aún no estoy seguro"
     },
     "buttons": {
-      "submit": "Enviar mensaje",
+      "submit": "Empezar la conversación",
       "submitting": "Enviando..."
     },
     "messages": {
@@ -59,8 +65,7 @@
       "nameRequired": "El nombre es obligatorio",
       "nameTooLong": "Nombre demasiado largo",
       "emailInvalid": "Email inválido",
-      "subjectRequired": "El asunto es obligatorio",
-      "subjectTooLong": "Asunto demasiado largo",
+      "subjectRequired": "Selecciona en qué necesitas ayuda",
       "messageTooShort": "El mensaje es muy corto",
       "messageTooLong": "El mensaje es demasiado largo"
     }

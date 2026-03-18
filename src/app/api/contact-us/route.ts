@@ -8,7 +8,13 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 const contactSchema = z.object({
   name: z.string().trim().min(2).max(100),
   email: z.string().trim().email(),
-  subject: z.string().trim().min(3).max(150),
+  subject: z.enum([
+    "custom-software",
+    "integrations",
+    "websites-cms",
+    "ongoing-support",
+    "not-sure",
+  ]),
   message: z.string().trim().min(10).max(2000),
   captchaToken: z.string().min(1),
   locale: z.enum(routing.locales).default(routing.defaultLocale),
@@ -69,6 +75,25 @@ export async function POST(req: NextRequest) {
     // ── Email según idioma (solo cambia el subject/body, el error se mantiene por código)
     const lang: Locale = locale ?? routing.defaultLocale;
 
+    const subjectLabels: Record<string, Record<string, string>> = {
+      en: {
+        "custom-software": "Custom software",
+        integrations: "Integrations & automation",
+        "websites-cms": "Websites & CMS",
+        "ongoing-support": "Ongoing support",
+        "not-sure": "Not sure yet",
+      },
+      es: {
+        "custom-software": "Software a medida",
+        integrations: "Integraciones y automatización",
+        "websites-cms": "Sitios web y CMS",
+        "ongoing-support": "Soporte continuo",
+        "not-sure": "Aún no estoy seguro",
+      },
+    };
+
+    const subjectLabel =
+      subjectLabels[lang]?.[subject] ?? subjectLabels.en[subject] ?? subject;
     const subjectPrefix = lang === "es" ? "[CONTACTO]" : "[CONTACT]";
 
     const bodyText =
@@ -76,6 +101,7 @@ export async function POST(req: NextRequest) {
         ? `
 Nombre: ${name}
 Email: ${email}
+Necesita ayuda con: ${subjectLabel}
 
 Mensaje:
 ${message}
@@ -83,6 +109,7 @@ ${message}
         : `
 Name: ${name}
 Email: ${email}
+Needs help with: ${subjectLabel}
 
 Message:
 ${message}
@@ -91,7 +118,7 @@ ${message}
     const { data, error } = await resend.emails.send({
       from: "qodari <hello@qodari.com>",
       to: "carlos@qodari.com",
-      subject: `${subjectPrefix} ${subject}`,
+      subject: `${subjectPrefix} ${subjectLabel}`,
       text: bodyText,
     });
 

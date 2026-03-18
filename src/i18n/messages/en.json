@@ -27,17 +27,23 @@
     "labels": {
       "name": "Name",
       "email": "Email",
-      "subject": "Subject",
+      "subject": "What do you need help with?",
       "message": "Message"
     },
     "placeholders": {
       "name": "Your name",
       "email": "your@email.com",
-      "subject": "What would you like to talk about?",
-      "message": "Tell me a bit more about your project..."
+      "message": "Tell us what you’re trying to build, improve, or connect, plus any goals or timeline."
+    },
+    "subjectOptions": {
+      "custom-software": "Custom software",
+      "integrations": "Integrations & automation",
+      "websites-cms": "Websites & CMS",
+      "ongoing-support": "Ongoing support",
+      "not-sure": "Not sure yet"
     },
     "buttons": {
-      "submit": "Send message",
+      "submit": "Start the conversation",
       "submitting": "Sending..."
     },
     "messages": {
@@ -59,8 +65,7 @@
       "nameRequired": "Name is required",
       "nameTooLong": "Name is too long",
       "emailInvalid": "Invalid email",
-      "subjectRequired": "Subject is required",
-      "subjectTooLong": "Subject is too long",
+      "subjectRequired": "Please select what you need help with",
       "messageTooShort": "The message is too short",
       "messageTooLong": "The message is too long"
     }

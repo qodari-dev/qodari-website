@@ -46,6 +46,8 @@ export type ContactUsSection = {
   formEyebrow?: string;
   contactEmail?: string;
   responseTime?: string;
+  whatsappText?: string;
+  whatsappUrl?: string;
   highlights?: Array<string>;
 };
 
@@ -1055,6 +1057,8 @@ export type PAGES_QUERY_RESULT = Array<{
         formEyebrow?: string;
         contactEmail?: string;
         responseTime?: string;
+        whatsappText?: string;
+        whatsappUrl?: string;
         highlights?: Array<string>;
       }
     | {
@@ -1347,6 +1351,8 @@ export type PAGE_QUERY_RESULT = {
         formEyebrow?: string;
         contactEmail?: string;
         responseTime?: string;
+        whatsappText?: string;
+        whatsappUrl?: string;
         highlights?: Array<string>;
       }
     | {

@@ -67,7 +67,7 @@ export function Hero({
       />
 
       <div className="site-container relative grid gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-center">
-        <div className="max-w-2xl">
+        <div className="max-w-3xl">
           {eyebrow ? (
             <div className="mb-5 inline-flex items-center gap-3">
               <span className="h-px w-10 bg-(--brand-secondary)" />
