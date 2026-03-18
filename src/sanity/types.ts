@@ -73,37 +73,6 @@ export type CardsSection = {
   }>;
 };
 
-export type SanityImageAssetReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-};
-
-export type PartnersSection = {
-  _type: "partnersSection";
-  backgroundColor?:
-    | "white"
-    | "light"
-    | "dark"
-    | "primary"
-    | "secondary"
-    | "success"
-    | "warning"
-    | "accent";
-  title: string;
-  content?: string;
-  images: Array<{
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt: string;
-    _type: "image";
-    _key: string;
-  }>;
-};
-
 export type SimpleContentSection = {
   _type: "simpleContentSection";
   backgroundColor?:
@@ -115,6 +84,7 @@ export type SimpleContentSection = {
     | "success"
     | "warning"
     | "accent";
+  eyebrow?: string;
   title: string;
   content: string;
   button?: Button;
@@ -237,6 +207,22 @@ export type ProcessHeroSection = {
   }>;
 };
 
+export type PageSimpleHeroSection = {
+  _type: "pageSimpleHeroSection";
+  backgroundColor?:
+    | "white"
+    | "light"
+    | "dark"
+    | "primary"
+    | "secondary"
+    | "success"
+    | "warning"
+    | "accent";
+  eyebrow?: string;
+  title: string;
+  content: string;
+};
+
 export type PageHeroSection = {
   _type: "pageHeroSection";
   backgroundColor?:
@@ -303,6 +289,13 @@ export type Link = {
   label?: string;
   page?: PageReference;
   url?: string;
+};
+
+export type SanityImageAssetReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
 };
 
 export type Seo = {
@@ -585,6 +578,9 @@ export type Page = {
       } & HeroSection)
     | ({
         _key: string;
+      } & PageSimpleHeroSection)
+    | ({
+        _key: string;
       } & PageHeroSection)
     | ({
         _key: string;
@@ -604,9 +600,6 @@ export type Page = {
     | ({
         _key: string;
       } & SimpleContentSection)
-    | ({
-        _key: string;
-      } & PartnersSection)
     | ({
         _key: string;
       } & CardsSection)
@@ -726,18 +719,18 @@ export type AllSanitySchemaTypes =
   | Button
   | ContactUsSection
   | CardsSection
-  | SanityImageAssetReference
-  | PartnersSection
   | SimpleContentSection
   | ServiceDetailsSection
   | FinalCtaSection
   | ProcessSection
   | CapabilitiesSection
   | ProcessHeroSection
+  | PageSimpleHeroSection
   | PageHeroSection
   | HeroSection
   | PageReference
   | Link
+  | SanityImageAssetReference
   | Seo
   | LucideIcon
   | BlockContent
@@ -1160,7 +1153,7 @@ export type PAGES_QUERY_RESULT = Array<{
       }
     | {
         _key: string;
-        _type: "partnersSection";
+        _type: "pageSimpleHeroSection";
         backgroundColor?:
           | "accent"
           | "dark"
@@ -1170,17 +1163,9 @@ export type PAGES_QUERY_RESULT = Array<{
           | "success"
           | "warning"
           | "white";
+        eyebrow?: string;
         title: string;
-        content?: string;
-        images: Array<{
-          asset?: SanityImageAssetReference;
-          media?: unknown;
-          hotspot?: SanityImageHotspot;
-          crop?: SanityImageCrop;
-          alt: string;
-          _type: "image";
-          _key: string;
-        }>;
+        content: string;
       }
     | {
         _key: string;
@@ -1268,6 +1253,7 @@ export type PAGES_QUERY_RESULT = Array<{
           | "success"
           | "warning"
           | "white";
+        eyebrow?: string;
         title: string;
         content: string;
         button?: Button;
@@ -1454,7 +1440,7 @@ export type PAGE_QUERY_RESULT = {
       }
     | {
         _key: string;
-        _type: "partnersSection";
+        _type: "pageSimpleHeroSection";
         backgroundColor?:
           | "accent"
           | "dark"
@@ -1464,17 +1450,9 @@ export type PAGE_QUERY_RESULT = {
           | "success"
           | "warning"
           | "white";
+        eyebrow?: string;
         title: string;
-        content?: string;
-        images: Array<{
-          asset?: SanityImageAssetReference;
-          media?: unknown;
-          hotspot?: SanityImageHotspot;
-          crop?: SanityImageCrop;
-          alt: string;
-          _type: "image";
-          _key: string;
-        }>;
+        content: string;
       }
     | {
         _key: string;
@@ -1562,6 +1540,7 @@ export type PAGE_QUERY_RESULT = {
           | "success"
           | "warning"
           | "white";
+        eyebrow?: string;
         title: string;
         content: string;
         button?: Button;

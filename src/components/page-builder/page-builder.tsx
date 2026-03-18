@@ -1,21 +1,20 @@
 import { Locale } from "@/i18n/routing";
-import {
-  PAGE_QUERY_RESULT,
-} from "@/sanity/types";
+import { PAGE_QUERY_RESULT } from "@/sanity/types";
 import { Capabilities } from "./sections/capabilities";
 import { Cards } from "./sections/cards";
 import { ContactUs } from "./sections/contact-us";
 import { FinalCta } from "./sections/final-cta";
 import { Hero } from "./sections/hero";
 import { PageHero } from "./sections/page-hero";
-import { Partners } from "./sections/partners";
 import { Process } from "./sections/process";
 import { ProcessHero } from "./sections/process-hero";
 import { ServiceDetails } from "./sections/service-details";
 import { SimpleContent } from "./sections/simple-content";
+import { PageSimpleHero } from "./sections/page-simple-hero";
 
-export type PageSection =
-  NonNullable<NonNullable<PAGE_QUERY_RESULT>["pageBuilder"]>[number];
+export type PageSection = NonNullable<
+  NonNullable<PAGE_QUERY_RESULT>["pageBuilder"]
+>[number];
 
 interface PageBuilderProps {
   locale: Locale;
@@ -35,6 +34,8 @@ export function PageBuilder({ sections, locale }: PageBuilderProps) {
             return <Hero key={index} {...section} />;
           case "pageHeroSection":
             return <PageHero key={index} {...section} />;
+          case "pageSimpleHeroSection":
+            return <PageSimpleHero key={index} {...section} />;
           case "processHeroSection":
             return <ProcessHero key={index} {...section} />;
           case "capabilitiesSection":
@@ -47,8 +48,6 @@ export function PageBuilder({ sections, locale }: PageBuilderProps) {
             return <ServiceDetails key={index} {...section} />;
           case "simpleContentSection":
             return <SimpleContent key={index} {...section} />;
-          case "partnersSection":
-            return <Partners key={index} {...section} />;
           case "cardsSection":
             return <Cards key={index} {...section} />;
           case "contactUsSection":

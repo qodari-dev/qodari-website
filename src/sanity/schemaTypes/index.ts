@@ -10,12 +10,12 @@ import { link } from "./objects/link";
 import { simpleContentType } from "./components/simple-content-type";
 import { heroType } from "./components/hero-type";
 import { pageHeroType } from "./components/page-hero-type";
+import { pageSimpleHeroType } from "./components/simple-hero-type";
 import { processHeroType } from "./components/process-hero-type";
 import { capabilitiesType } from "./components/capabilities-type";
 import { processType } from "./components/process-type";
 import { finalCtaType } from "./components/final-cta-type";
 import { serviceDetailsType } from "./components/service-details-type";
-import { partnersType } from "./components/partners-type";
 import { cardsType } from "./components/cards-type";
 import { contactUsType } from "./components/contact-us-type";
 
@@ -35,13 +35,13 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     //components
     heroType,
     pageHeroType,
+    pageSimpleHeroType,
     processHeroType,
     capabilitiesType,
     processType,
     finalCtaType,
     serviceDetailsType,
     simpleContentType,
-    partnersType,
     cardsType,
     contactUsType,
     //documents

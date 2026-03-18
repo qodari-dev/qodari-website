@@ -20,6 +20,12 @@ export const simpleContentType = defineType({
       initialValue: "white",
     }),
     defineField({
+      name: "eyebrow",
+      title: "Eyebrow",
+      type: "string",
+      description: "Small label above the title (e.g. 'About us')",
+    }),
+    defineField({
       name: "title",
       title: "Title",
       type: "string",

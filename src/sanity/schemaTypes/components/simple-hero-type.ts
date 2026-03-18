@@ -2,9 +2,9 @@ import { SwatchColorInput } from "@/sanity/components/swatch-color-input";
 import { colorOptions } from "@/sanity/lib/colorOptions";
 import { defineField, defineType } from "sanity";
 
-export const partnersType = defineType({
-  name: "partnersSection",
-  title: "Partners",
+export const pageSimpleHeroType = defineType({
+  name: "pageSimpleHeroSection",
+  title: "Page Simple Hero",
   type: "object",
   fields: [
     defineField({
@@ -20,46 +20,34 @@ export const partnersType = defineType({
       initialValue: "white",
     }),
     defineField({
+      name: "eyebrow",
+      title: "Eyebrow",
+      type: "string",
+      validation: (Rule) => Rule.max(60),
+    }),
+    defineField({
       name: "title",
       title: "Title",
       type: "string",
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) => Rule.required().max(140),
     }),
     defineField({
       name: "content",
       title: "Content",
       type: "text",
-      rows: 3,
-    }),
-    defineField({
-      name: "images",
-      title: "Partner Images",
-      type: "array",
-      of: [
-        {
-          type: "image",
-          fields: [
-            {
-              name: "alt",
-              title: "Alt Text",
-              type: "string",
-              validation: (Rule) => Rule.required(),
-            },
-          ],
-        },
-      ],
-      validation: (Rule) => Rule.required().min(1),
+      rows: 4,
+      validation: (Rule) => Rule.required().max(320),
     }),
   ],
   preview: {
     select: {
       title: "title",
-      media: "images.0",
+      subtitle: "eyebrow",
     },
-    prepare({ title, media }) {
+    prepare({ subtitle, title }) {
       return {
-        title: `Partners: ${title}`,
-        media,
+        title: `Page hero: ${title}`,
+        subtitle,
       };
     },
   },
