@@ -3,6 +3,7 @@ import { routing, type Locale } from "@/i18n/routing";
 import { client } from "@/sanity/lib/client";
 import { PAGE_QUERY } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
+import { getGlobalOgImage } from "@/sanity/lib/site-settings";
 import type { Metadata } from "next";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
@@ -48,7 +49,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const seo = page.seo;
   const title = seo.metaTitle || page.title;
   const description = seo.metaDescription || "";
-  const imageUrl = seo.metaImage ? urlFor(seo.metaImage).url() : undefined;
+  const pageImage = seo.metaImage ? urlFor(seo.metaImage).url() : undefined;
+  const imageUrl = pageImage || (await getGlobalOgImage(locale));
 
   return {
     title,
@@ -57,13 +59,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title,
       description,
       url: `/${locale}`,
-      images: imageUrl ? [{ url: imageUrl }] : undefined,
+      ...(imageUrl ? { images: [{ url: imageUrl }] } : {}),
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: imageUrl ? [imageUrl] : undefined,
+      ...(imageUrl ? { images: [imageUrl] } : {}),
     },
   };
 }

@@ -1,9 +1,8 @@
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { routing, type Locale } from "@/i18n/routing";
-import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
-import { SITE_SETTINGS_QUERY } from "@/sanity/lib/queries";
+import { getSiteSettings } from "@/sanity/lib/site-settings";
 import type { Metadata } from "next";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -11,18 +10,6 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 
 export const revalidate = false;
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://localhost:3000";
-
-async function getSiteSettings(locale: Locale) {
-  return client.fetch(
-    SITE_SETTINGS_QUERY,
-    { language: locale },
-    {
-      next: {
-        tags: [`site-settings`, `site-settings:${locale}`],
-      },
-    },
-  );
-}
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -63,13 +50,13 @@ export async function generateMetadata({
       siteName,
       title: defaultTitle,
       description,
-      images: imageUrl ? [{ url: imageUrl }] : undefined,
+      ...(imageUrl ? { images: [{ url: imageUrl }] } : {}),
     },
     twitter: {
       card: "summary_large_image",
       title: defaultTitle,
       description,
-      images: imageUrl ? [imageUrl] : undefined,
+      ...(imageUrl ? { images: [imageUrl] } : {}),
     },
   };
 }

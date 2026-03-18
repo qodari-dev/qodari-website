@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { PAGE_QUERY, PAGES_QUERY } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
+import { getGlobalOgImage } from "@/sanity/lib/site-settings";
 import { Locale } from "@/i18n/routing";
 
 export const revalidate = false;
@@ -48,7 +49,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const title = seo?.metaTitle || page.title;
   const description = seo?.metaDescription;
-  const imageUrl = seo?.metaImage ? urlFor(seo?.metaImage).url() : "";
+  const pageImage = seo?.metaImage ? urlFor(seo?.metaImage).url() : undefined;
+  const imageUrl = pageImage || (await getGlobalOgImage(locale));
 
   const meta: Metadata = {
     title,
@@ -57,13 +59,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title,
       description,
       url: `/${locale}/${slug.join("/")}`,
-      images: imageUrl ? [{ url: imageUrl }] : undefined,
+      ...(imageUrl ? { images: [{ url: imageUrl }] } : {}),
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: imageUrl ? [imageUrl] : undefined,
+      ...(imageUrl ? { images: [imageUrl] } : {}),
     },
   };
 

@@ -2,9 +2,11 @@ import { Post } from "@/components/blog/post";
 import { routing } from "@/i18n/routing";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
+import { getGlobalOgImage } from "@/sanity/lib/site-settings";
 import { POST_QUERY, POSTS_QUERY } from "@/sanity/lib/queries";
 import type { Metadata } from "next";
 import { hasLocale } from "next-intl";
+import type { Locale } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 
 export const revalidate = false;
@@ -43,7 +45,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const title = seo?.metaTitle || post.title || "";
   const description = seo?.metaDescription || post.excerpt || "";
-  const imageUrl = seo?.metaImage ? urlFor(seo?.metaImage).url() : "";
+  const pageImage = seo?.metaImage ? urlFor(seo?.metaImage).url() : undefined;
+  const imageUrl = pageImage || (await getGlobalOgImage(locale as Locale));
 
   const meta: Metadata = {
     title,
@@ -54,13 +57,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       url: `/${locale}/blog/${slug}`,
       publishedTime: post.publishedAt || undefined,
-      images: imageUrl ? [{ url: imageUrl }] : undefined,
+      ...(imageUrl ? { images: [{ url: imageUrl }] } : {}),
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: imageUrl ? [imageUrl] : undefined,
+      ...(imageUrl ? { images: [imageUrl] } : {}),
     },
   };
 
