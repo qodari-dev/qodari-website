@@ -160,9 +160,9 @@ export function Hero({
                     </span>
                   </div>
 
-                  <h3 className="text-lg font-semibold text-slate-950">
+                  <p className="text-lg font-semibold text-slate-950">
                     {card.title}
-                  </h3>
+                  </p>
                   <p
                     className={cn(
                       "mt-2 text-(--text-secondary) text-sm leading-7",

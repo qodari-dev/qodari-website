@@ -102,8 +102,8 @@ export default async function DynamicPage({ params }: Props) {
   }
 
   return (
-    <main>
+    <>
       <PageBuilder locale={locale} sections={page.pageBuilder} />
-    </main>
+    </>
   );
 }

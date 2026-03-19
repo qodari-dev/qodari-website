@@ -112,7 +112,7 @@ export default async function BlogCategoryPage({
   const hasMore = currentPage * POSTS_PER_PAGE < total;
 
   return (
-    <main className="mx-auto max-w-5xl px-4 py-10">
+    <div className="mx-auto max-w-5xl px-4 py-10">
       <div className="mb-6 flex items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-semibold tracking-tight">{title}</h1>
@@ -162,6 +162,6 @@ export default async function BlogCategoryPage({
           )}
         </div>
       )}
-    </main>
+    </div>
   );
 }

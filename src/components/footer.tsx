@@ -127,9 +127,9 @@ export function Footer({ settings }: { settings: SITE_SETTINGS_QUERY_RESULT }) {
               {columns.map((col, idx) => (
                 <div key={idx}>
                   {col.title && (
-                    <h4 className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-white/48">
+                    <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-white/48">
                       {col.title}
-                    </h4>
+                    </p>
                   )}
                   <ul className="space-y-2.5">
                     {col.links?.map((item, i) => {
