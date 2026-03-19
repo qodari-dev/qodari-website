@@ -1,9 +1,17 @@
 import { getColorClasses } from "@/sanity/lib/colorOptions";
 import { urlFor } from "@/sanity/lib/image";
-import { SolutionCardsSection } from "@/sanity/types";
+import { resolveLink } from "@/sanity/lib/resolve-link";
 import { cn } from "@/utils/cn";
-import { ArrowDown } from "lucide-react";
+import type { PageSection } from "../page-builder";
+
+type SolutionCardsSection = Extract<
+  PageSection,
+  { _type: "solutionCardsSection" }
+>;
+
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export function SolutionCards({
   backgroundColor,
@@ -55,8 +63,22 @@ export function SolutionCards({
             )}
           >
             {solutions.map((item) => {
-              const anchor = item.anchorSlug?.current;
-              const label = item.buttonLabel;
+              const resolved = item.button
+                ? resolveLink(item.button)
+                : null;
+
+              // Append anchor hash if present
+              const href = resolved
+                ? item.anchor
+                  ? `${resolved.href}#${item.anchor}`
+                  : resolved.href
+                : item.anchor
+                  ? `#${item.anchor}`
+                  : null;
+
+              const label = resolved?.label || item.button?.label;
+              const isExternal = href?.startsWith("http");
+              const isAnchorOnly = href?.startsWith("#");
 
               return (
                 <article
@@ -67,7 +89,7 @@ export function SolutionCards({
 
                   <div className="mb-4 flex items-center gap-2">
                     {item.logo ? (
-                      <div className="inline-flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-black/6 bg-white shadow-[0_2px_6px_rgba(16,24,40,0.05)] ">
+                      <div className="inline-flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-black/6 bg-white shadow-[0_2px_6px_rgba(16,24,40,0.05)]">
                         <Image
                           src={urlFor(item.logo)
                             .width(96)
@@ -94,15 +116,31 @@ export function SolutionCards({
                     {item.content}
                   </p>
 
-                  {anchor && label ? (
+                  {href && label ? (
                     <div className="mt-5">
-                      <a
-                        href={`#${anchor}`}
-                        className="inline-flex items-center gap-2 rounded-xl border border-(--brand-primary)/15 bg-(--brand-primary)/5 px-4 py-2.5 text-sm font-semibold text-(--brand-primary) transition-colors hover:bg-(--brand-primary)/10"
-                      >
-                        {label}
-                        <ArrowDown className="h-3.5 w-3.5" />
-                      </a>
+                      {isAnchorOnly ? (
+                        <a
+                          href={href}
+                          className="inline-flex items-center gap-2 rounded-xl border border-(--brand-primary)/15 bg-(--brand-primary)/5 px-4 py-2.5 text-sm font-semibold text-(--brand-primary) transition-colors hover:bg-(--brand-primary)/10"
+                        >
+                          {label}
+                          <ArrowRight className="h-3.5 w-3.5" />
+                        </a>
+                      ) : (
+                        <Link
+                          href={href}
+                          {...(isExternal
+                            ? {
+                                target: "_blank",
+                                rel: "noopener noreferrer",
+                              }
+                            : {})}
+                          className="inline-flex items-center gap-2 rounded-xl border border-(--brand-primary)/15 bg-(--brand-primary)/5 px-4 py-2.5 text-sm font-semibold text-(--brand-primary) transition-colors hover:bg-(--brand-primary)/10"
+                        >
+                          {label}
+                          <ArrowRight className="h-3.5 w-3.5" />
+                        </Link>
+                      )}
                     </div>
                   ) : null}
                 </article>

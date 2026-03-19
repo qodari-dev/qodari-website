@@ -77,20 +77,18 @@ export const solutionCardsType = defineType({
               validation: (Rule) => Rule.required().max(200),
             }),
             defineField({
-              name: "anchorSlug",
-              title: "Anchor slug",
-              type: "slug",
+              name: "button",
+              title: "Button",
+              type: "link",
               description:
-                'Must match the slug in Solution details. E.g. "qodari-iam". Used for the "Learn more" scroll link.',
-              options: { source: "name" },
+                "Link to solution details. Select an internal page or enter an external URL.",
             }),
             defineField({
-              name: "buttonLabel",
-              title: "Button label",
+              name: "anchor",
+              title: "Anchor hash",
               type: "string",
-              description: 'E.g. "Learn more", "See details". Leave empty to hide.',
-              initialValue: "Learn more",
-              validation: (Rule) => Rule.max(30),
+              description:
+                'Optional. Appended as #hash to the button URL. E.g. "qodari-iam" → /solutions#qodari-iam. Must match the slug in Solution details.',
             }),
           ],
           preview: {

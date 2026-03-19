@@ -450,15 +450,15 @@
                   },
                   "optional": false
                 },
-                "anchorSlug": {
+                "button": {
                   "type": "objectAttribute",
                   "value": {
                     "type": "inline",
-                    "name": "slug"
+                    "name": "link"
                   },
                   "optional": true
                 },
-                "buttonLabel": {
+                "anchor": {
                   "type": "objectAttribute",
                   "value": {
                     "type": "string"
