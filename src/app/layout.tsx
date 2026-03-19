@@ -10,6 +10,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  //force deploy
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <body className={`antialiased`}>{children}</body>
