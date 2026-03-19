@@ -27,6 +27,217 @@ export type Button = {
     | "ghost";
 };
 
+export type SanityImageAssetReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+};
+
+export type Logo = {
+  asset?: SanityImageAssetReference;
+  media?: unknown; // Unable to locate the referenced type "logo.media" in schema
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  _type: "image";
+};
+
+export type Poster = {
+  asset?: SanityImageAssetReference;
+  media?: unknown; // Unable to locate the referenced type "poster.media" in schema
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  _type: "image";
+};
+
+export type SanityFileAssetReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+};
+
+export type UploadedVideoFile = {
+  asset?: SanityFileAssetReference;
+  media?: unknown; // Unable to locate the referenced type "file.media" in schema
+  _type: "file";
+};
+
+export type UploadedVideoPoster = {
+  asset?: SanityImageAssetReference;
+  media?: unknown; // Unable to locate the referenced type "uploadedVideo.poster.media" in schema
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  _type: "image";
+};
+
+export type SolutionLogo = {
+  asset?: SanityImageAssetReference;
+  media?: unknown; // Unable to locate the referenced type "solution.logo.media" in schema
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  _type: "image";
+};
+
+export type SolutionCardsSection = {
+  _type: "solutionCardsSection";
+  backgroundColor?:
+    | "white"
+    | "light"
+    | "dark"
+    | "primary"
+    | "secondary"
+    | "success"
+    | "warning"
+    | "accent";
+  eyebrow?: string;
+  title?: string;
+  content?: string;
+  solutions: Array<{
+    logo?: SolutionLogo;
+    name: string;
+    title: string;
+    content: string;
+    anchorSlug?: Slug;
+    buttonLabel?: string;
+    _type: "solution";
+    _key: string;
+  }>;
+};
+
+export type SolutionDetailsSection = {
+  _type: "solutionDetailsSection";
+  backgroundColor?:
+    | "white"
+    | "light"
+    | "dark"
+    | "primary"
+    | "secondary"
+    | "success"
+    | "warning"
+    | "accent";
+  eyebrow?: string;
+  title?: string;
+  content?: string;
+  items: Array<{
+    slug: Slug;
+    logo?: Logo;
+    title: string;
+    subtitle?: string;
+    content: string;
+    button?: Link;
+    capabilitiesTitle?: string;
+    capabilities: Array<string>;
+    adaptableTitle?: string;
+    adaptableItems: Array<string>;
+    stack?: Array<string>;
+    media?: Array<
+      | {
+          asset?: SanityImageAssetReference;
+          media?: unknown;
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          alt?: string;
+          _type: "screenshot";
+          _key: string;
+        }
+      | {
+          url: string;
+          poster?: Poster;
+          alt?: string;
+          _type: "video";
+          _key: string;
+        }
+      | {
+          file: UploadedVideoFile;
+          poster?: UploadedVideoPoster;
+          alt?: string;
+          _type: "uploadedVideo";
+          _key: string;
+        }
+    >;
+    status?: string;
+    _type: "solution";
+    _key: string;
+  }>;
+};
+
+export type ValuesSection = {
+  _type: "valuesSection";
+  backgroundColor?:
+    | "white"
+    | "light"
+    | "dark"
+    | "primary"
+    | "secondary"
+    | "success"
+    | "warning"
+    | "accent";
+  eyebrow?: string;
+  title: string;
+  content?: string;
+  values: Array<{
+    icon?: LucideIcon;
+    title: string;
+    content: string;
+    _type: "value";
+    _key: string;
+  }>;
+};
+
+export type FounderSection = {
+  _type: "founderSection";
+  backgroundColor?:
+    | "white"
+    | "light"
+    | "dark"
+    | "primary"
+    | "secondary"
+    | "success"
+    | "warning"
+    | "accent";
+  eyebrow?: string;
+  name: string;
+  role: string;
+  photo?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  quote?: string;
+  bio: string;
+  links?: Array<{
+    platform: "linkedin" | "github" | "x" | "email" | "whatsapp" | "website";
+    url: string;
+    _type: "socialLink";
+    _key: string;
+  }>;
+};
+
+export type StatsSection = {
+  _type: "statsSection";
+  backgroundColor?:
+    | "white"
+    | "light"
+    | "dark"
+    | "primary"
+    | "secondary"
+    | "success"
+    | "warning"
+    | "accent";
+  eyebrow?: string;
+  title: string;
+  content: string;
+  stats: Array<{
+    value: string;
+    label: string;
+    _type: "stat";
+    _key: string;
+  }>;
+};
+
 export type ContactUsSection = {
   _type: "contactUsSection";
   backgroundColor?:
@@ -289,13 +500,6 @@ export type Link = {
   label?: string;
   page?: PageReference;
   url?: string;
-};
-
-export type SanityImageAssetReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
 };
 
 export type Seo = {
@@ -606,6 +810,21 @@ export type Page = {
     | ({
         _key: string;
       } & ContactUsSection)
+    | ({
+        _key: string;
+      } & StatsSection)
+    | ({
+        _key: string;
+      } & FounderSection)
+    | ({
+        _key: string;
+      } & ValuesSection)
+    | ({
+        _key: string;
+      } & SolutionDetailsSection)
+    | ({
+        _key: string;
+      } & SolutionCardsSection)
   >;
 };
 
@@ -717,6 +936,18 @@ export type Geopoint = {
 
 export type AllSanitySchemaTypes =
   | Button
+  | SanityImageAssetReference
+  | Logo
+  | Poster
+  | SanityFileAssetReference
+  | UploadedVideoFile
+  | UploadedVideoPoster
+  | SolutionLogo
+  | SolutionCardsSection
+  | SolutionDetailsSection
+  | ValuesSection
+  | FounderSection
+  | StatsSection
   | ContactUsSection
   | CardsSection
   | SimpleContentSection
@@ -730,7 +961,6 @@ export type AllSanitySchemaTypes =
   | HeroSection
   | PageReference
   | Link
-  | SanityImageAssetReference
   | Seo
   | LucideIcon
   | BlockContent
@@ -976,7 +1206,7 @@ export type POST_QUERY_RESULT = {
 
 // Source: src/sanity/lib/queries.ts
 // Variable: PAGES_QUERY
-// Query: *[_type == "page" && defined(slug.current)]{    title,    "slug": slug.current,    "parentSlug": parent->slug.current,    seo,    language,    pageBuilder[]{      ...,      _type == "heroSection" => {        primaryCta{          label,          url,          "pageSlug": page->slug.current,          "pageParentSlug": page->parent->slug.current,          "pageTitle": page->title,        },        secondaryCta{          label,          url,          "pageSlug": page->slug.current,          "pageParentSlug": page->parent->slug.current,          "pageTitle": page->title,        }      },      _type == "finalCtaSection" => {        primaryCta{          label,          url,          "pageSlug": page->slug.current,          "pageParentSlug": page->parent->slug.current,          "pageTitle": page->title,        },        secondaryCta{          label,          url,          "pageSlug": page->slug.current,          "pageParentSlug": page->parent->slug.current,          "pageTitle": page->title,        }      }    }  }
+// Query: *[_type == "page" && defined(slug.current)]{    title,    "slug": slug.current,    "parentSlug": parent->slug.current,    seo,    language,    pageBuilder[]{      ...,      _type == "heroSection" => {        primaryCta{          label,          url,          "pageSlug": page->slug.current,          "pageParentSlug": page->parent->slug.current,          "pageTitle": page->title,        },        secondaryCta{          label,          url,          "pageSlug": page->slug.current,          "pageParentSlug": page->parent->slug.current,          "pageTitle": page->title,        }      },      _type == "finalCtaSection" => {        primaryCta{          label,          url,          "pageSlug": page->slug.current,          "pageParentSlug": page->parent->slug.current,          "pageTitle": page->title,        },        secondaryCta{          label,          url,          "pageSlug": page->slug.current,          "pageParentSlug": page->parent->slug.current,          "pageTitle": page->title,        }      },      _type == "solutionDetailsSection" => {        ...,        items[]{          ...,          button{            label,            url,            "pageSlug": page->slug.current,            "pageParentSlug": page->parent->slug.current,            "pageTitle": page->title,          }        }      }    }  }
 export type PAGES_QUERY_RESULT = Array<{
   title: string;
   slug: string;
@@ -1087,6 +1317,43 @@ export type PAGES_QUERY_RESULT = Array<{
       }
     | {
         _key: string;
+        _type: "founderSection";
+        backgroundColor?:
+          | "accent"
+          | "dark"
+          | "light"
+          | "primary"
+          | "secondary"
+          | "success"
+          | "warning"
+          | "white";
+        eyebrow?: string;
+        name: string;
+        role: string;
+        photo?: {
+          asset?: SanityImageAssetReference;
+          media?: unknown;
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          _type: "image";
+        };
+        quote?: string;
+        bio: string;
+        links?: Array<{
+          platform:
+            | "email"
+            | "github"
+            | "linkedin"
+            | "website"
+            | "whatsapp"
+            | "x";
+          url: string;
+          _type: "socialLink";
+          _key: string;
+        }>;
+      }
+    | {
+        _key: string;
         _type: "heroSection";
         backgroundColor?:
           | "accent"
@@ -1258,12 +1525,146 @@ export type PAGES_QUERY_RESULT = Array<{
         content: string;
         button?: Button;
       }
+    | {
+        _key: string;
+        _type: "solutionCardsSection";
+        backgroundColor?:
+          | "accent"
+          | "dark"
+          | "light"
+          | "primary"
+          | "secondary"
+          | "success"
+          | "warning"
+          | "white";
+        eyebrow?: string;
+        title?: string;
+        content?: string;
+        solutions: Array<{
+          logo?: SolutionLogo;
+          name: string;
+          title: string;
+          content: string;
+          anchorSlug?: Slug;
+          buttonLabel?: string;
+          _type: "solution";
+          _key: string;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: "solutionDetailsSection";
+        backgroundColor?:
+          | "accent"
+          | "dark"
+          | "light"
+          | "primary"
+          | "secondary"
+          | "success"
+          | "warning"
+          | "white";
+        eyebrow?: string;
+        title?: string;
+        content?: string;
+        items: Array<{
+          slug: Slug;
+          logo?: Logo;
+          title: string;
+          subtitle?: string;
+          content: string;
+          button: {
+            label: string | null;
+            url: string | null;
+            pageSlug: string | null;
+            pageParentSlug: string | null;
+            pageTitle: string | null;
+          } | null;
+          capabilitiesTitle?: string;
+          capabilities: Array<string>;
+          adaptableTitle?: string;
+          adaptableItems: Array<string>;
+          stack?: Array<string>;
+          media?: Array<
+            | {
+                asset?: SanityImageAssetReference;
+                media?: unknown;
+                hotspot?: SanityImageHotspot;
+                crop?: SanityImageCrop;
+                alt?: string;
+                _type: "screenshot";
+                _key: string;
+              }
+            | {
+                file: UploadedVideoFile;
+                poster?: UploadedVideoPoster;
+                alt?: string;
+                _type: "uploadedVideo";
+                _key: string;
+              }
+            | {
+                url: string;
+                poster?: Poster;
+                alt?: string;
+                _type: "video";
+                _key: string;
+              }
+          >;
+          status?: string;
+          _type: "solution";
+          _key: string;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: "statsSection";
+        backgroundColor?:
+          | "accent"
+          | "dark"
+          | "light"
+          | "primary"
+          | "secondary"
+          | "success"
+          | "warning"
+          | "white";
+        eyebrow?: string;
+        title: string;
+        content: string;
+        stats: Array<{
+          value: string;
+          label: string;
+          _type: "stat";
+          _key: string;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: "valuesSection";
+        backgroundColor?:
+          | "accent"
+          | "dark"
+          | "light"
+          | "primary"
+          | "secondary"
+          | "success"
+          | "warning"
+          | "white";
+        eyebrow?: string;
+        title: string;
+        content?: string;
+        values: Array<{
+          icon?: LucideIcon;
+          title: string;
+          content: string;
+          _type: "value";
+          _key: string;
+        }>;
+      }
   > | null;
 }>;
 
 // Source: src/sanity/lib/queries.ts
 // Variable: PAGE_QUERY
-// Query: *[_type == "page" && language == $language && slug.current == $slug][0]{    title,    "slug": slug.current,    "parentSlug": parent->slug.current,    seo,    language,    pageBuilder[]{      ...,      _type == "heroSection" => {        primaryCta{          label,          url,          "pageSlug": page->slug.current,          "pageParentSlug": page->parent->slug.current,          "pageTitle": page->title,        },        secondaryCta{          label,          url,          "pageSlug": page->slug.current,          "pageParentSlug": page->parent->slug.current,          "pageTitle": page->title,        }      },      _type == "finalCtaSection" => {        primaryCta{          label,          url,          "pageSlug": page->slug.current,          "pageParentSlug": page->parent->slug.current,          "pageTitle": page->title,        },        secondaryCta{          label,          url,          "pageSlug": page->slug.current,          "pageParentSlug": page->parent->slug.current,          "pageTitle": page->title,        }      }    }  }
+// Query: *[_type == "page" && language == $language && slug.current == $slug][0]{    title,    "slug": slug.current,    "parentSlug": parent->slug.current,    seo,    language,    pageBuilder[]{      ...,      _type == "heroSection" => {        primaryCta{          label,          url,          "pageSlug": page->slug.current,          "pageParentSlug": page->parent->slug.current,          "pageTitle": page->title,        },        secondaryCta{          label,          url,          "pageSlug": page->slug.current,          "pageParentSlug": page->parent->slug.current,          "pageTitle": page->title,        }      },      _type == "finalCtaSection" => {        primaryCta{          label,          url,          "pageSlug": page->slug.current,          "pageParentSlug": page->parent->slug.current,          "pageTitle": page->title,        },        secondaryCta{          label,          url,          "pageSlug": page->slug.current,          "pageParentSlug": page->parent->slug.current,          "pageTitle": page->title,        }      },      _type == "solutionDetailsSection" => {        ...,        items[]{          ...,          button{            label,            url,            "pageSlug": page->slug.current,            "pageParentSlug": page->parent->slug.current,            "pageTitle": page->title,          }        }      }    }  }
 export type PAGE_QUERY_RESULT = {
   title: string;
   slug: string;
@@ -1374,6 +1775,43 @@ export type PAGE_QUERY_RESULT = {
       }
     | {
         _key: string;
+        _type: "founderSection";
+        backgroundColor?:
+          | "accent"
+          | "dark"
+          | "light"
+          | "primary"
+          | "secondary"
+          | "success"
+          | "warning"
+          | "white";
+        eyebrow?: string;
+        name: string;
+        role: string;
+        photo?: {
+          asset?: SanityImageAssetReference;
+          media?: unknown;
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          _type: "image";
+        };
+        quote?: string;
+        bio: string;
+        links?: Array<{
+          platform:
+            | "email"
+            | "github"
+            | "linkedin"
+            | "website"
+            | "whatsapp"
+            | "x";
+          url: string;
+          _type: "socialLink";
+          _key: string;
+        }>;
+      }
+    | {
+        _key: string;
         _type: "heroSection";
         backgroundColor?:
           | "accent"
@@ -1544,6 +1982,140 @@ export type PAGE_QUERY_RESULT = {
         title: string;
         content: string;
         button?: Button;
+      }
+    | {
+        _key: string;
+        _type: "solutionCardsSection";
+        backgroundColor?:
+          | "accent"
+          | "dark"
+          | "light"
+          | "primary"
+          | "secondary"
+          | "success"
+          | "warning"
+          | "white";
+        eyebrow?: string;
+        title?: string;
+        content?: string;
+        solutions: Array<{
+          logo?: SolutionLogo;
+          name: string;
+          title: string;
+          content: string;
+          anchorSlug?: Slug;
+          buttonLabel?: string;
+          _type: "solution";
+          _key: string;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: "solutionDetailsSection";
+        backgroundColor?:
+          | "accent"
+          | "dark"
+          | "light"
+          | "primary"
+          | "secondary"
+          | "success"
+          | "warning"
+          | "white";
+        eyebrow?: string;
+        title?: string;
+        content?: string;
+        items: Array<{
+          slug: Slug;
+          logo?: Logo;
+          title: string;
+          subtitle?: string;
+          content: string;
+          button: {
+            label: string | null;
+            url: string | null;
+            pageSlug: string | null;
+            pageParentSlug: string | null;
+            pageTitle: string | null;
+          } | null;
+          capabilitiesTitle?: string;
+          capabilities: Array<string>;
+          adaptableTitle?: string;
+          adaptableItems: Array<string>;
+          stack?: Array<string>;
+          media?: Array<
+            | {
+                asset?: SanityImageAssetReference;
+                media?: unknown;
+                hotspot?: SanityImageHotspot;
+                crop?: SanityImageCrop;
+                alt?: string;
+                _type: "screenshot";
+                _key: string;
+              }
+            | {
+                file: UploadedVideoFile;
+                poster?: UploadedVideoPoster;
+                alt?: string;
+                _type: "uploadedVideo";
+                _key: string;
+              }
+            | {
+                url: string;
+                poster?: Poster;
+                alt?: string;
+                _type: "video";
+                _key: string;
+              }
+          >;
+          status?: string;
+          _type: "solution";
+          _key: string;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: "statsSection";
+        backgroundColor?:
+          | "accent"
+          | "dark"
+          | "light"
+          | "primary"
+          | "secondary"
+          | "success"
+          | "warning"
+          | "white";
+        eyebrow?: string;
+        title: string;
+        content: string;
+        stats: Array<{
+          value: string;
+          label: string;
+          _type: "stat";
+          _key: string;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: "valuesSection";
+        backgroundColor?:
+          | "accent"
+          | "dark"
+          | "light"
+          | "primary"
+          | "secondary"
+          | "success"
+          | "warning"
+          | "white";
+        eyebrow?: string;
+        title: string;
+        content?: string;
+        values: Array<{
+          icon?: LucideIcon;
+          title: string;
+          content: string;
+          _type: "value";
+          _key: string;
+        }>;
       }
   > | null;
 } | null;
@@ -1675,8 +2247,8 @@ declare module "@sanity/client" {
     '\n{\n  "posts": *[_type == "post" && language == $language && defined(slug.current) && (!defined(seo.noIndex) || seo.noIndex == false)]\n    | order(coalesce(publishedAt, _createdAt) desc)\n    [$start...$end]{\n      _id, \n      title,\n      "slug": slug.current,\n      seo,\n      body, \n      excerpt,\n      mainImage,\n      language,\n      "categories": coalesce(\n        categories[]->{\n          _id,\n          slug,\n          title\n        },\n        []\n      ),\n      author->{\n        name,\n        image\n      },\n      relatedPosts[]{\n        _key, \n        ...@->{_id, title, slug} \n      },\n      publishedAt\n    },\n  "total": count(*[_type == "post" && language == $language && defined(slug.current) && (!defined(seo.noIndex) || seo.noIndex == false)])\n}\n': POSTS_INDEX_QUERY_RESULT;
     '*[_type == "post" && defined(slug.current)][0...12]{\n  _id,\n  title,\n  "slug": slug.current,\n  seo,\n  body, \n  excerpt,\n  mainImage,\n  language,\n  "categories": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  },\n  relatedPosts[]{\n    _key, \n    ...@->{_id, title, slug}\n  },\n  publishedAt\n}': POSTS_QUERY_RESULT;
     '*[_type == "post" && language == $language && slug.current == $slug][0]{\n  _id,\n  title,\n  "slug": slug.current,\n  seo,\n  body, \n  excerpt,\n  mainImage,\n  language,\n  "categories": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  },\n  relatedPosts[]{\n    _key, \n    ...@->{_id, title, slug}\n  },\n  publishedAt\n}': POST_QUERY_RESULT;
-    '*[_type == "page" && defined(slug.current)]{\n    title,\n    "slug": slug.current,\n    "parentSlug": parent->slug.current,\n    seo,\n    language,\n    pageBuilder[]{\n      ...,\n      _type == "heroSection" => {\n        primaryCta{\n          label,\n          url,\n          "pageSlug": page->slug.current,\n          "pageParentSlug": page->parent->slug.current,\n          "pageTitle": page->title,\n        },\n        secondaryCta{\n          label,\n          url,\n          "pageSlug": page->slug.current,\n          "pageParentSlug": page->parent->slug.current,\n          "pageTitle": page->title,\n        }\n      },\n      _type == "finalCtaSection" => {\n        primaryCta{\n          label,\n          url,\n          "pageSlug": page->slug.current,\n          "pageParentSlug": page->parent->slug.current,\n          "pageTitle": page->title,\n        },\n        secondaryCta{\n          label,\n          url,\n          "pageSlug": page->slug.current,\n          "pageParentSlug": page->parent->slug.current,\n          "pageTitle": page->title,\n        }\n      }\n    }\n  }': PAGES_QUERY_RESULT;
-    '*[_type == "page" && language == $language && slug.current == $slug][0]{\n    title,\n    "slug": slug.current,\n    "parentSlug": parent->slug.current,\n    seo,\n    language,\n    pageBuilder[]{\n      ...,\n      _type == "heroSection" => {\n        primaryCta{\n          label,\n          url,\n          "pageSlug": page->slug.current,\n          "pageParentSlug": page->parent->slug.current,\n          "pageTitle": page->title,\n        },\n        secondaryCta{\n          label,\n          url,\n          "pageSlug": page->slug.current,\n          "pageParentSlug": page->parent->slug.current,\n          "pageTitle": page->title,\n        }\n      },\n      _type == "finalCtaSection" => {\n        primaryCta{\n          label,\n          url,\n          "pageSlug": page->slug.current,\n          "pageParentSlug": page->parent->slug.current,\n          "pageTitle": page->title,\n        },\n        secondaryCta{\n          label,\n          url,\n          "pageSlug": page->slug.current,\n          "pageParentSlug": page->parent->slug.current,\n          "pageTitle": page->title,\n        }\n      }\n    }\n  }': PAGE_QUERY_RESULT;
+    '*[_type == "page" && defined(slug.current)]{\n    title,\n    "slug": slug.current,\n    "parentSlug": parent->slug.current,\n    seo,\n    language,\n    pageBuilder[]{\n      ...,\n      _type == "heroSection" => {\n        primaryCta{\n          label,\n          url,\n          "pageSlug": page->slug.current,\n          "pageParentSlug": page->parent->slug.current,\n          "pageTitle": page->title,\n        },\n        secondaryCta{\n          label,\n          url,\n          "pageSlug": page->slug.current,\n          "pageParentSlug": page->parent->slug.current,\n          "pageTitle": page->title,\n        }\n      },\n      _type == "finalCtaSection" => {\n        primaryCta{\n          label,\n          url,\n          "pageSlug": page->slug.current,\n          "pageParentSlug": page->parent->slug.current,\n          "pageTitle": page->title,\n        },\n        secondaryCta{\n          label,\n          url,\n          "pageSlug": page->slug.current,\n          "pageParentSlug": page->parent->slug.current,\n          "pageTitle": page->title,\n        }\n      },\n      _type == "solutionDetailsSection" => {\n        ...,\n        items[]{\n          ...,\n          button{\n            label,\n            url,\n            "pageSlug": page->slug.current,\n            "pageParentSlug": page->parent->slug.current,\n            "pageTitle": page->title,\n          }\n        }\n      }\n    }\n  }': PAGES_QUERY_RESULT;
+    '*[_type == "page" && language == $language && slug.current == $slug][0]{\n    title,\n    "slug": slug.current,\n    "parentSlug": parent->slug.current,\n    seo,\n    language,\n    pageBuilder[]{\n      ...,\n      _type == "heroSection" => {\n        primaryCta{\n          label,\n          url,\n          "pageSlug": page->slug.current,\n          "pageParentSlug": page->parent->slug.current,\n          "pageTitle": page->title,\n        },\n        secondaryCta{\n          label,\n          url,\n          "pageSlug": page->slug.current,\n          "pageParentSlug": page->parent->slug.current,\n          "pageTitle": page->title,\n        }\n      },\n      _type == "finalCtaSection" => {\n        primaryCta{\n          label,\n          url,\n          "pageSlug": page->slug.current,\n          "pageParentSlug": page->parent->slug.current,\n          "pageTitle": page->title,\n        },\n        secondaryCta{\n          label,\n          url,\n          "pageSlug": page->slug.current,\n          "pageParentSlug": page->parent->slug.current,\n          "pageTitle": page->title,\n        }\n      },\n      _type == "solutionDetailsSection" => {\n        ...,\n        items[]{\n          ...,\n          button{\n            label,\n            url,\n            "pageSlug": page->slug.current,\n            "pageParentSlug": page->parent->slug.current,\n            "pageTitle": page->title,\n          }\n        }\n      }\n    }\n  }': PAGE_QUERY_RESULT;
     '\n  *[_type == "siteSettings" && language == $language][0]{\n    siteName,\n    logo,\n    logoDark,\n    seo,\n    announcementText,\n    announcementLink{\n      label,\n      url,\n      "pageSlug": page->slug.current,\n      "pageParentSlug": page->parent->slug.current,\n      "pageTitle": page->title,\n    },\n    headerNav[]{\n      label,\n      url,\n      "pageSlug": page->slug.current,\n      "pageParentSlug": page->parent->slug.current,\n      "pageTitle": page->title,\n    },\n    headerSecondaryCta{\n      label,\n      url,\n      "pageSlug": page->slug.current,\n      "pageParentSlug": page->parent->slug.current,\n      "pageTitle": page->title,\n    },\n    headerPrimaryCta{\n      label,\n      url,\n      "pageSlug": page->slug.current,\n      "pageParentSlug": page->parent->slug.current,\n      "pageTitle": page->title,\n    },\n    footerColumns[]{\n      title,\n      links[]{\n        label,\n        url,\n        "pageSlug": page->slug.current,\n        "pageParentSlug": page->parent->slug.current,\n        "pageTitle": page->title,\n      }\n    },\n    footerDescription,\n    footerPrimaryCta{\n      label,\n      url,\n      "pageSlug": page->slug.current,\n      "pageParentSlug": page->parent->slug.current,\n      "pageTitle": page->title,\n    },\n    footerBottomLinks[]{\n      label,\n      url,\n      "pageSlug": page->slug.current,\n      "pageParentSlug": page->parent->slug.current,\n      "pageTitle": page->title,\n    },\n    footerMetaText,\n    footerBottomText,\n    socialLinks[]\n  }\n': SITE_SETTINGS_QUERY_RESULT;
     '\n{\n  "pages": *[\n    _type == "page"\n    && defined(slug.current)\n    && (!defined(seo.noIndex) || seo.noIndex == false)\n  ]{\n    _id,\n    "slug": slug.current,\n    "parentSlug": parent->slug.current,\n    language,\n    _updatedAt\n  },\n\n  "posts": *[\n    _type == "post"\n    && defined(slug.current)\n    && (!defined(seo.noIndex) || seo.noIndex == false)\n  ]{\n    _id,\n    "slug": slug.current,\n    language,\n    _updatedAt\n  },\n\n  "categories": *[\n    _type == "category"\n    && defined(slug.current)\n  ]{\n    _id,\n    language,\n    "slug": slug.current\n  },\n\n  "translations": *[_type == "translation.metadata"]{\n    translations[]{\n      _key,\n      language,\n      "ref": value._ref\n    }\n  }\n}\n': SITEMAP_QUERY_RESULT;
   }

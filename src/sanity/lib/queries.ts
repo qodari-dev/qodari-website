@@ -199,6 +199,19 @@ export const PAGES_QUERY =
           "pageParentSlug": page->parent->slug.current,
           "pageTitle": page->title,
         }
+      },
+      _type == "solutionDetailsSection" => {
+        ...,
+        items[]{
+          ...,
+          button{
+            label,
+            url,
+            "pageSlug": page->slug.current,
+            "pageParentSlug": page->parent->slug.current,
+            "pageTitle": page->title,
+          }
+        }
       }
     }
   }`);
@@ -242,6 +255,19 @@ export const PAGE_QUERY =
           "pageSlug": page->slug.current,
           "pageParentSlug": page->parent->slug.current,
           "pageTitle": page->title,
+        }
+      },
+      _type == "solutionDetailsSection" => {
+        ...,
+        items[]{
+          ...,
+          button{
+            label,
+            url,
+            "pageSlug": page->slug.current,
+            "pageParentSlug": page->parent->slug.current,
+            "pageTitle": page->title,
+          }
         }
       }
     }

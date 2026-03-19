@@ -11,6 +11,11 @@ import { ProcessHero } from "./sections/process-hero";
 import { ServiceDetails } from "./sections/service-details";
 import { SimpleContent } from "./sections/simple-content";
 import { PageSimpleHero } from "./sections/page-simple-hero";
+import { Stats } from "./sections/stats";
+import { Founder } from "./sections/founder";
+import { Values } from "./sections/values";
+import { SolutionDetails } from "./sections/solution-details";
+import { SolutionCards } from "./sections/solution-cards";
 
 export type PageSection = NonNullable<
   NonNullable<PAGE_QUERY_RESULT>["pageBuilder"]
@@ -52,6 +57,16 @@ export function PageBuilder({ sections, locale }: PageBuilderProps) {
             return <Cards key={index} {...section} />;
           case "contactUsSection":
             return <ContactUs key={index} locale={locale} {...section} />;
+          case "statsSection":
+            return <Stats key={index} {...section} />;
+          case "founderSection":
+            return <Founder key={index} {...section} />;
+          case "valuesSection":
+            return <Values key={index} {...section} />;
+          case "solutionDetailsSection":
+            return <SolutionDetails key={index} {...section} />;
+          case "solutionCardsSection":
+            return <SolutionCards key={index} {...section} />;
           default:
             return null;
         }

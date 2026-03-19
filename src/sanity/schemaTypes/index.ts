@@ -18,6 +18,11 @@ import { finalCtaType } from "./components/final-cta-type";
 import { serviceDetailsType } from "./components/service-details-type";
 import { cardsType } from "./components/cards-type";
 import { contactUsType } from "./components/contact-us-type";
+import { statsType } from "./components/stats-type";
+import { founderType } from "./components/founder-type";
+import { valuesType } from "./components/values-type";
+import { solutionDetailsType } from "./components/solution-details-type";
+import { solutionCardsType } from "./components/solution-cards-type";
 
 import { categoryType } from "./category-type";
 import { postType } from "./post-type";
@@ -44,6 +49,11 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     simpleContentType,
     cardsType,
     contactUsType,
+    statsType,
+    founderType,
+    valuesType,
+    solutionDetailsType,
+    solutionCardsType,
     //documents
     siteSettings,
     categoryType,
