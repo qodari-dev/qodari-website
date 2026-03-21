@@ -44,10 +44,10 @@ export function Cards({
               key={card._key || index}
               className="group relative overflow-hidden rounded-[1.8rem] border border-black/6 bg-white/94 p-5 shadow-[0_14px_34px_rgba(16,24,40,0.05)] transition-transform duration-200 hover:-translate-y-1 lg:p-6"
             >
-              <div className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,rgba(63,115,201,0.35),rgba(67,179,233,0.16),transparent)]" />
+              <div className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,rgba(63,100,176,0.35),rgba(62,198,238,0.16),transparent)]" />
 
               <div className="mb-3 flex items-center justify-between">
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,rgba(63,115,201,0.12),rgba(67,179,233,0.18))] text-(--brand-primary)">
+                <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,rgba(63,100,176,0.12),rgba(62,198,238,0.18))] text-(--brand-primary)">
                   {card.icon ? (
                     <DynamicIcon
                       name={card.icon as IconName}

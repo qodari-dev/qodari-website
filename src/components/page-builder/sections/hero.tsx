@@ -61,8 +61,8 @@ export function Hero({
         className={cn(
           "pointer-events-none absolute inset-x-0 top-0 h-40 opacity-80 blur-3xl",
           isDark
-            ? "bg-[radial-gradient(circle_at_top,rgba(67,179,233,0.18),transparent_62%)]"
-            : "bg-[radial-gradient(circle_at_top,rgba(67,179,233,0.18),transparent_58%)]",
+            ? "bg-[radial-gradient(circle_at_top,rgba(62,198,238,0.18),transparent_62%)]"
+            : "bg-[radial-gradient(circle_at_top,rgba(62,198,238,0.18),transparent_58%)]",
         )}
       />
 
@@ -118,7 +118,7 @@ export function Hero({
         </div>
 
         <div className="relative">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(67,179,233,0.16),transparent_66%)] blur-3xl" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(62,198,238,0.16),transparent_66%)] blur-3xl" />
 
           <div className="relative rounded-4xl border border-black/6 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(247,249,252,0.92))] p-5 shadow-[0_32px_90px_rgba(16,24,40,0.12)]">
             <div className="mb-5 flex items-center justify-between border-b border-black/6 pb-4">
@@ -130,7 +130,7 @@ export function Hero({
                   {visualContent}
                 </p>
               </div>
-              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--brand-primary),var(--brand-secondary))] text-white shadow-[0_18px_36px_rgba(67,179,233,0.28)]">
+              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--brand-primary),var(--brand-secondary))] text-white shadow-[0_18px_36px_rgba(62,198,238,0.28)]">
                 <ArrowUpRight className="h-5 w-5" />
               </div>
             </div>
@@ -145,7 +145,7 @@ export function Hero({
                   )}
                 >
                   <div className="mb-4 flex items-center justify-between">
-                    <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,rgba(63,115,201,0.12),rgba(67,179,233,0.18))] text-(--brand-primary)">
+                    <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,rgba(63,100,176,0.12),rgba(62,198,238,0.18))] text-(--brand-primary)">
                       {card.icon ? (
                         <DynamicIcon
                           name={card.icon as IconName}

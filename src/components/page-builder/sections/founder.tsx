@@ -64,7 +64,7 @@ export function Founder({
 
   return (
     <section className={cn("relative overflow-hidden", bg, text)}>
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-[radial-gradient(circle_at_top,rgba(67,179,233,0.14),transparent_60%)] blur-3xl" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-[radial-gradient(circle_at_top,rgba(62,198,238,0.14),transparent_60%)] blur-3xl" />
 
       <div className="site-container relative">
         {eyebrow ? (
@@ -108,7 +108,7 @@ export function Founder({
             <div className="flex flex-1 flex-col justify-center p-8 lg:p-10">
               <div className="flex items-center gap-4">
                 {!hasPhoto ? (
-                  <div className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,rgba(63,115,201,0.12),rgba(67,179,233,0.2))] text-lg font-bold text-(--brand-primary)">
+                  <div className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,rgba(63,100,176,0.12),rgba(62,198,238,0.2))] text-lg font-bold text-(--brand-primary)">
                     {getInitials(name)}
                   </div>
                 ) : null}

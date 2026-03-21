@@ -18,7 +18,7 @@ export function LanguageSwitcher({
 
   const currentLocale = (params.locale || routing.defaultLocale) as Locale;
   const activeClasses =
-    "bg-(--brand-primary) text-white shadow-[0_10px_24px_rgba(63,115,201,0.28)]";
+    "bg-(--brand-primary) text-white shadow-[0_10px_24px_rgba(63,100,176,0.28)]";
   const inactiveClasses =
     tone === "dark"
       ? "text-white/70 hover:text-white"

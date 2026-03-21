@@ -48,9 +48,7 @@ export function FinalCta({
   return (
     <section className="bg-(--surface-dark) text-(--text-on-dark)">
       <div className="site-container">
-        <div className="relative overflow-hidden bg-[linear-gradient(180deg,rgba(12,18,30,0.96),rgba(7,11,18,1))] ">
-          <div className="absolute inset-x-0 top-0 h-28 bg-[radial-gradient(circle_at_top,rgba(67,179,233,0.18),transparent_60%)]" />
-
+        <div className="relative overflow-hidden">
           <div className="relative mx-auto max-w-208 text-center">
             {eyebrow ? (
               <div className="mb-5 inline-flex items-center gap-3">

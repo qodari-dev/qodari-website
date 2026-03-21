@@ -24,7 +24,7 @@ export function SolutionCards({
 
   return (
     <section className={cn("relative overflow-hidden", bg, text)}>
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-[radial-gradient(circle_at_top,rgba(67,179,233,0.14),transparent_60%)] blur-3xl" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-[radial-gradient(circle_at_top,rgba(62,198,238,0.14),transparent_60%)] blur-3xl" />
 
       <div className="site-container relative">
         {eyebrow || title ? (
@@ -85,7 +85,7 @@ export function SolutionCards({
                   key={item._key}
                   className="group relative flex flex-col overflow-hidden rounded-[1.8rem] border border-black/6 bg-white/94 p-6 shadow-[0_14px_34px_rgba(16,24,40,0.05)] transition-transform duration-200 hover:-translate-y-1 lg:p-7"
                 >
-                  <div className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,rgba(63,115,201,0.35),rgba(67,179,233,0.16),transparent)]" />
+                  <div className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,rgba(63,100,176,0.35),rgba(62,198,238,0.16),transparent)]" />
 
                   <div className="mb-4 flex items-center gap-2">
                     {item.logo ? (

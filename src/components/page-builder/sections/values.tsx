@@ -15,7 +15,7 @@ export function Values({
 
   return (
     <section className={cn("relative overflow-hidden", bg, text)}>
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-[radial-gradient(circle_at_top,rgba(67,179,233,0.14),transparent_60%)] blur-3xl" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-[radial-gradient(circle_at_top,rgba(62,198,238,0.14),transparent_60%)] blur-3xl" />
 
       <div className="site-container relative">
         <div className="mx-auto max-w-3xl text-center">
@@ -55,7 +55,7 @@ export function Values({
                 className="group rounded-[1.65rem] border border-black/6 bg-white/94 p-6 shadow-[0_12px_28px_rgba(16,24,40,0.05)] transition-transform duration-200 hover:-translate-y-1"
               >
                 <div className="mb-4 flex items-center justify-between">
-                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,rgba(63,115,201,0.12),rgba(67,179,233,0.18))] text-(--brand-primary)">
+                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,rgba(63,100,176,0.12),rgba(62,198,238,0.18))] text-(--brand-primary)">
                     {item.icon ? (
                       <DynamicIcon
                         name={item.icon as IconName}

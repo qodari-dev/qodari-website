@@ -51,7 +51,7 @@ export function ServiceDetails({
                   )}
                 >
                   <div className="mb-3.5 flex items-center gap-3">
-                    <span className="inline-flex h-8 min-w-8 items-center justify-center rounded-full border border-(--brand-primary)/12 bg-[linear-gradient(135deg,rgba(63,115,201,0.08),rgba(67,179,233,0.14))] px-2.5 text-[10px] font-semibold tracking-[0.16em] text-(--brand-primary)">
+                    <span className="inline-flex h-8 min-w-8 items-center justify-center rounded-full border border-(--brand-primary)/12 bg-[linear-gradient(135deg,rgba(63,100,176,0.08),rgba(62,198,238,0.14))] px-2.5 text-[10px] font-semibold tracking-[0.16em] text-(--brand-primary)">
                       0{index + 1}
                     </span>
                     {item.tags && item.tags.length > 0 ? (
@@ -95,7 +95,7 @@ export function ServiceDetails({
                           key={listItem}
                           className="flex items-start gap-3 text-sm leading-6.5 text-slate-800"
                         >
-                          <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,rgba(63,115,201,0.08),rgba(67,179,233,0.16))] text-(--brand-primary)">
+                          <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,rgba(63,100,176,0.08),rgba(62,198,238,0.16))] text-(--brand-primary)">
                             <Check className="h-3.25 w-3.25" />
                           </span>
                           <span>{listItem}</span>

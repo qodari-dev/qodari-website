@@ -16,7 +16,7 @@ export function PageSimpleHero({
     <section
       className={cn("relative overflow-hidden py-16 lg:py-20", bg, text)}
     >
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-[radial-gradient(circle_at_top,rgba(67,179,233,0.14),transparent_60%)] blur-3xl" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-[radial-gradient(circle_at_top,rgba(62,198,238,0.14),transparent_60%)] blur-3xl" />
 
       <div className="site-container relative">
         <div className="">

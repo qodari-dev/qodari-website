@@ -21,7 +21,7 @@ export function ProcessHero({
 
   return (
     <section className={cn("relative overflow-hidden ", bg, text)}>
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-[radial-gradient(circle_at_top,rgba(67,179,233,0.14),transparent_60%)] blur-3xl" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-[radial-gradient(circle_at_top,rgba(62,198,238,0.14),transparent_60%)] blur-3xl" />
 
       <div className="site-container relative grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(340px,0.92fr)] lg:items-end lg:gap-12">
         <div className="max-w-4xl">
@@ -44,7 +44,7 @@ export function ProcessHero({
         </div>
 
         <div className="relative">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(67,179,233,0.14),transparent_70%)] blur-3xl" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(62,198,238,0.14),transparent_70%)] blur-3xl" />
 
           <div className="relative rounded-[2rem] border border-black/6 bg-[linear-gradient(180deg,rgba(255,255,255,0.95),rgba(247,249,252,0.88))] p-5 shadow-[0_28px_72px_rgba(16,24,40,0.08)]">
             <div className="mb-5 flex items-center justify-between border-b border-black/6 pb-4">
@@ -55,7 +55,7 @@ export function ProcessHero({
                 {steps.map((_, index) => (
                   <span
                     key={index}
-                    className="h-1.5 w-6 rounded-full bg-[linear-gradient(90deg,rgba(63,115,201,0.16),rgba(67,179,233,0.34))]"
+                    className="h-1.5 w-6 rounded-full bg-[linear-gradient(90deg,rgba(63,100,176,0.16),rgba(62,198,238,0.34))]"
                   />
                 ))}
               </div>
@@ -68,7 +68,7 @@ export function ProcessHero({
                   className="rounded-[1.2rem] border border-black/6 bg-white/90 px-4 py-3.5 shadow-[0_10px_22px_rgba(16,24,40,0.035)]"
                 >
                   <div className="flex items-center gap-3">
-                    <span className="inline-flex h-8 min-w-8 items-center justify-center rounded-full bg-[linear-gradient(135deg,rgba(63,115,201,0.12),rgba(67,179,233,0.2))] px-2.5 text-[10px] font-semibold tracking-[0.16em] text-(--brand-primary)">
+                    <span className="inline-flex h-8 min-w-8 items-center justify-center rounded-full bg-[linear-gradient(135deg,rgba(63,100,176,0.12),rgba(62,198,238,0.2))] px-2.5 text-[10px] font-semibold tracking-[0.16em] text-(--brand-primary)">
                       0{index + 1}
                     </span>
                     <div className="min-w-0 flex-1">

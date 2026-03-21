@@ -26,7 +26,7 @@ export function SolutionDetails({
 
   return (
     <section className={cn("relative overflow-hidden", bg, text)}>
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-[radial-gradient(circle_at_top,rgba(67,179,233,0.14),transparent_60%)] blur-3xl" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-[radial-gradient(circle_at_top,rgba(62,198,238,0.14),transparent_60%)] blur-3xl" />
 
       <div className="site-container relative">
         {eyebrow || sectionTitle ? (
@@ -67,7 +67,7 @@ export function SolutionDetails({
                 id={anchorId || undefined}
                 className="relative scroll-mt-24 overflow-hidden rounded-[2rem] border border-black/6 bg-white/94 shadow-[0_18px_45px_rgba(16,24,40,0.05)]"
               >
-                <div className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,rgba(63,115,201,0.35),rgba(67,179,233,0.16),transparent)]" />
+                <div className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,rgba(63,100,176,0.35),rgba(62,198,238,0.16),transparent)]" />
 
                 <div
                   className={cn(
@@ -142,7 +142,7 @@ export function SolutionDetails({
                               key={cap}
                               className="flex items-start gap-3 text-sm leading-6 text-slate-800"
                             >
-                              <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,rgba(63,115,201,0.08),rgba(67,179,233,0.16))] text-(--brand-primary)">
+                              <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,rgba(63,100,176,0.08),rgba(62,198,238,0.16))] text-(--brand-primary)">
                                 <Check className="h-3.25 w-3.25" />
                               </span>
                               <span>{cap}</span>
