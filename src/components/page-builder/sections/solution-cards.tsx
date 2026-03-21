@@ -24,31 +24,27 @@ export function SolutionCards({
 
   return (
     <section className={cn("relative overflow-hidden", bg, text)}>
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-[radial-gradient(circle_at_top,rgba(62,198,238,0.14),transparent_60%)] blur-3xl" />
+      <div className="gradient-glow" />
 
       <div className="site-container relative">
         {eyebrow || title ? (
           <div className="mx-auto max-w-4xl text-center">
             {eyebrow ? (
-              <div className="mb-5 inline-flex items-center gap-3">
-                <span className="h-px w-10 bg-(--brand-secondary)" />
-                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-(--brand-primary)">
-                  {eyebrow}
-                </p>
-                <span className="h-px w-10 bg-(--brand-secondary)" />
+              <div className="section-eyebrow">
+                <span />
+                <p>{eyebrow}</p>
+                <span />
               </div>
             ) : null}
 
             {title ? (
-              <h2 className="mx-auto text-4xl font-semibold leading-[1.08] tracking-[-0.04em] text-balance text-slate-950 sm:text-5xl">
+              <h2 className="mx-auto section-heading text-(--text-primary)">
                 {title}
               </h2>
             ) : null}
 
             {content ? (
-              <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-(--text-secondary)">
-                {content}
-              </p>
+              <p className="mx-auto section-content max-w-3xl">{content}</p>
             ) : null}
           </div>
         ) : null}
@@ -108,11 +104,11 @@ export function SolutionCards({
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-semibold leading-[1.15] tracking-[-0.02em] text-slate-950">
+                  <h3 className="text-xl font-semibold leading-[1.15] tracking-[-0.02em] text-(--text-primary)">
                     {item.title}
                   </h3>
 
-                  <p className="mt-3 flex-1 text-[15px] leading-7 text-(--text-secondary)">
+                  <p className="mt-3 flex-1 text-[15px] leading-7 text-(--text-body)">
                     {item.content}
                   </p>
 

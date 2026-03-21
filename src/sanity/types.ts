@@ -19,10 +19,9 @@ export type Button = {
   text?: string;
   url?: string;
   buttonColor?:
-    | "primary"
-    | "secondary"
-    | "success"
-    | "dark"
+    | "brand-gradient"
+    | "brand-light"
+    | "deep-navy"
     | "outline"
     | "ghost";
 };
@@ -83,13 +82,11 @@ export type SolutionCardsSection = {
   _type: "solutionCardsSection";
   backgroundColor?:
     | "white"
-    | "light"
-    | "dark"
+    | "light-gray"
+    | "ice-blue"
+    | "sky-blue"
     | "primary"
-    | "secondary"
-    | "success"
-    | "warning"
-    | "accent";
+    | "deep-navy";
   eyebrow?: string;
   title?: string;
   content?: string;
@@ -109,13 +106,11 @@ export type SolutionDetailsSection = {
   _type: "solutionDetailsSection";
   backgroundColor?:
     | "white"
-    | "light"
-    | "dark"
+    | "light-gray"
+    | "ice-blue"
+    | "sky-blue"
     | "primary"
-    | "secondary"
-    | "success"
-    | "warning"
-    | "accent";
+    | "deep-navy";
   eyebrow?: string;
   title?: string;
   content?: string;
@@ -166,13 +161,11 @@ export type ValuesSection = {
   _type: "valuesSection";
   backgroundColor?:
     | "white"
-    | "light"
-    | "dark"
+    | "light-gray"
+    | "ice-blue"
+    | "sky-blue"
     | "primary"
-    | "secondary"
-    | "success"
-    | "warning"
-    | "accent";
+    | "deep-navy";
   eyebrow?: string;
   title: string;
   content?: string;
@@ -189,13 +182,11 @@ export type FounderSection = {
   _type: "founderSection";
   backgroundColor?:
     | "white"
-    | "light"
-    | "dark"
+    | "light-gray"
+    | "ice-blue"
+    | "sky-blue"
     | "primary"
-    | "secondary"
-    | "success"
-    | "warning"
-    | "accent";
+    | "deep-navy";
   eyebrow?: string;
   name: string;
   role: string;
@@ -220,13 +211,11 @@ export type StatsSection = {
   _type: "statsSection";
   backgroundColor?:
     | "white"
-    | "light"
-    | "dark"
+    | "light-gray"
+    | "ice-blue"
+    | "sky-blue"
     | "primary"
-    | "secondary"
-    | "success"
-    | "warning"
-    | "accent";
+    | "deep-navy";
   eyebrow?: string;
   title: string;
   content: string;
@@ -242,13 +231,11 @@ export type ContactUsSection = {
   _type: "contactUsSection";
   backgroundColor?:
     | "white"
-    | "light"
-    | "dark"
+    | "light-gray"
+    | "ice-blue"
+    | "sky-blue"
     | "primary"
-    | "secondary"
-    | "success"
-    | "warning"
-    | "accent";
+    | "deep-navy";
   title: string;
   eyebrow?: string;
   content: string;
@@ -266,13 +253,11 @@ export type CardsSection = {
   _type: "cardsSection";
   backgroundColor?:
     | "white"
-    | "light"
-    | "dark"
+    | "light-gray"
+    | "ice-blue"
+    | "sky-blue"
     | "primary"
-    | "secondary"
-    | "success"
-    | "warning"
-    | "accent";
+    | "deep-navy";
   title: string;
   eyebrow?: string;
   content?: string;
@@ -288,13 +273,11 @@ export type SimpleContentSection = {
   _type: "simpleContentSection";
   backgroundColor?:
     | "white"
-    | "light"
-    | "dark"
+    | "light-gray"
+    | "ice-blue"
+    | "sky-blue"
     | "primary"
-    | "secondary"
-    | "success"
-    | "warning"
-    | "accent";
+    | "deep-navy";
   eyebrow?: string;
   title: string;
   content: string;
@@ -305,13 +288,11 @@ export type ServiceDetailsSection = {
   _type: "serviceDetailsSection";
   backgroundColor?:
     | "white"
-    | "light"
-    | "dark"
+    | "light-gray"
+    | "ice-blue"
+    | "sky-blue"
     | "primary"
-    | "secondary"
-    | "success"
-    | "warning"
-    | "accent";
+    | "deep-navy";
   eyebrow?: string;
   title: string;
   content: string;
@@ -332,13 +313,11 @@ export type FinalCtaSection = {
   _type: "finalCtaSection";
   backgroundColor?:
     | "white"
-    | "light"
-    | "dark"
+    | "light-gray"
+    | "ice-blue"
+    | "sky-blue"
     | "primary"
-    | "secondary"
-    | "success"
-    | "warning"
-    | "accent";
+    | "deep-navy";
   eyebrow?: string;
   title: string;
   content: string;
@@ -351,13 +330,11 @@ export type ProcessSection = {
   _type: "processSection";
   backgroundColor?:
     | "white"
-    | "light"
-    | "dark"
+    | "light-gray"
+    | "ice-blue"
+    | "sky-blue"
     | "primary"
-    | "secondary"
-    | "success"
-    | "warning"
-    | "accent";
+    | "deep-navy";
   eyebrow?: string;
   title: string;
   content: string;
@@ -375,13 +352,11 @@ export type CapabilitiesSection = {
   _type: "capabilitiesSection";
   backgroundColor?:
     | "white"
-    | "light"
-    | "dark"
+    | "light-gray"
+    | "ice-blue"
+    | "sky-blue"
     | "primary"
-    | "secondary"
-    | "success"
-    | "warning"
-    | "accent";
+    | "deep-navy";
   eyebrow?: string;
   title: string;
   content: string;
@@ -399,13 +374,11 @@ export type ProcessHeroSection = {
   _type: "processHeroSection";
   backgroundColor?:
     | "white"
-    | "light"
-    | "dark"
+    | "light-gray"
+    | "ice-blue"
+    | "sky-blue"
     | "primary"
-    | "secondary"
-    | "success"
-    | "warning"
-    | "accent";
+    | "deep-navy";
   eyebrow?: string;
   title: string;
   content: string;
@@ -422,13 +395,11 @@ export type PageSimpleHeroSection = {
   _type: "pageSimpleHeroSection";
   backgroundColor?:
     | "white"
-    | "light"
-    | "dark"
+    | "light-gray"
+    | "ice-blue"
+    | "sky-blue"
     | "primary"
-    | "secondary"
-    | "success"
-    | "warning"
-    | "accent";
+    | "deep-navy";
   eyebrow?: string;
   title: string;
   content: string;
@@ -438,13 +409,11 @@ export type PageHeroSection = {
   _type: "pageHeroSection";
   backgroundColor?:
     | "white"
-    | "light"
-    | "dark"
+    | "light-gray"
+    | "ice-blue"
+    | "sky-blue"
     | "primary"
-    | "secondary"
-    | "success"
-    | "warning"
-    | "accent";
+    | "deep-navy";
   eyebrow?: string;
   title: string;
   content: string;
@@ -460,13 +429,11 @@ export type HeroSection = {
   _type: "heroSection";
   backgroundColor?:
     | "white"
-    | "light"
-    | "dark"
+    | "light-gray"
+    | "ice-blue"
+    | "sky-blue"
     | "primary"
-    | "secondary"
-    | "success"
-    | "warning"
-    | "accent";
+    | "deep-navy";
   eyebrow?: string;
   title: string;
   content: string;
@@ -1218,13 +1185,11 @@ export type PAGES_QUERY_RESULT = Array<{
         _key: string;
         _type: "capabilitiesSection";
         backgroundColor?:
-          | "accent"
-          | "dark"
-          | "light"
+          | "deep-navy"
+          | "ice-blue"
+          | "light-gray"
           | "primary"
-          | "secondary"
-          | "success"
-          | "warning"
+          | "sky-blue"
           | "white";
         eyebrow?: string;
         title: string;
@@ -1242,13 +1207,11 @@ export type PAGES_QUERY_RESULT = Array<{
         _key: string;
         _type: "cardsSection";
         backgroundColor?:
-          | "accent"
-          | "dark"
-          | "light"
+          | "deep-navy"
+          | "ice-blue"
+          | "light-gray"
           | "primary"
-          | "secondary"
-          | "success"
-          | "warning"
+          | "sky-blue"
           | "white";
         title: string;
         eyebrow?: string;
@@ -1264,13 +1227,11 @@ export type PAGES_QUERY_RESULT = Array<{
         _key: string;
         _type: "contactUsSection";
         backgroundColor?:
-          | "accent"
-          | "dark"
-          | "light"
+          | "deep-navy"
+          | "ice-blue"
+          | "light-gray"
           | "primary"
-          | "secondary"
-          | "success"
-          | "warning"
+          | "sky-blue"
           | "white";
         title: string;
         eyebrow?: string;
@@ -1288,13 +1249,11 @@ export type PAGES_QUERY_RESULT = Array<{
         _key: string;
         _type: "finalCtaSection";
         backgroundColor?:
-          | "accent"
-          | "dark"
-          | "light"
+          | "deep-navy"
+          | "ice-blue"
+          | "light-gray"
           | "primary"
-          | "secondary"
-          | "success"
-          | "warning"
+          | "sky-blue"
           | "white";
         eyebrow?: string;
         title: string;
@@ -1319,13 +1278,11 @@ export type PAGES_QUERY_RESULT = Array<{
         _key: string;
         _type: "founderSection";
         backgroundColor?:
-          | "accent"
-          | "dark"
-          | "light"
+          | "deep-navy"
+          | "ice-blue"
+          | "light-gray"
           | "primary"
-          | "secondary"
-          | "success"
-          | "warning"
+          | "sky-blue"
           | "white";
         eyebrow?: string;
         name: string;
@@ -1356,13 +1313,11 @@ export type PAGES_QUERY_RESULT = Array<{
         _key: string;
         _type: "heroSection";
         backgroundColor?:
-          | "accent"
-          | "dark"
-          | "light"
+          | "deep-navy"
+          | "ice-blue"
+          | "light-gray"
           | "primary"
-          | "secondary"
-          | "success"
-          | "warning"
+          | "sky-blue"
           | "white";
         eyebrow?: string;
         title: string;
@@ -1400,13 +1355,11 @@ export type PAGES_QUERY_RESULT = Array<{
         _key: string;
         _type: "pageHeroSection";
         backgroundColor?:
-          | "accent"
-          | "dark"
-          | "light"
+          | "deep-navy"
+          | "ice-blue"
+          | "light-gray"
           | "primary"
-          | "secondary"
-          | "success"
-          | "warning"
+          | "sky-blue"
           | "white";
         eyebrow?: string;
         title: string;
@@ -1422,13 +1375,11 @@ export type PAGES_QUERY_RESULT = Array<{
         _key: string;
         _type: "pageSimpleHeroSection";
         backgroundColor?:
-          | "accent"
-          | "dark"
-          | "light"
+          | "deep-navy"
+          | "ice-blue"
+          | "light-gray"
           | "primary"
-          | "secondary"
-          | "success"
-          | "warning"
+          | "sky-blue"
           | "white";
         eyebrow?: string;
         title: string;
@@ -1438,13 +1389,11 @@ export type PAGES_QUERY_RESULT = Array<{
         _key: string;
         _type: "processHeroSection";
         backgroundColor?:
-          | "accent"
-          | "dark"
-          | "light"
+          | "deep-navy"
+          | "ice-blue"
+          | "light-gray"
           | "primary"
-          | "secondary"
-          | "success"
-          | "warning"
+          | "sky-blue"
           | "white";
         eyebrow?: string;
         title: string;
@@ -1461,13 +1410,11 @@ export type PAGES_QUERY_RESULT = Array<{
         _key: string;
         _type: "processSection";
         backgroundColor?:
-          | "accent"
-          | "dark"
-          | "light"
+          | "deep-navy"
+          | "ice-blue"
+          | "light-gray"
           | "primary"
-          | "secondary"
-          | "success"
-          | "warning"
+          | "sky-blue"
           | "white";
         eyebrow?: string;
         title: string;
@@ -1485,13 +1432,11 @@ export type PAGES_QUERY_RESULT = Array<{
         _key: string;
         _type: "serviceDetailsSection";
         backgroundColor?:
-          | "accent"
-          | "dark"
-          | "light"
+          | "deep-navy"
+          | "ice-blue"
+          | "light-gray"
           | "primary"
-          | "secondary"
-          | "success"
-          | "warning"
+          | "sky-blue"
           | "white";
         eyebrow?: string;
         title: string;
@@ -1512,13 +1457,11 @@ export type PAGES_QUERY_RESULT = Array<{
         _key: string;
         _type: "simpleContentSection";
         backgroundColor?:
-          | "accent"
-          | "dark"
-          | "light"
+          | "deep-navy"
+          | "ice-blue"
+          | "light-gray"
           | "primary"
-          | "secondary"
-          | "success"
-          | "warning"
+          | "sky-blue"
           | "white";
         eyebrow?: string;
         title: string;
@@ -1529,13 +1472,11 @@ export type PAGES_QUERY_RESULT = Array<{
         _key: string;
         _type: "solutionCardsSection";
         backgroundColor?:
-          | "accent"
-          | "dark"
-          | "light"
+          | "deep-navy"
+          | "ice-blue"
+          | "light-gray"
           | "primary"
-          | "secondary"
-          | "success"
-          | "warning"
+          | "sky-blue"
           | "white";
         eyebrow?: string;
         title?: string;
@@ -1561,13 +1502,11 @@ export type PAGES_QUERY_RESULT = Array<{
         _key: string;
         _type: "solutionDetailsSection";
         backgroundColor?:
-          | "accent"
-          | "dark"
-          | "light"
+          | "deep-navy"
+          | "ice-blue"
+          | "light-gray"
           | "primary"
-          | "secondary"
-          | "success"
-          | "warning"
+          | "sky-blue"
           | "white";
         eyebrow?: string;
         title?: string;
@@ -1624,13 +1563,11 @@ export type PAGES_QUERY_RESULT = Array<{
         _key: string;
         _type: "statsSection";
         backgroundColor?:
-          | "accent"
-          | "dark"
-          | "light"
+          | "deep-navy"
+          | "ice-blue"
+          | "light-gray"
           | "primary"
-          | "secondary"
-          | "success"
-          | "warning"
+          | "sky-blue"
           | "white";
         eyebrow?: string;
         title: string;
@@ -1646,13 +1583,11 @@ export type PAGES_QUERY_RESULT = Array<{
         _key: string;
         _type: "valuesSection";
         backgroundColor?:
-          | "accent"
-          | "dark"
-          | "light"
+          | "deep-navy"
+          | "ice-blue"
+          | "light-gray"
           | "primary"
-          | "secondary"
-          | "success"
-          | "warning"
+          | "sky-blue"
           | "white";
         eyebrow?: string;
         title: string;
@@ -1682,13 +1617,11 @@ export type PAGE_QUERY_RESULT = {
         _key: string;
         _type: "capabilitiesSection";
         backgroundColor?:
-          | "accent"
-          | "dark"
-          | "light"
+          | "deep-navy"
+          | "ice-blue"
+          | "light-gray"
           | "primary"
-          | "secondary"
-          | "success"
-          | "warning"
+          | "sky-blue"
           | "white";
         eyebrow?: string;
         title: string;
@@ -1706,13 +1639,11 @@ export type PAGE_QUERY_RESULT = {
         _key: string;
         _type: "cardsSection";
         backgroundColor?:
-          | "accent"
-          | "dark"
-          | "light"
+          | "deep-navy"
+          | "ice-blue"
+          | "light-gray"
           | "primary"
-          | "secondary"
-          | "success"
-          | "warning"
+          | "sky-blue"
           | "white";
         title: string;
         eyebrow?: string;
@@ -1728,13 +1659,11 @@ export type PAGE_QUERY_RESULT = {
         _key: string;
         _type: "contactUsSection";
         backgroundColor?:
-          | "accent"
-          | "dark"
-          | "light"
+          | "deep-navy"
+          | "ice-blue"
+          | "light-gray"
           | "primary"
-          | "secondary"
-          | "success"
-          | "warning"
+          | "sky-blue"
           | "white";
         title: string;
         eyebrow?: string;
@@ -1752,13 +1681,11 @@ export type PAGE_QUERY_RESULT = {
         _key: string;
         _type: "finalCtaSection";
         backgroundColor?:
-          | "accent"
-          | "dark"
-          | "light"
+          | "deep-navy"
+          | "ice-blue"
+          | "light-gray"
           | "primary"
-          | "secondary"
-          | "success"
-          | "warning"
+          | "sky-blue"
           | "white";
         eyebrow?: string;
         title: string;
@@ -1783,13 +1710,11 @@ export type PAGE_QUERY_RESULT = {
         _key: string;
         _type: "founderSection";
         backgroundColor?:
-          | "accent"
-          | "dark"
-          | "light"
+          | "deep-navy"
+          | "ice-blue"
+          | "light-gray"
           | "primary"
-          | "secondary"
-          | "success"
-          | "warning"
+          | "sky-blue"
           | "white";
         eyebrow?: string;
         name: string;
@@ -1820,13 +1745,11 @@ export type PAGE_QUERY_RESULT = {
         _key: string;
         _type: "heroSection";
         backgroundColor?:
-          | "accent"
-          | "dark"
-          | "light"
+          | "deep-navy"
+          | "ice-blue"
+          | "light-gray"
           | "primary"
-          | "secondary"
-          | "success"
-          | "warning"
+          | "sky-blue"
           | "white";
         eyebrow?: string;
         title: string;
@@ -1864,13 +1787,11 @@ export type PAGE_QUERY_RESULT = {
         _key: string;
         _type: "pageHeroSection";
         backgroundColor?:
-          | "accent"
-          | "dark"
-          | "light"
+          | "deep-navy"
+          | "ice-blue"
+          | "light-gray"
           | "primary"
-          | "secondary"
-          | "success"
-          | "warning"
+          | "sky-blue"
           | "white";
         eyebrow?: string;
         title: string;
@@ -1886,13 +1807,11 @@ export type PAGE_QUERY_RESULT = {
         _key: string;
         _type: "pageSimpleHeroSection";
         backgroundColor?:
-          | "accent"
-          | "dark"
-          | "light"
+          | "deep-navy"
+          | "ice-blue"
+          | "light-gray"
           | "primary"
-          | "secondary"
-          | "success"
-          | "warning"
+          | "sky-blue"
           | "white";
         eyebrow?: string;
         title: string;
@@ -1902,13 +1821,11 @@ export type PAGE_QUERY_RESULT = {
         _key: string;
         _type: "processHeroSection";
         backgroundColor?:
-          | "accent"
-          | "dark"
-          | "light"
+          | "deep-navy"
+          | "ice-blue"
+          | "light-gray"
           | "primary"
-          | "secondary"
-          | "success"
-          | "warning"
+          | "sky-blue"
           | "white";
         eyebrow?: string;
         title: string;
@@ -1925,13 +1842,11 @@ export type PAGE_QUERY_RESULT = {
         _key: string;
         _type: "processSection";
         backgroundColor?:
-          | "accent"
-          | "dark"
-          | "light"
+          | "deep-navy"
+          | "ice-blue"
+          | "light-gray"
           | "primary"
-          | "secondary"
-          | "success"
-          | "warning"
+          | "sky-blue"
           | "white";
         eyebrow?: string;
         title: string;
@@ -1949,13 +1864,11 @@ export type PAGE_QUERY_RESULT = {
         _key: string;
         _type: "serviceDetailsSection";
         backgroundColor?:
-          | "accent"
-          | "dark"
-          | "light"
+          | "deep-navy"
+          | "ice-blue"
+          | "light-gray"
           | "primary"
-          | "secondary"
-          | "success"
-          | "warning"
+          | "sky-blue"
           | "white";
         eyebrow?: string;
         title: string;
@@ -1976,13 +1889,11 @@ export type PAGE_QUERY_RESULT = {
         _key: string;
         _type: "simpleContentSection";
         backgroundColor?:
-          | "accent"
-          | "dark"
-          | "light"
+          | "deep-navy"
+          | "ice-blue"
+          | "light-gray"
           | "primary"
-          | "secondary"
-          | "success"
-          | "warning"
+          | "sky-blue"
           | "white";
         eyebrow?: string;
         title: string;
@@ -1993,13 +1904,11 @@ export type PAGE_QUERY_RESULT = {
         _key: string;
         _type: "solutionCardsSection";
         backgroundColor?:
-          | "accent"
-          | "dark"
-          | "light"
+          | "deep-navy"
+          | "ice-blue"
+          | "light-gray"
           | "primary"
-          | "secondary"
-          | "success"
-          | "warning"
+          | "sky-blue"
           | "white";
         eyebrow?: string;
         title?: string;
@@ -2025,13 +1934,11 @@ export type PAGE_QUERY_RESULT = {
         _key: string;
         _type: "solutionDetailsSection";
         backgroundColor?:
-          | "accent"
-          | "dark"
-          | "light"
+          | "deep-navy"
+          | "ice-blue"
+          | "light-gray"
           | "primary"
-          | "secondary"
-          | "success"
-          | "warning"
+          | "sky-blue"
           | "white";
         eyebrow?: string;
         title?: string;
@@ -2088,13 +1995,11 @@ export type PAGE_QUERY_RESULT = {
         _key: string;
         _type: "statsSection";
         backgroundColor?:
-          | "accent"
-          | "dark"
-          | "light"
+          | "deep-navy"
+          | "ice-blue"
+          | "light-gray"
           | "primary"
-          | "secondary"
-          | "success"
-          | "warning"
+          | "sky-blue"
           | "white";
         eyebrow?: string;
         title: string;
@@ -2110,13 +2015,11 @@ export type PAGE_QUERY_RESULT = {
         _key: string;
         _type: "valuesSection";
         backgroundColor?:
-          | "accent"
-          | "dark"
-          | "light"
+          | "deep-navy"
+          | "ice-blue"
+          | "light-gray"
           | "primary"
-          | "secondary"
-          | "success"
-          | "warning"
+          | "sky-blue"
           | "white";
         eyebrow?: string;
         title: string;

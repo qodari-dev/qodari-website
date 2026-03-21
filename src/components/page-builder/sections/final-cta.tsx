@@ -1,8 +1,10 @@
 "use client";
 
 import { Link } from "@/i18n/navigation";
+import { getColorClasses } from "@/sanity/lib/colorOptions";
 import { resolveLink } from "@/sanity/lib/resolve-link";
 import { PAGE_QUERY_RESULT } from "@/sanity/types";
+import { cn } from "@/utils/cn";
 import { isExternalHref } from "@/utils/is-external-href";
 
 type FinalCtaSectionData = Extract<
@@ -35,6 +37,7 @@ function CtaLink({
 }
 
 export function FinalCta({
+  backgroundColor,
   content,
   eyebrow,
   highlights,
@@ -42,26 +45,23 @@ export function FinalCta({
   secondaryCta,
   title,
 }: FinalCtaSectionData) {
+  const { bg, text } = getColorClasses(backgroundColor);
   const primaryLink = primaryCta ? resolveLink(primaryCta) : null;
   const secondaryLink = secondaryCta ? resolveLink(secondaryCta) : null;
 
   return (
-    <section className="bg-(--surface-dark) text-(--text-on-dark)">
+    <section className={cn(bg, text)}>
       <div className="site-container">
         <div className="relative overflow-hidden">
           <div className="relative mx-auto max-w-208 text-center">
             {eyebrow ? (
-              <div className="mb-5 inline-flex items-center gap-3">
-                <span className="h-px w-10 bg-(--brand-secondary)" />
-                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-(--brand-secondary)">
-                  {eyebrow}
-                </p>
+              <div className="section-eyebrow">
+                <span />
+                <p className="!text-(--brand-secondary)">{eyebrow}</p>
               </div>
             ) : null}
 
-            <h2 className="mx-auto text-4xl font-semibold leading-[1.08] tracking-[-0.04em] text-balance text-white sm:text-5xl">
-              {title}
-            </h2>
+            <h2 className="mx-auto section-heading text-white">{title}</h2>
 
             <p className="mx-auto mt-6 text-lg leading-8 text-white/72">
               {content}

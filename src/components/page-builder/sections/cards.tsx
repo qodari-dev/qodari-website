@@ -19,22 +19,16 @@ export function Cards({
       <div className="site-container">
         <div className="mx-auto max-w-5xl text-center">
           {eyebrow ? (
-            <div className="mb-5 inline-flex items-center gap-3">
-              <span className="h-px w-10 bg-(--brand-secondary)" />
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-(--brand-primary)">
-                {eyebrow}
-              </p>
+            <div className="section-eyebrow">
+              <span />
+              <p>{eyebrow}</p>
             </div>
           ) : null}
 
-          <h2 className="mx-auto text-4xl font-semibold leading-[1.08] tracking-[-0.04em] text-balance text-slate-950 sm:text-5xl">
-            {title}
-          </h2>
+          <h2 className="mx-auto section-heading text-(--text-primary)">{title}</h2>
 
           {content ? (
-            <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-(--text-secondary)">
-              {content}
-            </p>
+            <p className="mx-auto section-content max-w-3xl">{content}</p>
           ) : null}
         </div>
 
@@ -47,7 +41,7 @@ export function Cards({
               <div className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,rgba(63,100,176,0.35),rgba(62,198,238,0.16),transparent)]" />
 
               <div className="mb-3 flex items-center justify-between">
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,rgba(63,100,176,0.12),rgba(62,198,238,0.18))] text-(--brand-primary)">
+                <div className="icon-box h-12 w-12">
                   {card.icon ? (
                     <DynamicIcon
                       name={card.icon as IconName}
@@ -57,11 +51,11 @@ export function Cards({
                 </div>
               </div>
 
-              <h3 className="text-2xl font-semibold leading-[1.12] tracking-[-0.02em] text-slate-950">
+              <h3 className="text-2xl font-semibold leading-[1.12] tracking-[-0.02em] text-(--text-primary)">
                 {card.title}
               </h3>
 
-              <p className="mt-3 text-base leading-8 text-(--text-secondary)">
+              <p className="mt-3 text-base leading-8 text-(--text-body)">
                 {card.content}
               </p>
             </article>

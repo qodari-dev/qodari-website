@@ -17,7 +17,7 @@ export const finalCtaType = defineType({
       components: {
         input: SwatchColorInput,
       },
-      initialValue: "dark",
+      initialValue: "deep-navy",
     }),
     defineField({
       name: "eyebrow",

@@ -7,7 +7,7 @@ type PublishedAtProps = {
 
 export function PublishedAt({ publishedAt }: PublishedAtProps) {
   return publishedAt ? (
-    <p className="text-base text-slate-700">
+    <p className="text-base text-(--text-body)">
       {format(new Date(publishedAt), "d MMMM yyyy")}
     </p>
   ) : null;

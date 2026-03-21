@@ -36,32 +36,26 @@ export function ContactUs({
         <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-12">
           <div className="max-w-xl">
             {eyebrow ? (
-              <div className="mb-5 inline-flex items-center gap-3">
-                <span className="h-px w-10 bg-(--brand-secondary)" />
-                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-(--brand-primary)">
-                  {eyebrow}
-                </p>
+              <div className="section-eyebrow">
+                <span />
+                <p>{eyebrow}</p>
               </div>
             ) : null}
 
-            <h2 className=" text-4xl font-semibold leading-[1.08] tracking-[-0.04em] text-balance text-slate-950 sm:text-5xl">
-              {title}
-            </h2>
+            <h2 className="section-heading text-(--text-primary)">{title}</h2>
 
-            <p className="mt-6 max-w-lg text-lg leading-8 text-(--text-secondary)">
-              {content}
-            </p>
+            <p className="section-content max-w-lg">{content}</p>
 
             <div className="mt-8 space-y-5 rounded-[1.8rem] border border-black/6 bg-white/92 p-6 shadow-[0_14px_32px_rgba(16,24,40,0.05)]">
               {detailsTitle || detailsContent ? (
                 <div>
                   {detailsTitle ? (
-                    <h3 className="text-lg font-semibold text-slate-950">
+                    <h3 className="text-lg font-semibold text-(--text-primary)">
                       {detailsTitle}
                     </h3>
                   ) : null}
                   {detailsContent ? (
-                    <p className="mt-3 text-[15px] leading-7 text-(--text-secondary)">
+                    <p className="mt-3 text-[15px] leading-7 text-(--text-body)">
                       {detailsContent}
                     </p>
                   ) : null}
@@ -71,12 +65,12 @@ export function ContactUs({
               <div className="grid gap-4 sm:grid-cols-2">
                 {contactEmail ? (
                   <div className="rounded-[1.25rem] border border-black/6 bg-(--surface-alt) p-4">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-(--text-secondary)">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-(--text-muted)">
                       Email
                     </p>
                     <a
                       href={`mailto:${contactEmail}`}
-                      className="mt-2 inline-block text-sm font-medium text-slate-900 transition-colors hover:text-(--brand-primary)"
+                      className="mt-2 inline-block text-sm font-medium text-(--text-primary) transition-colors hover:text-(--brand-primary)"
                     >
                       {contactEmail}
                     </a>
@@ -85,10 +79,10 @@ export function ContactUs({
 
                 {responseTime ? (
                   <div className="rounded-[1.25rem] border border-black/6 bg-(--surface-alt) p-4">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-(--text-secondary)">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-(--text-muted)">
                       Response time
                     </p>
-                    <p className="mt-2 text-sm font-medium text-slate-900">
+                    <p className="mt-2 text-sm font-medium text-(--text-primary)">
                       {responseTime}
                     </p>
                   </div>
@@ -100,7 +94,7 @@ export function ContactUs({
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 rounded-2xl border border-black/6 bg-white px-4 py-3.5 text-sm font-medium text-slate-700 transition-colors hover:border-green-300 hover:text-green-700"
+                  className="flex items-center gap-3 rounded-2xl border border-black/6 bg-white px-4 py-3.5 text-sm font-medium text-(--text-body) transition-colors hover:border-green-300 hover:text-green-700"
                   onClick={() =>
                     sendGAEvent("event", "whatsapp_click", {
                       location: "contact_left_panel",
@@ -118,7 +112,7 @@ export function ContactUs({
                   <svg
                     viewBox="0 0 20 20"
                     fill="currentColor"
-                    className="ml-auto h-4 w-4 shrink-0 text-slate-400"
+                    className="ml-auto h-4 w-4 shrink-0 text-(--text-muted)"
                   >
                     <path
                       fillRule="evenodd"
@@ -134,7 +128,7 @@ export function ContactUs({
                   {highlights.map((item) => (
                     <span
                       key={item}
-                      className="rounded-full border border-black/6 bg-white px-4 py-2 text-sm font-medium text-slate-700"
+                      className="rounded-full border border-black/6 bg-white px-4 py-2 text-sm font-medium text-(--text-body)"
                     >
                       {item}
                     </span>
@@ -288,14 +282,14 @@ function ContactForm({
             {formEyebrow}
           </p>
         </div>
-        <p className="mt-3 max-w-lg text-sm leading-7 text-(--text-secondary)">
+        <p className="mt-3 max-w-lg text-sm leading-7 text-(--text-body)">
           {t("messages.formIntro")}
         </p>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2">
         <div>
-          <label className="block text-sm font-medium text-slate-800">
+          <label className="block text-sm font-medium text-(--text-body)">
             {t("labels.name")}
           </label>
           <input
@@ -310,7 +304,7 @@ function ContactForm({
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-slate-800">
+          <label className="block text-sm font-medium text-(--text-body)">
             {t("labels.email")}
           </label>
           <input
@@ -330,7 +324,7 @@ function ContactForm({
         name="subject"
         render={({ field }) => (
           <div>
-            <label className="block text-sm font-medium text-slate-800">
+            <label className="block text-sm font-medium text-(--text-body)">
               {t("labels.subject")}
             </label>
             <div className="mt-2 flex flex-wrap gap-2">
@@ -340,10 +334,10 @@ function ContactForm({
                   type="button"
                   onClick={() => field.onChange(option)}
                   className={cn(
-                    "rounded-full border px-4 py-2 text-sm font-medium transition-all",
+                    "rounded-full border px-4 py-2 text-sm font-medium transition-all cursor-pointer",
                     field.value === option
                       ? "border-(--brand-primary) bg-(--brand-primary) text-white shadow-sm"
-                      : "border-black/10 bg-white text-slate-600 hover:border-(--brand-primary)/30 hover:text-slate-900",
+                      : "border-black/10 bg-white text-(--text-body) hover:border-(--brand-primary)/30 hover:text-(--text-muted)",
                   )}
                 >
                   {t(`subjectOptions.${option}`)}
@@ -360,7 +354,7 @@ function ContactForm({
       />
 
       <div>
-        <label className="block text-sm font-medium text-slate-800">
+        <label className="block text-sm font-medium text-(--text-body)">
           {t("labels.message")}
         </label>
         <textarea
@@ -397,7 +391,7 @@ function ContactForm({
       <button
         type="submit"
         disabled={isSubmitting}
-        className="brand-button-primary inline-flex items-center justify-center px-6 py-3 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-70"
+        className="cursor-pointer brand-button-primary inline-flex items-center justify-center px-6 py-3 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-70"
       >
         {isSubmitting ? t("buttons.submitting") : t("buttons.submit")}
       </button>

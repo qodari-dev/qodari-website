@@ -43,7 +43,10 @@ export function SwatchColorInput(props: StringInputProps) {
                   viewBox="0 0 20 20"
                   style={{
                     filter:
-                      color.value === "white" || color.value === "light"
+                      color.value === "white" ||
+                      color.value === "light-gray" ||
+                      color.value === "ice-blue" ||
+                      color.value === "sky-blue"
                         ? "drop-shadow(0 2px 4px rgba(0,0,0,0.8))"
                         : "drop-shadow(0 2px 4px rgba(0,0,0,0.3))",
                   }}

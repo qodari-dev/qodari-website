@@ -19,21 +19,15 @@ export function ServiceDetails({
       <div className="site-container">
         <div className="mx-auto max-w-4xl text-center">
           {eyebrow ? (
-            <div className="mb-5 inline-flex items-center gap-3">
-              <span className="h-px w-10 bg-(--brand-secondary)" />
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-(--brand-primary)">
-                {eyebrow}
-              </p>
+            <div className="section-eyebrow">
+              <span />
+              <p>{eyebrow}</p>
             </div>
           ) : null}
 
-          <h2 className="mx-auto text-4xl font-semibold leading-[1.08] tracking-[-0.04em] text-balance text-slate-950 sm:text-5xl">
-            {title}
-          </h2>
+          <h2 className="mx-auto section-heading text-(--text-primary)">{title}</h2>
 
-          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-(--text-secondary)">
-            {content}
-          </p>
+          <p className="mx-auto section-content max-w-3xl">{content}</p>
         </div>
 
         <div className="mt-10 lg:mt-11">
@@ -55,7 +49,7 @@ export function ServiceDetails({
                       0{index + 1}
                     </span>
                     {item.tags && item.tags.length > 0 ? (
-                      <div className="flex flex-wrap items-center gap-1.5 text-[10px] font-medium uppercase tracking-[0.14em] text-(--text-secondary)">
+                      <div className="flex flex-wrap items-center gap-1.5 text-[10px] font-medium uppercase tracking-[0.14em] text-(--text-muted)">
                         {item.tags.map((tag, tagIndex) => (
                           <span
                             key={tag}
@@ -71,10 +65,10 @@ export function ServiceDetails({
                     ) : null}
                   </div>
 
-                  <h3 className="text-3xl font-semibold leading-[1.08] tracking-[-0.03em] text-slate-950">
+                  <h3 className="text-3xl font-semibold leading-[1.08] tracking-[-0.03em] text-(--text-primary)">
                     {item.title}
                   </h3>
-                  <p className="mt-3 text-base leading-7 text-(--text-secondary)">
+                  <p className="mt-3 text-base leading-7 text-(--text-body)">
                     {item.content}
                   </p>
                 </div>
@@ -86,16 +80,16 @@ export function ServiceDetails({
                   )}
                 >
                   <div className="rounded-[1.4rem] border border-black/6 bg-white/92 p-4 shadow-[0_10px_24px_rgba(16,24,40,0.035)]">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-(--text-secondary)">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-(--text-muted)">
                       {item.includedTitle || "What we typically build"}
                     </p>
                     <ul className="mt-3.5 space-y-2.5">
                       {item.includedItems?.map((listItem) => (
                         <li
                           key={listItem}
-                          className="flex items-start gap-3 text-sm leading-6.5 text-slate-800"
+                          className="flex items-start gap-3 text-sm leading-6.5 text-(--text-body)"
                         >
-                          <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,rgba(63,100,176,0.08),rgba(62,198,238,0.16))] text-(--brand-primary)">
+                          <span className="mt-0.5 icon-box-sm">
                             <Check className="h-3.25 w-3.25" />
                           </span>
                           <span>{listItem}</span>
@@ -105,14 +99,14 @@ export function ServiceDetails({
                   </div>
 
                   <div className="rounded-[1.4rem] border border-black/6 bg-[rgba(247,249,252,0.72)] p-4">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-(--text-secondary)">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-(--text-muted)">
                       {item.outcomesTitle || "Where it helps"}
                     </p>
                     <ul className="mt-3.5 space-y-2.5">
                       {item.outcomes?.map((outcome) => (
                         <li
                           key={outcome}
-                          className="border-b border-black/5 pb-2.5 text-sm leading-6.5 text-slate-800 last:border-b-0 last:pb-0"
+                          className="border-b border-black/5 pb-2.5 text-sm leading-6.5 text-(--text-body) last:border-b-0 last:pb-0"
                         >
                           {outcome}
                         </li>

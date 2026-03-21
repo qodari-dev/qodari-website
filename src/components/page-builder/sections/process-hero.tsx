@@ -21,24 +21,22 @@ export function ProcessHero({
 
   return (
     <section className={cn("relative overflow-hidden ", bg, text)}>
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-[radial-gradient(circle_at_top,rgba(62,198,238,0.14),transparent_60%)] blur-3xl" />
+      <div className="gradient-glow" />
 
       <div className="site-container relative grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(340px,0.92fr)] lg:items-end lg:gap-12">
         <div className="max-w-4xl">
           {eyebrow ? (
-            <div className="mb-5 inline-flex items-center gap-3">
-              <span className="h-px w-10 bg-(--brand-secondary)" />
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-(--brand-primary)">
-                {eyebrow}
-              </p>
+            <div className="section-eyebrow">
+              <span />
+              <p>{eyebrow}</p>
             </div>
           ) : null}
 
-          <h1 className="max-w-[15ch] text-5xl font-semibold leading-[1.02] tracking-[-0.045em] text-balance text-slate-950 sm:text-6xl lg:text-[4.4rem]">
+          <h1 className="max-w-[15ch] text-5xl font-semibold leading-[1.02] tracking-[-0.045em] text-balance text-(--text-primary) sm:text-6xl lg:text-[4.4rem]">
             {title}
           </h1>
 
-          <p className="mt-7 max-w-3xl text-lg leading-8 text-(--text-secondary)">
+          <p className="mt-7 max-w-3xl text-lg leading-8 text-(--text-body)">
             {content}
           </p>
         </div>
@@ -72,10 +70,10 @@ export function ProcessHero({
                       0{index + 1}
                     </span>
                     <div className="min-w-0 flex-1">
-                      <h2 className="text-[15px] font-semibold text-slate-950">
+                      <h2 className="text-[15px] font-semibold text-(--text-primary)">
                         {step.title}
                       </h2>
-                      <p className="mt-1 line-clamp-2 text-sm leading-5.5 text-(--text-secondary)">
+                      <p className="mt-1 line-clamp-2 text-sm leading-5.5 text-(--text-body)">
                         {step.content}
                       </p>
                     </div>

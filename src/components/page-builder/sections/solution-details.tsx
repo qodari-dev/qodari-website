@@ -26,29 +26,27 @@ export function SolutionDetails({
 
   return (
     <section className={cn("relative overflow-hidden", bg, text)}>
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-[radial-gradient(circle_at_top,rgba(62,198,238,0.14),transparent_60%)] blur-3xl" />
+      <div className="gradient-glow" />
 
       <div className="site-container relative">
         {eyebrow || sectionTitle ? (
           <div className="mx-auto mb-12 max-w-3xl text-center">
             {eyebrow ? (
-              <div className="mb-5 inline-flex items-center gap-3">
-                <span className="h-px w-10 bg-(--brand-secondary)" />
-                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-(--brand-primary)">
-                  {eyebrow}
-                </p>
-                <span className="h-px w-10 bg-(--brand-secondary)" />
+              <div className="section-eyebrow">
+                <span />
+                <p>{eyebrow}</p>
+                <span />
               </div>
             ) : null}
 
             {sectionTitle ? (
-              <h2 className="text-4xl font-semibold leading-[1.08] tracking-[-0.04em] text-balance text-slate-950 sm:text-5xl">
+              <h2 className="section-heading text-(--text-primary)">
                 {sectionTitle}
               </h2>
             ) : null}
 
             {sectionContent ? (
-              <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-(--text-secondary)">
+              <p className="mx-auto section-content max-w-2xl">
                 {sectionContent}
               </p>
             ) : null}
@@ -102,7 +100,7 @@ export function SolutionDetails({
                       ) : null}
                     </div>
 
-                    <h3 className="mt-3 text-3xl font-semibold leading-[1.08] tracking-[-0.03em] text-slate-950">
+                    <h3 className="mt-3 text-3xl font-semibold leading-[1.08] tracking-[-0.03em] text-(--text-primary)">
                       {item.title}
                     </h3>
 
@@ -112,7 +110,7 @@ export function SolutionDetails({
                       </p>
                     ) : null}
 
-                    <p className="mt-4 whitespace-pre-line text-base leading-7 text-(--text-secondary)">
+                    <p className="mt-4 whitespace-pre-line text-base leading-7 text-(--text-body)">
                       {item.content}
                     </p>
 
@@ -122,7 +120,7 @@ export function SolutionDetails({
                         {item.stack.map((tech) => (
                           <span
                             key={tech}
-                            className="rounded-full border border-black/6 bg-slate-50 px-3 py-1 text-[11px] font-medium text-slate-600"
+                            className="rounded-full border border-black/6 bg-(--surface-alt) px-3 py-1 text-[11px] font-medium text-(--text-muted)"
                           >
                             {tech}
                           </span>
@@ -133,16 +131,16 @@ export function SolutionDetails({
                     {/* Core capabilities */}
                     {item.capabilities && item.capabilities.length > 0 ? (
                       <div className="mt-6 rounded-[1.4rem] border border-black/6 bg-[rgba(247,249,252,0.72)] p-5 shadow-[0_10px_24px_rgba(16,24,40,0.035)]">
-                        <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-(--text-secondary)">
+                        <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-(--text-body)">
                           {item.capabilitiesTitle || "Core capabilities"}
                         </p>
                         <div className="mt-4 grid gap-x-6 gap-y-3 sm:grid-cols-2">
                           {item.capabilities.map((cap) => (
                             <div
                               key={cap}
-                              className="flex items-start gap-3 text-sm leading-6 text-slate-800"
+                              className="flex items-start gap-3 text-sm leading-6 text-(--text-body)"
                             >
-                              <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,rgba(63,100,176,0.08),rgba(62,198,238,0.16))] text-(--brand-primary)">
+                              <span className="mt-0.5 icon-box-sm">
                                 <Check className="h-3.25 w-3.25" />
                               </span>
                               <span>{cap}</span>
@@ -194,14 +192,14 @@ export function SolutionDetails({
 
                     {item.adaptableItems && item.adaptableItems.length > 0 ? (
                       <div className="rounded-[1.4rem] border border-black/6 bg-white/92 p-5">
-                        <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-(--text-secondary)">
+                        <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-(--text-body)">
                           {item.adaptableTitle || "Adaptable for"}
                         </p>
                         <ul className="mt-3.5 space-y-2.5">
                           {item.adaptableItems.map((adapt) => (
                             <li
                               key={adapt}
-                              className="border-b border-black/5 pb-2.5 text-sm leading-6.5 text-slate-800 last:border-b-0 last:pb-0"
+                              className="border-b border-black/5 pb-2.5 text-sm leading-6.5 text-(--text-body) last:border-b-0 last:pb-0"
                             >
                               {adapt}
                             </li>
@@ -249,7 +247,7 @@ function MediaGallery({ media, title }: { media: MediaItem[]; title: string }) {
     <>
       <div className="space-y-3">
         {/* Main preview */}
-        <div className="group/media relative overflow-hidden rounded-[1.2rem] border border-black/6 bg-slate-100">
+        <div className="group/media relative overflow-hidden rounded-[1.2rem] border border-black/6 bg-black/4">
           {active?._type === "screenshot" ? (
             <>
               <Image
@@ -336,7 +334,7 @@ function MediaGallery({ media, title }: { media: MediaItem[]; title: string }) {
                   ) : null}
                   {(item._type === "video" || item._type === "uploadedVideo") &&
                   !hasPoster ? (
-                    <div className="flex h-12 w-18 items-center justify-center bg-slate-800">
+                    <div className="flex h-12 w-18 items-center justify-center bg-(--brand-deep-navy)">
                       <Play className="h-4 w-4 fill-white/60 text-white/60" />
                     </div>
                   ) : null}
@@ -461,7 +459,7 @@ function VideoEmbed({
           className="h-full w-full object-cover"
         />
       ) : (
-        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-slate-800 to-slate-900" />
+        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[var(--brand-deep-navy)] to-[#061a27]" />
       )}
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white/90 shadow-lg transition-transform group-hover/play:scale-110">
@@ -522,7 +520,7 @@ function UploadedVideoPlayer({
           className="h-full w-full object-cover"
         />
       ) : (
-        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-slate-800 to-slate-900" />
+        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[var(--brand-deep-navy)] to-[#061a27]" />
       )}
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white/90 shadow-lg transition-transform group-hover/play:scale-110">

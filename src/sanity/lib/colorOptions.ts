@@ -1,98 +1,82 @@
+/* ─── Brand-aligned color options ─── */
+
 export const colorOptions = [
   {
     title: "White",
     value: "white",
     bg: "bg-white",
-    text: "text-gray-900",
+    text: "text-[var(--text-primary)]",
     preview: "#ffffff",
   },
   {
     title: "Light Gray",
-    value: "light",
+    value: "light-gray",
     bg: "bg-gray-50",
-    text: "text-gray-900",
+    text: "text-[var(--text-primary)]",
     preview: "#f9fafb",
   },
   {
-    title: "Dark Gray",
-    value: "dark",
-    bg: "bg-gray-900",
-    text: "text-white",
-    preview: "#111827",
+    title: "Ice Blue",
+    value: "ice-blue",
+    bg: "bg-[var(--brand-ice-blue)]",
+    text: "text-[var(--text-primary)]",
+    preview: "#eef8ff",
+  },
+  {
+    title: "Sky Blue",
+    value: "sky-blue",
+    bg: "bg-[var(--brand-sky-blue)]",
+    text: "text-[var(--text-primary)]",
+    preview: "#bbd7e9",
   },
   {
     title: "Primary Blue",
     value: "primary",
-    bg: "bg-blue-600",
-    text: "text-white",
-    preview: "#2563eb",
+    bg: "bg-[var(--brand-primary)]",
+    text: "text-[var(--text-on-dark)]",
+    preview: "#3f64b0",
   },
   {
-    title: "Secondary Purple",
-    value: "secondary",
-    bg: "bg-purple-600",
-    text: "text-white",
-    preview: "#9333ea",
-  },
-  {
-    title: "Success Green",
-    value: "success",
-    bg: "bg-green-600",
-    text: "text-white",
-    preview: "#16a34a",
-  },
-  {
-    title: "Warning Orange",
-    value: "warning",
-    bg: "bg-orange-600",
-    text: "text-white",
-    preview: "#ea580c",
-  },
-  {
-    title: "Accent Teal",
-    value: "accent",
-    bg: "bg-teal-600",
-    text: "text-white",
-    preview: "#0d9488",
+    title: "Deep Navy",
+    value: "deep-navy",
+    bg: "bg-[var(--brand-deep-navy)]",
+    text: "text-[var(--text-on-dark)]",
+    preview: "#0b2739",
   },
 ] as const;
 
 export const buttonColorOptions = [
   {
-    title: "Primary Blue",
-    value: "primary",
-    classes: "bg-blue-600 hover:bg-blue-700 text-white",
-    preview: "#2563eb",
+    title: "Brand Gradient",
+    value: "brand-gradient",
+    classes: "brand-button-primary",
+    preview: "#3f64b0",
   },
   {
-    title: "Secondary Purple",
-    value: "secondary",
-    classes: "bg-purple-600 hover:bg-purple-700 text-white",
-    preview: "#9333ea",
+    title: "Brand Light",
+    value: "brand-light",
+    classes: "brand-button-secondary",
+    preview: "#ffffff",
   },
   {
-    title: "Success Green",
-    value: "success",
-    classes: "bg-green-600 hover:bg-green-700 text-white",
-    preview: "#16a34a",
-  },
-  {
-    title: "Dark",
-    value: "dark",
-    classes: "bg-gray-900 hover:bg-gray-800 text-white",
-    preview: "#111827",
+    title: "Deep Navy",
+    value: "deep-navy",
+    classes:
+      "bg-[var(--brand-deep-navy)] hover:bg-[#0f3349] text-[var(--text-on-dark)] rounded-full",
+    preview: "#0b2739",
   },
   {
     title: "Outline",
     value: "outline",
     classes:
-      "bg-transparent border-2 border-blue-600 text-blue-600 hover:bg-blue-50",
-    preview: "#2563eb",
+      "bg-transparent border-2 border-[var(--brand-primary)] text-[var(--brand-primary)] hover:bg-[var(--brand-ice-blue)] rounded-full",
+    preview: "#3f64b0",
   },
   {
     title: "Ghost",
     value: "ghost",
-    classes: "bg-transparent text-blue-600 hover:bg-blue-50",
+    classes:
+      "bg-transparent text-[var(--brand-primary)] hover:bg-[var(--brand-ice-blue)] rounded-full",
     preview: "transparent",
   },
 ] as const;
@@ -104,10 +88,10 @@ export function getColorClasses(colorValue: BackgroundColorValue = "white") {
   const color = colorOptions.find((c) => c.value === colorValue);
   return color
     ? { bg: color.bg, text: color.text }
-    : { bg: "bg-white", text: "text-gray-900" };
+    : { bg: "bg-white", text: "text-[var(--text-primary)]" };
 }
 
-export function getButtonClasses(colorValue: ButtonColorValue = "primary") {
+export function getButtonClasses(colorValue: ButtonColorValue = "brand-gradient") {
   const color = buttonColorOptions.find((c) => c.value === colorValue);
-  return color?.classes || "bg-blue-600 hover:bg-blue-700 text-white";
+  return color?.classes || "brand-button-primary";
 }

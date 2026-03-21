@@ -51,7 +51,8 @@ export function Hero({
   visualEyebrow,
 }: HeroSectionData) {
   const { bg, text } = getColorClasses(backgroundColor);
-  const isDark = backgroundColor === "dark";
+  const isDark =
+    backgroundColor === "deep-navy" || backgroundColor === "primary";
   const primaryLink = primaryCta ? resolveLink(primaryCta) : null;
   const secondaryLink = secondaryCta ? resolveLink(secondaryCta) : null;
 
@@ -69,19 +70,17 @@ export function Hero({
       <div className="site-container relative grid gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-center">
         <div className="max-w-3xl">
           {eyebrow ? (
-            <div className="mb-5 inline-flex items-center gap-3">
-              <span className="h-px w-10 bg-(--brand-secondary)" />
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-(--brand-primary)">
-                {eyebrow}
-              </p>
+            <div className="section-eyebrow">
+              <span />
+              <p>{eyebrow}</p>
             </div>
           ) : null}
 
-          <h1 className="text-5xl font-semibold leading-[1.02] tracking-[-0.04em] text-balance text-slate-950 sm:text-6xl lg:text-[4.2rem]">
+          <h1 className="text-5xl font-semibold leading-[1.02] tracking-[-0.04em] text-balance text-(--text-primary) sm:text-6xl lg:text-[4.2rem]">
             {title}
           </h1>
 
-          <p className="mt-7 max-w-xl text-lg leading-8 text-(--text-secondary)">
+          <p className="mt-7 max-w-xl text-lg leading-8 text-(--text-body)">
             {content}
           </p>
 
@@ -98,7 +97,7 @@ export function Hero({
               <HeroLink
                 href={secondaryLink.href}
                 text={secondaryLink.label}
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-black/8 bg-white/62 px-6 py-3.5 text-sm font-semibold text-slate-900 transition-colors hover:bg-white"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-black/8 bg-white/62 px-6 py-3.5 text-sm font-semibold text-(--text-primary) transition-colors hover:bg-white"
               />
             ) : null}
           </div>
@@ -108,7 +107,7 @@ export function Hero({
               {highlights.map((item) => (
                 <div
                   key={item._key}
-                  className="rounded-full border border-black/6 bg-white/80 px-4 py-2 text-sm font-medium text-slate-700 shadow-[0_10px_30px_rgba(16,24,40,0.05)]"
+                  className="rounded-full border border-black/6 bg-white/80 px-4 py-2 text-sm font-medium text-(--text-body) shadow-[0_10px_30px_rgba(16,24,40,0.05)]"
                 >
                   {item.title}
                 </div>
@@ -126,7 +125,7 @@ export function Hero({
                 <p className="text-xs font-semibold uppercase tracking-[0.24em] text-(--brand-primary)">
                   {visualEyebrow}
                 </p>
-                <p className="mt-2 text-sm text-(--text-secondary)">
+                <p className="mt-2 text-sm text-(--text-body)">
                   {visualContent}
                 </p>
               </div>
@@ -145,7 +144,7 @@ export function Hero({
                   )}
                 >
                   <div className="mb-4 flex items-center justify-between">
-                    <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,rgba(63,100,176,0.12),rgba(62,198,238,0.18))] text-(--brand-primary)">
+                    <div className="icon-box">
                       {card.icon ? (
                         <DynamicIcon
                           name={card.icon as IconName}
@@ -155,18 +154,16 @@ export function Hero({
                         <ArrowUpRight className="h-5 w-5" />
                       )}
                     </div>
-                    <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-(--text-secondary)">
+                    <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-(--text-body)">
                       0{index + 1}
                     </span>
                   </div>
 
-                  <p className="text-lg font-semibold text-slate-950">
+                  <p className="text-lg font-semibold text-(--text-primary)">
                     {card.title}
                   </p>
                   <p
-                    className={cn(
-                      "mt-2 text-(--text-secondary) text-sm leading-7",
-                    )}
+                    className={cn("mt-2 text-(--text-body) text-sm leading-7")}
                   >
                     {card.content}
                   </p>

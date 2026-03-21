@@ -64,17 +64,15 @@ export function Founder({
 
   return (
     <section className={cn("relative overflow-hidden", bg, text)}>
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-[radial-gradient(circle_at_top,rgba(62,198,238,0.14),transparent_60%)] blur-3xl" />
+      <div className="gradient-glow" />
 
       <div className="site-container relative">
         {eyebrow ? (
           <div className="mb-8 flex justify-center">
-            <div className="inline-flex items-center gap-3">
-              <span className="h-px w-10 bg-(--brand-secondary)" />
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-(--brand-primary)">
-                {eyebrow}
-              </p>
-              <span className="h-px w-10 bg-(--brand-secondary)" />
+            <div className="section-eyebrow">
+              <span />
+              <p>{eyebrow}</p>
+              <span />
             </div>
           </div>
         ) : null}
@@ -113,7 +111,7 @@ export function Founder({
                   </div>
                 ) : null}
                 <div>
-                  <h2 className="text-2xl font-semibold tracking-[-0.03em] text-slate-950">
+                  <h2 className="text-2xl font-semibold tracking-[-0.03em] text-(--text-primary)">
                     {name}
                   </h2>
                   <p className="mt-0.5 text-sm font-medium text-(--brand-primary)">
@@ -123,12 +121,12 @@ export function Founder({
               </div>
 
               {quote ? (
-                <blockquote className="mt-6 border-l-2 border-(--brand-secondary) pl-5 text-lg leading-8 font-medium text-slate-800 italic">
+                <blockquote className="mt-6 border-l-2 border-(--brand-secondary) pl-5 text-lg leading-8 font-medium text-(--text-body) italic">
                   &ldquo;{quote}&rdquo;
                 </blockquote>
               ) : null}
 
-              <p className="mt-6 whitespace-pre-line text-base leading-7 text-(--text-secondary)">
+              <p className="mt-6 whitespace-pre-line text-base leading-7 text-(--text-body)">
                 {bio}
               </p>
 
@@ -149,7 +147,7 @@ export function Founder({
                         {...(isExternal
                           ? { target: "_blank", rel: "noopener noreferrer" }
                           : {})}
-                        className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-black/8 bg-white/60 text-slate-500 transition-colors hover:border-(--brand-primary)/30 hover:text-(--brand-primary)"
+                        className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-black/8 bg-white/60 text-(--text-muted) transition-colors hover:border-(--brand-primary)/30 hover:text-(--brand-primary)"
                         aria-label={label}
                         title={label}
                       >

@@ -20,21 +20,15 @@ export function Process({
       <div className="site-container">
         <div className="mx-auto max-w-5xl text-center">
           {eyebrow ? (
-            <div className="mb-5 inline-flex items-center gap-3">
-              <span className="h-px w-10 bg-(--brand-secondary)" />
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-(--brand-primary)">
-                {eyebrow}
-              </p>
+            <div className="section-eyebrow">
+              <span />
+              <p>{eyebrow}</p>
             </div>
           ) : null}
 
-          <h2 className="mx-auto text-4xl font-semibold leading-[1.08] tracking-[-0.04em] text-balance text-slate-950 sm:text-5xl">
-            {title}
-          </h2>
+          <h2 className="mx-auto section-heading text-(--text-primary)">{title}</h2>
 
-          <p className="mx-auto mt-6 text-lg leading-8 text-(--text-secondary)">
-            {content}
-          </p>
+          <p className="mx-auto section-content">{content}</p>
         </div>
 
         <div className="relative mt-12">
@@ -50,19 +44,19 @@ export function Process({
                   0{index + 1}
                 </div>
 
-                <h3 className="text-xl font-semibold text-slate-950">
+                <h3 className="text-xl font-semibold text-(--text-primary)">
                   {step.title}
                 </h3>
-                <p className="mt-3 text-[15px] leading-7 text-(--text-secondary)">
+                <p className="mt-3 text-[15px] leading-7 text-(--text-body)">
                   {step.content}
                 </p>
 
                 {step.deliverable ? (
                   <div className="mt-6 border-t border-black/6 pt-4">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-(--text-secondary)">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-(--text-muted)">
                       {stepDeliverableLabel}
                     </p>
-                    <p className="mt-2 text-sm font-medium text-slate-800">
+                    <p className="mt-2 text-sm font-medium text-(--text-body)">
                       {step.deliverable}
                     </p>
                   </div>

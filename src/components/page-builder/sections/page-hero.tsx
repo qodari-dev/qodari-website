@@ -20,24 +20,22 @@ export function PageHero({
     <section
       className={cn("relative overflow-hidden py-16 lg:py-20", bg, text)}
     >
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-[radial-gradient(circle_at_top,rgba(62,198,238,0.14),transparent_60%)] blur-3xl" />
+      <div className="gradient-glow" />
 
       <div className="site-container relative grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)] lg:items-end lg:gap-12">
         <div className="max-w-4xl">
           {eyebrow ? (
-            <div className="mb-5 inline-flex items-center gap-3">
-              <span className="h-px w-10 bg-(--brand-secondary)" />
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-(--brand-primary)">
-                {eyebrow}
-              </p>
+            <div className="section-eyebrow">
+              <span />
+              <p>{eyebrow}</p>
             </div>
           ) : null}
 
-          <h1 className="max-w-[16ch] text-5xl font-semibold leading-[1.02] tracking-[-0.045em] text-balance text-slate-950 sm:text-6xl lg:text-[4.6rem]">
+          <h1 className="max-w-[16ch] text-5xl font-semibold leading-[1.02] tracking-[-0.045em] text-balance text-(--text-primary) sm:text-6xl lg:text-[4.6rem]">
             {title}
           </h1>
 
-          <p className="mt-7 max-w-3xl text-lg leading-8 text-(--text-secondary)">
+          <p className="mt-7 max-w-3xl text-lg leading-8 text-(--text-body)">
             {content}
           </p>
         </div>
@@ -66,7 +64,7 @@ export function PageHero({
                     </span>
                   </div>
 
-                  <p className="text-base font-medium text-slate-700">
+                  <p className="text-base font-medium text-(--text-body)">
                     {item.title}
                   </p>
                 </div>

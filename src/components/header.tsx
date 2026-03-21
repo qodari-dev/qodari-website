@@ -75,20 +75,20 @@ export function Header({ settings }: { settings: SITE_SETTINGS_QUERY_RESULT }) {
 
   const navLinkClasses = cn(
     "relative text-[13px] font-semibold tracking-[0.08em] uppercase transition-colors duration-200",
-    "text-slate-600 hover:text-slate-950",
+    "text-(--brand-deep-navy) hover:text-(--text-primary)",
   );
 
   return (
     <header className="sticky top-0 z-50 border-b border-black/6 bg-[rgba(255,255,255,0.92)] text-(--text-primary) transition-colors duration-200">
       {announcementText && (
-        <div className="border-b border-black/6 bg-(--surface-alt) px-4 py-1.5 text-center text-[10px] leading-[1.35] font-medium tracking-[0.02em] text-(--text-secondary) sm:text-[11px] sm:leading-normal sm:py-2">
+        <div className="border-b border-black/6 bg-(--surface-alt) px-4 py-1.5 text-center text-[10px] leading-[1.35] font-medium tracking-[0.02em] text-(--text-primary) sm:text-[11px] sm:leading-normal sm:py-2">
           <div className="container mx-auto flex items-center justify-center gap-2 sm:gap-2.5">
             <span>{announcementText}</span>
             {announcement?.href ? (
               <HeaderAnchor
                 href={announcement.href}
                 label={announcement.label}
-                className="inline-flex items-center gap-1 font-semibold text-slate-950 transition-colors hover:text-(--brand-primary)"
+                className="inline-flex items-center gap-1 font-bold text-(--text-primary) transition-colors hover:text-(--brand-primary)"
               />
             ) : null}
           </div>
@@ -113,7 +113,7 @@ export function Header({ settings }: { settings: SITE_SETTINGS_QUERY_RESULT }) {
               />
             </div>
           ) : (
-            <span className="text-xl font-semibold uppercase tracking-[0.28em] text-slate-950">
+            <span className="text-xl font-semibold uppercase tracking-[0.28em] text-(--text-primary)">
               {siteName || "Qodari"}
             </span>
           )}
@@ -167,7 +167,7 @@ export function Header({ settings }: { settings: SITE_SETTINGS_QUERY_RESULT }) {
 
         <button
           type="button"
-          className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-black/8 bg-white/92 text-slate-900 shadow-[0_6px_18px_rgba(16,24,40,0.06)] transition-colors lg:hidden"
+          className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-black/8 bg-white/92 text-(--text-primary) shadow-[0_6px_18px_rgba(16,24,40,0.06)] transition-colors lg:hidden"
           aria-expanded={isMenuOpen}
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           onClick={() => setIsMenuOpen((open) => !open)}
@@ -207,8 +207,8 @@ export function Header({ settings }: { settings: SITE_SETTINGS_QUERY_RESULT }) {
                         onClick={() => setIsMenuOpen(false)}
                         className={cn(
                           "flex items-center justify-between rounded-2xl px-4 py-2 text-[15px] font-medium transition-colors",
-                          "text-slate-700 hover:bg-slate-100 hover:text-slate-950",
-                          isActive && "bg-slate-100 text-(--brand-primary)",
+                          "text-(--text-body) hover:bg-black/4 hover:text-(--text-primary)",
+                          isActive && "bg-black/4 text-(--brand-primary)",
                         )}
                       />
                     );

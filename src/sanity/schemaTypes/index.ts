@@ -10,7 +10,7 @@ import { link } from "./objects/link";
 import { simpleContentType } from "./components/simple-content-type";
 import { heroType } from "./components/hero-type";
 import { pageHeroType } from "./components/page-hero-type";
-import { pageSimpleHeroType } from "./components/simple-hero-type";
+import { pageSimpleHeroType } from "./components/page-simple-hero-type";
 import { processHeroType } from "./components/process-hero-type";
 import { capabilitiesType } from "./components/capabilities-type";
 import { processType } from "./components/process-type";

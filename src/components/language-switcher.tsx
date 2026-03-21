@@ -22,7 +22,7 @@ export function LanguageSwitcher({
   const inactiveClasses =
     tone === "dark"
       ? "text-white/70 hover:text-white"
-      : "text-(--text-secondary) hover:text-(--text-primary)";
+      : "text-(--text-muted) hover:text-(--text-primary)";
 
   return (
     <div
