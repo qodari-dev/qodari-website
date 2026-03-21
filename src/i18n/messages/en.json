@@ -23,6 +23,12 @@
     "prev": "← Previous",
     "more": "Show more"
   },
+  "NotFound": {
+    "eyebrow": "404",
+    "title": "Page not found",
+    "content": "The page you're looking for doesn't exist or has been moved.",
+    "button": "Back to home"
+  },
   "ContactForm": {
     "labels": {
       "name": "Name",

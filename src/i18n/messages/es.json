@@ -23,6 +23,12 @@
     "prev": "← Anterior",
     "more": "Mostrar más"
   },
+  "NotFound": {
+    "eyebrow": "404",
+    "title": "Página no encontrada",
+    "content": "La página que buscas no existe o ha sido movida.",
+    "button": "Volver al inicio"
+  },
   "ContactForm": {
     "labels": {
       "name": "Nombre",
