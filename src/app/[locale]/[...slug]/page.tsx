@@ -5,6 +5,7 @@ import { Metadata } from "next";
 import { PAGE_QUERY, PAGES_QUERY } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
 import { getGlobalOgImage } from "@/sanity/lib/site-settings";
+import { buildAlternates } from "@/lib/seo";
 import { Locale } from "@/i18n/routing";
 
 export const revalidate = false;
@@ -55,6 +56,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const meta: Metadata = {
     title,
     description,
+    alternates: buildAlternates(locale, slug.join("/")),
     openGraph: {
       title,
       description,

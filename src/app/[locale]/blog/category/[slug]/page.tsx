@@ -12,6 +12,7 @@ import { PostCard } from "@/components/blog/post-card";
 import { getTranslations } from "next-intl/server";
 import { Metadata } from "next";
 import { hasLocale } from "next-intl";
+import { buildAlternates } from "@/lib/seo";
 
 export const revalidate = false;
 
@@ -81,6 +82,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title,
     description,
+    alternates: buildAlternates(locale, `blog/category/${slug}`),
     openGraph: {
       title,
       description,

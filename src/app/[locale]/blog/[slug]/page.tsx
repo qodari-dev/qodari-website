@@ -4,6 +4,7 @@ import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { getGlobalOgImage } from "@/sanity/lib/site-settings";
 import { POST_QUERY, POSTS_QUERY } from "@/sanity/lib/queries";
+import { buildAlternates } from "@/lib/seo";
 import type { Metadata } from "next";
 import { hasLocale } from "next-intl";
 import type { Locale } from "@/i18n/routing";
@@ -51,6 +52,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const meta: Metadata = {
     title,
     description,
+    alternates: buildAlternates(locale, `blog/${slug}`),
     openGraph: {
       type: "article",
       title,

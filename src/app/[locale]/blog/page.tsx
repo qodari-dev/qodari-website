@@ -10,6 +10,7 @@ import {
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
+import { buildAlternates } from "@/lib/seo";
 
 export const revalidate = false;
 
@@ -59,6 +60,7 @@ export async function generateMetadata({
   return {
     title,
     description,
+    alternates: buildAlternates(locale, "blog"),
     openGraph: {
       title,
       description,
