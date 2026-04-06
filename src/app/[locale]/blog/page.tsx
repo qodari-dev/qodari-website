@@ -53,9 +53,11 @@ export async function generateMetadata({
   }
 
   const t = await getTranslations({ locale, namespace: "Metadata.Blog" });
+  const { posts } = await getBlogs(locale, 1);
 
   const title = t("title");
   const description = t("description");
+  const hasPosts = posts && posts.length > 0;
 
   return {
     title,
@@ -65,6 +67,9 @@ export async function generateMetadata({
       title,
       description,
     },
+    ...(!hasPosts && {
+      robots: { index: false, follow: true },
+    }),
   };
 }
 

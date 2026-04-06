@@ -79,6 +79,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     t("description", { category: category.title ?? "" }) ||
     `Artículos publicados en la categoría ${category.title}.`;
 
+  const categoryData = await getCategoryPosts(locale, slug, 1);
+  const hasPosts = categoryData?.posts && categoryData.posts.length > 0;
+
   return {
     title,
     description,
@@ -87,6 +90,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title,
       description,
     },
+    ...(!hasPosts && {
+      robots: { index: false, follow: true },
+    }),
   };
 }
 

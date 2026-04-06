@@ -140,6 +140,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Blog posts
   const allPosts = (posts || []) as DocWithSlug[];
   const postPath = (d: DocWithSlug) => `blog/${d.slug}`;
+  const hasPosts = allPosts.length > 0;
 
   const postEntries: MetadataRoute.Sitemap = allPosts.flatMap((post) => {
     if (!post.language || !post.slug) return [];
@@ -153,21 +154,48 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ];
   });
 
-  // Blog categories
+  // Blog index — only include when there are published posts
+  const blogIndexAlternates: Record<string, string> = {};
+  for (const locale of locales) {
+    blogIndexAlternates[locale] = `${siteUrl}/${locale}/blog`;
+  }
+
+  const blogIndex: MetadataRoute.Sitemap = hasPosts
+    ? locales.map((locale) => ({
+        url: `${siteUrl}/${locale}/blog`,
+        lastModified: now,
+        alternates: { languages: blogIndexAlternates },
+      }))
+    : [];
+
+  // Blog categories — only include categories that have posts
   const allCats = (categories || []) as DocWithSlug[];
   const catPath = (d: DocWithSlug) => `blog/category/${d.slug}`;
 
-  const categoryEntries: MetadataRoute.Sitemap = allCats.flatMap((cat) => {
-    if (!cat.language || !cat.slug) return [];
+  const categoryEntries: MetadataRoute.Sitemap = hasPosts
+    ? allCats.flatMap((cat) => {
+        if (!cat.language || !cat.slug) return [];
 
-    return [
-      {
-        url: `${siteUrl}/${cat.language}/${catPath(cat)}`,
-        lastModified: now,
-        alternates: resolveAlternates(cat, allCats, translationMap, catPath),
-      },
-    ];
-  });
+        return [
+          {
+            url: `${siteUrl}/${cat.language}/${catPath(cat)}`,
+            lastModified: now,
+            alternates: resolveAlternates(
+              cat,
+              allCats,
+              translationMap,
+              catPath,
+            ),
+          },
+        ];
+      })
+    : [];
 
-  return [...homepage, ...pageEntries, ...postEntries, ...categoryEntries];
+  return [
+    ...homepage,
+    ...pageEntries,
+    ...blogIndex,
+    ...postEntries,
+    ...categoryEntries,
+  ];
 }
