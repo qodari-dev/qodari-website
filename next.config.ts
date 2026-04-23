@@ -2,7 +2,15 @@ import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async redirects() {
+    return [
+      // Redirect Sanity homepage slugs to the real canonical URL.
+      // /en/home → /en  and  /es/inicio → /es
+      // permanent: true emits HTTP 308, which Google treats as 301.
+      { source: "/en/home", destination: "/en", permanent: true },
+      { source: "/es/inicio", destination: "/es", permanent: true },
+    ];
+  },
   images: {
     remotePatterns: [
       {

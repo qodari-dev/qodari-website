@@ -1,16 +1,12 @@
 import { client } from "@/sanity/lib/client";
 import { PageBuilder } from "@/components/page-builder/page-builder";
-import { notFound, permanentRedirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { PAGE_QUERY, PAGES_QUERY } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
 import { getGlobalOgImage } from "@/sanity/lib/site-settings";
 import { buildAlternates } from "@/lib/seo";
 import { Locale } from "@/i18n/routing";
-
-// These slugs are reserved for the homepage route ([locale]/page.tsx).
-// A 301 redirect to /{locale} prevents duplicate content at /en/home and /es/inicio.
-const HOME_SLUGS = new Set(["home", "inicio"]);
 
 export const revalidate = false;
 
@@ -40,10 +36,6 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug, locale } = await params;
-
-  if (slug.length === 1 && HOME_SLUGS.has(slug[0])) {
-    permanentRedirect(`/${locale}`);
-  }
 
   const page = await getPage(locale, slug);
   if (!page) {
@@ -91,26 +83,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export async function generateStaticParams() {
   const slugs = await client.fetch(PAGES_QUERY);
-  return slugs.flatMap(({ slug, parentSlug, language }) => {
-    if (!language) return [];
-    // Skip homepage slugs — they are served by [locale]/page.tsx
-    if (!parentSlug && HOME_SLUGS.has(slug)) return [];
-    return [
-      {
-        locale: language,
-        slug: parentSlug ? [parentSlug, slug] : [slug],
-      },
-    ];
-  });
+  return slugs.flatMap(({ slug, parentSlug, language }) =>
+    language
+      ? [
+          {
+            locale: language,
+            slug: parentSlug ? [parentSlug, slug] : [slug],
+          },
+        ]
+      : [],
+  );
 }
 
 export default async function DynamicPage({ params }: Props) {
   const { slug, locale } = await params;
-
-  // Redirect homepage slugs permanently — /{locale}/home → /{locale}
-  if (slug.length === 1 && HOME_SLUGS.has(slug[0])) {
-    permanentRedirect(`/${locale}`);
-  }
 
   const page = await getPage(locale, slug);
 
